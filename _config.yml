@@ -5,9 +5,9 @@ description: A blog with some of my work in progress
 # url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
-username: Data Science and Economics of Energy
+username: Mathieu Breier
 user_description: Welcome to my website where I share some of my projects. I am currently a Master student in Data Science at the Barcelona School of Economics (BSE). You can explore the projects I have included below.
-user_title: Mathieu Breier
+user_title: Data Science and Economics of Energy
 email: breiermathieu@gmail.com
 #twitter_username: lorem_ipsum
 github_username:  mtbrr26
