@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat',sans-serif;
+    }
+    main {
+      background-image: url("/assets/img/backgroundstars.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .home-link {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      z-index: 999;
+      color: #fff;
+      font-size: 24px;
+      font-family: 'Montserrat',sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .about-title {
+      color: #fff;
+      font-size: 68px;
+      text-align: center;
+      font-family: 'Montserrat',sans-serif;
+      margin-top: 0px;
+    }
+    .about-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px;
+      margin-top: 180px;
+      margin-left: 0px;
+      margin-bottom: 180px;
+    }
+    .profile-picture {
+      width: 290px;
+      height: 300px;
+      border-radius: 100%;
+      margin-left: 50px;
+    }
+    .about-text {
+      flex: 1;
+      margin-left: 60px;
+      margin-right: 100px;
+    }
+    footer {
+      background-color: #1a222c;
+      color: #fff;
+      padding: 28px;
+      font-size: 16px;
+      text-align: center;
+      font-family: 'Montserrat',sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <a class="home-link" href="/">Home</a>
+  <main>
+    <div class="about-title">About Me</div>
+  </main>
+  <section>
+    <div class="about-content">
+      <img class="profile-picture" src="/assets/img/profilBSE.jpeg" alt="Profile Picture">
+      <div class="about-text">
+        <p>I am currently pursuing a master's degree in Data Science at the Barcelona School of Economics. I also completed a master's in Specialized Economics Analysis in Economics of Energy, Sustainability, and Climate Change at the same university last year.</p>
+        <p>During the course of my studies and various internships, my passion for data science has grown, and I have aspired to integrate this expertise with my understanding of the energy sector.</p>
+        <p>My goal is to combine this knowledge to effectively tackle environmental issues on both national and international platforms.</p>
+        <p>You can download my CV <a href="CV_Breier_Mathieu_ECCS_2023.pdf" target="_blank">here</a>.</p>
+      </div>
+    </div>
+  </section>
+  <footer>&copy; Mathieu Breier</footer>
+</body>
+</html>
