@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MathieuBreier</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: "avenir next,avenir,sans-serif";
+            }
+          
+
+            body,
+            html {
+                height: 100%;
+                color: #505050;
+                line-height: 1.8;
+                font-family: "avenir next,avenir,sans-serif";
+            }
+
+            /* Create a Parallax Effect */
+            .bgimg-1,
+            .bgimg-2,
+            .bgimg-3 {
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            /* First image (Logo. Full height) */
+            .bgimg-1 {
+                background-image: url('https://www.w3schools.com/w3images/parallax1.jpg');
+                min-height: 100%;
+            }
+
+            /* Second image (Portfolio) */
+            .bgimg-2 {
+                background-image: url("https://www.w3schools.com/w3images/parallax2.jpg");
+                min-height: 400px;
+            }
+
+            /* Third image (Contact) */
+            .bgimg-3 {
+                background-image: url("https://www.w3schools.com/w3images/parallax3.jpg");
+                min-height: 400px;
+            }
+
+            .w3-wide {
+                letter-spacing: 10px;
+            }
+
+            .w3-hover-opacity {
+                cursor: pointer;
+            }
+
+            /* Turn off parallax scrolling for tablets and phones */
+            @media only screen and (max-device-width: 1600px) {
+
+                .bgimg-1,
+                .bgimg-2,
+                .bgimg-3 {
+                    background-attachment: scroll;
+                    min-height: 400px;
+                }
+
+            /* Add margin-bottom to paragraphs to create spacing between them */
+            .paragraph {
+              margin-bottom: 1em; /* Adjust the spacing as needed */
+            }
+
+            }
+        </style>
+    </head>
+<body>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top" style = "font-family: 'Montserrat',sans-serif;">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="../../" class="w3-bar-item w3-button">HOME1</a>
+            <a href="../../aboutme/index.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT5</a>
+            <a href="../../#projects" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PORTFOLIO</a>
+            </a>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a href="../../aboutme/index.html" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+            <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+            <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+        </div>
+    </div>
+
+    <!-- First Parallax Image with Logo Text -->
+    <div class="w3-display-container" id="home">
+      <img src="../../assets/img/Norway_roads3.jpg" alt="Lights" style="width: 100vw; height: 60vh">
+        <div class="w3-display-middle" style="white-space:nowrap; text-align: center; font-family: Georgia, serif;">
+            <span class="w3-center w3-padding-large w3-xxlarge w3-animate-opacity w3-text-white">Overcoming Range Anxiety: <br> Exploring the Influence of
+              Charging Infrastructure Proximity <br>  on BEV Adoption at the Municipal Level in Norway</span>
+            <br>
+            <span class="w3-center w3-padding-large w3-large w3-animate-opacity w3-text-white" style = "font-family: avenir next,avenir,sans-serif;">ECONOMICS OF ENERGY</span>
+        </div>
+    </div>
+
+    <!-- Container (About Section) -->
+    
+  <div class="w3-content w3-container w3-padding-64" style ="max-width: 800px; margin-bottom: 50px">
+      <h2 class="w3-center" style = "font-family: Georgia, serif">Abstract</h2>
+      <p class="w3-center">
+      <p style = "font-family: Georgia, serif; text-align: justify; font-size: 16px;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <div class="w3-row">
+      </div>
+  </div>
+
+  <div class="w3-container w3-border-bottom" style="margin-left: 128px; margin-right: 128px;">
+<h1>Overcoming Range Anxiety: Exploring the Influence of Charging <br> Infrastructure Proximity on BEV Adoption at the Municipal Level in Norway</h1>
+<p style="margin-left: 5px; margin-top: 30px; font-family: avenir next,avenir,sans-serif;">by <strong>Mathieu Breier</strong></p>
+<p></p>
+<p style="margin-left: 5px; margin-bottom: 40px; font-family: avenir next,avenir,sans-serif;"> April 12, 2023</p>
+  </div>  
+
+<!--<div class="" style = 'font-family: avenir next,avenir,sans-serif;'>  defines the font for all the text below-->
+
+<!-- Container                 -->
+<!-- Container (Article)  -->
+<!-- Container                 -->
+
+
+<!-- Container (Introduction) -->
+
+<div style="margin-left: 228px; margin-right: 228px;">
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>Introduction</h2>
+    <p class="paragraph" style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    <p class="paragraph" style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>Development1 (literature review and contributions)</h2>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>Development2 (Empirical strategy)</h2>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h3>Data</h3>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h3>Empirical method</h3>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>Results</h2>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+    </div>
+  </div>
+
+    <div class="w3-container w3-large" style="margin-top: 30px;">
+  <div class="w3-left-align">
+    <h2>Robustness checks</h2>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>Conclusions</h2>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. .</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>References</h2>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>Appendix</h2>
+    <p style="text-align: justify;">We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px; margin-bottom: 130px;">
+    <div class="w3-left-align">
+      <h2>You can download the full paper here : </h2>
+        <p style="margin-left: 60px;"><i class="fa fa-arrow-right w3-text-black"></i>
+          <a href="../event_study/Event Study - Karishma Balu&Mathieu Breier.pdf" download> An Event Study Analysis of the Energy Sector in Spain</a>
+        <p>
+          
+        </p>
+        <p style="margin-left: 60px;"><i class="fa fa-arrow-right w3-text-black"></i> The Github repository: <a href="https://github.com/mtbrr26" target="_blank">https://github.com/mtbrr26</a><br> 
+        </p> 
+    </div>
+  </div>
+
+</div><!--defines the margin left and right for the whole text of the article -->
+
+<!--</div>  <!--defines the font for all the text -->
+
+</body>
+
+
+<style>
+  /* Define the CSS for the colored footnote band */
+  .footnote {
+      background-color: #1a222c;
+      color: white; /* Text color on the blue background */
+      padding: 10px; /* Adjust the padding as needed */
+      text-align: center;
+      font-family: "avenir next,avenir,sans-serif"; /* Center-align the text within the band */
+  }
+</style>
+<body>
+  
+<!-- Add the colored footnote band at the bottom of the page -->
+<div class="footnote">
+
+  <!-- Contact Section -->
+  <div class="w3-container" style="margin-left: 128px; margin-right: 128px; margin-bottom: 30px; margin-top: 30px;">
+    <div class="w3-left-align">
+      <h2>Contact</h2>
+      <p style="text-align: left; font-size: 16px; margin-left: 0px;">You can contact me through my email: <a href="mailto:mathieu.breier@bse.eu">mathieu.breier@bse.eu</a></p>
+      <p style="text-align: left; font-size: 16px; margin-left: 0px;">
+        You can download my CV <a href="../Breier_Mathieu_CV_Website.pdf" download>here</a></p>
+        <p></p>
+      
+      <p style="text-align: left; font-size: 16px; margin-left: 0px;">
+        Follow me on these social media platforms:<br> 
+        Github: <a href="https://github.com/mtbrr26" target="_blank">https://github.com/mtbrr26</a><br> 
+        LinkedIn: <a href="https://www.linkedin.com/in/mathieu-breier/" target="_blank">https://www.linkedin.com/in/mathieu-breier/</a><br> 
+      </p>
+    </div>
+  </div>
+
+<p>&copy; Mathieu Breier</p>
+</div>
+</body>
+
+</html>
