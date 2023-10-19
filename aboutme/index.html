@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MathieuBreier</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: "font-family: 'Montserrat", sans-serif;
+            }
+
+            body,
+            html {
+                height: 100%;
+                color: #505050;
+                line-height: 1.8;
+                font-family: 'Montserrat',sans-serif;
+            }
+
+            /* Create a Parallax Effect */
+            .bgimg-1,
+            .bgimg-2,
+            .bgimg-3 {
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            /* First image (Logo. Full height) */
+            .bgimg-1 {
+                background-image: url('https://www.w3schools.com/w3images/parallax1.jpg');
+                min-height: 100%;
+            }
+
+            /* Second image (Portfolio) */
+            .bgimg-2 {
+                background-image: url("https://www.w3schools.com/w3images/parallax2.jpg");
+                min-height: 400px;
+            }
+
+            /* Third image (Contact) */
+            .bgimg-3 {
+                background-image: url("https://www.w3schools.com/w3images/parallax3.jpg");
+                min-height: 400px;
+            }
+
+            .w3-wide {
+                letter-spacing: 10px;
+            }
+
+            .w3-hover-opacity {
+                cursor: pointer;
+            }
+
+            /* Turn off parallax scrolling for tablets and phones */
+            @media only screen and (max-device-width: 1600px) {
+
+                .bgimg-1,
+                .bgimg-2,
+                .bgimg-3 {
+                    background-attachment: scroll;
+                    min-height: 400px;
+                }
+            }
+        </style>
+    </head>
+<body>
+
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="../" class="w3-bar-item w3-button">HOME2</a>
+            <a href="../../aboutme/index.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT6</a>
+            <a href="../#projects" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> PORTFOLIO</a>
+            <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-search" onclick="find();"></i></a>-->
+            </a>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a href="../aboutme/index.html" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+            <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+            <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+        </div>
+    </div>
+
+    <!-- Profil Image -->
+    <div class="w3-center">
+      <img src="../assets/img/profilBSE.jpeg" class="w3-circle" style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; margin-top: 128px;">
+    </div>
+
+    <!-- Container (About Section) -->
+    <div class="w3-content w3-container w3-padding-64" id="about" style="text-align: center; margin-bottom: 40px;">
+      <h3 class="w3-center">ABOUT ME</h3>
+      <p style="font-size: 18px;">My interest in data science started in high school when I 
+        discovered a deep affinity for numbers, economic theories, and analytical courses. 
+        Later on, my academic journey led me to the Barcelona School of Economics (BSE), 
+        where I completed a first Master's degree in economics of energy, sustainability, and climate change. Along this path, 
+        my curiosity for data science continuously grew, eventually leading me to pursue a second Master's degree in Data Science 
+        for Decision Making.
+        <p></p>
+        <p style="font-size: 18px;">
+        Beyond the classroom, I've had the privilege of gaining practical experience in a recruitment 
+        agency and the Munich Liaison Office of the European Parliament. 
+        Throughout this journey, I've witnessed the incredible potential of data science across diverse fields, 
+        and I'm thrilled to be a part of its transformative impact. On my website, I eagerly share my experiences, 
+        insights, and ongoing projects in the world of data science and economics of energy.</p>
+      <div class="w3-row">
+      </div>
+    </div>
+
+    <!-- Skills with icons -->
+
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+        /* Add some basic styling for the columns */
+        .column {
+          display: inline-block;
+          width: 28%; /* Adjust the width as needed */
+          text-align: center;
+          margin: 35px; /* Adjust the margin to reduce spacing */
+          font-family: 'Montserrat',sans-serif;
+        }
+    
+        /* Style the emoji icons */
+        .emoji {
+          font-size: 58px;
+          color: #1a222c;
+        }
+
+            /* Set font family for text */
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+        /* Style the header */
+        h3 {
+          color: black; /* Set header text color to black */
+          font-weight: bold; /* Make the header text bold */
+          font-size: 34px; /* Increase the header text size */
+          font-family: 'Montserrat',sans-serif;
+        }
+      </style>
+    </head>
+    <!-- #https://fontawesome.com/icons/categories/coding #the website that includes all the icons and feature for color-->
+    <script src="https://kit.fontawesome.com/1cc5c5deb6.js" crossorigin="anonymous"></script>
+    <body>
+    
+    <div class="column">
+      <h3 class="w3-center" style= "margin-bottom: 20px;">Analyzing</h3>
+      <i class="fa-solid fa-chart-line emoji" style=" margin-bottom: 5px;"></i>
+      <i class="fa-solid fa-microscope emoji" style="margin-right: 12px; margin-left: 12px;"></i>
+      <i class="fa-solid fa-magnifying-glass-chart emoji"></i>
+      <p style="font-size: 17px;">In a wide range of subject areas, I have analyzed structured and unstructured data to extract actionable business insights. I love to create captivating and insightful visual representations that bring out unexpected findings.</p>
+    </div>
+    
+    <div class="column">
+      <h3 class="w3-center" style=" margin-bottom: 20px;">Developing</h3>
+      <i class="fa-solid fa-code emoji" style=" margin-bottom: 5px;"></i>      
+      <i class="fa-solid fa-file-lines emoji" style="margin-right: 12px; margin-left: 12px;"></i>
+      <i class="fa-solid fa-sitemap emoji"></i>
+      <p style="font-size: 17px;">With a strong foundation in data science acquired from my master's degree in data science for decision making, I've enhanced my developing skills to bring machine learning models to life and create impactful, data-driven solutions.</p>
+    </div>
+    
+    <div class="column">
+      <h3 class="w3-center" style=" margin-bottom: 20px;">Communicating</h3>
+      <i class="fa-solid fa-pencil emoji" style=" margin-bottom: 5px;"></i>
+      <i class="fa-solid fa-chalkboard-user emoji" style="margin-right: 12px; margin-left: 5px;"></i> <!-- Add an emoji -->
+      <i class="fa-solid fa-comment emoji"></i>      
+      <p style="font-size: 17px;">I enjoy writing professional articles, sharing my expertise, and engaging in conversations on a wide array of subjects. My background in economic science and management allows me to effectively present complex findings to non-technical audiences</p>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="w3-container" style="margin-left: 128px; margin-right: 128px; margin-bottom: 300px; margin-top: 100px;">
+      <div class="w3-center">
+        <h3>Contact</h3>
+        <p style="text-align: left; font-size: 18px; margin-left: 330px">You can contact me through my email: <a href="mailto:mathieu.breier@bse.eu">mathieu.breier@bse.eu</a></p>
+        <p style="text-align: left; font-size: 18px; margin-left: 330px;">
+          You can download my CV <a href="../Breier_Mathieu_CV_Website.pdf" download>here</a></p>
+          <p></p>
+        
+        <p style="text-align: left; font-size: 18px; margin-left: 330px;">
+          Follow me on these social media platforms:<br> 
+          Github: <a href="https://github.com/mtbrr26" target="_blank">https://github.com/mtbrr26</a><br> 
+          LinkedIn: <a href="https://www.linkedin.com/in/mathieu-breier/" target="_blank">https://www.linkedin.com/in/mathieu-breier/</a><br> 
+        </p>
+      </div>
+    </div>
+
+    <body>
+
+    <style>
+        /* Define the CSS for the colored footnote band */
+        .footnote {
+            background-color: #1a222c;
+            color: white; /* Text color on the blue background */
+            padding: 10px; /* Adjust the padding as needed */
+            text-align: center;
+            font-family: 'Montserrat',sans-serif; /* Center-align the text within the band */
+        }
+    </style>
+    <body>
+      <!-- Add the colored footnote band at the bottom of the page -->
+    <div class="footnote">
+      <p>&copy; Mathieu Breier</p>
+    </div>
+    </body>
+
+</html>
