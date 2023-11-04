@@ -118,9 +118,35 @@
             }
             .academia tr:nth-child(even) { background-color: #ffffff ; 
             }
+
+            /* -----------------SCROLL PROGRESS BAR-------------------*/
+            .progress-bar {
+            height: 4px;
+            background: #1a222c;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0; /* Adjust this value to set the distance below the top part */
+            left: 0;
+            right: 0;
+            }
+
             /* ------------------------------------*/
             }
         </style>
+
+        <!-------------------SCROLL PROGRESS BAR--------------------->
+        <script>
+          // When the user scrolls the page, execute myFunction
+              window.onscroll = function() {myFunction()};
+              
+              function myFunction() {
+                var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var scrolled = (winScroll / height) * 100;
+                document.getElementById("myBar").style.width = scrolled + "%";
+        }</script>
+        <!-------------------SCROLL PROGRESS BAR--------------------->
 
         <!-- Library for mathematical expression (and removing the brief message (math processing:100%)) -->
         <script type="text/javascript" async
@@ -134,6 +160,11 @@
         <!-- Library for mathematical expression -->
 
     </head>
+
+    <!-------------------SCROLL PROGRESS BAR--------------------->
+    <div class="progress-bar" id="myBar"></div>
+    <!-------------------SCROLL PROGRESS BAR--------------------->
+    
 <body>
     <!-- Navbar (sit on top) -->
     <div class="w3-top" style = "font-family: 'Montserrat',sans-serif;">
