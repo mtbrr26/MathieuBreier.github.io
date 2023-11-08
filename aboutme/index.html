@@ -71,6 +71,54 @@
                     background-attachment: scroll;
                     min-height: 400px;
                 }
+
+                /* Icons structure */
+                #about {
+                  width: 90%;
+                  margin: 0 auto;
+                  max-width: 960px;
+                }
+                @media only screen and (min-width: 550px) {
+                  #about {
+                    width: 80%;
+                  }
+                }
+
+                .tech {
+                  margin: 25px;
+                }
+
+                .user {
+                  text-align: center;
+                  font-size: 60px;
+                  display: flex;
+                  flex-direction: row;
+                  flex-wrap: wrap;
+                  justify-content: space-between;
+                  font-size: 58px;
+                  color: #505050;
+                  
+                }
+                .user p {
+                  font-size: 18px;
+                  font-family: 'Montserrat',sans-serif;
+                }
+                @media only screen and (min-width: 550px) {
+                  .user {
+                    flex-wrap: nowrap;
+                    font-size: 60px;
+                  }
+                }
+
+                .user-details {
+                  text-align: center;
+                  margin: 5px auto;
+                }
+
+                .icons {
+                  color: #1a222c;
+                }
+                /* Icons structure */
             }
         </style>
     </head>
@@ -141,17 +189,17 @@
     
         /* Style the emoji icons */
         .emoji {
-          font-size: 58px;
+          font-size: 64px;
           color: #1a222c;
         }
 
-            /* Set font family for text */
-    body {
-      font-family: 'Montserrat', sans-serif;
-    }
+        /* Set font family for text */
+        body {
+          font-family: 'Montserrat', sans-serif;
+        }
     
         /* Style the header */
-        h3 {
+        h2 {
           color: black; /* Set header text color to black */
           font-weight: bold; /* Make the header text bold */
           font-size: 34px; /* Increase the header text size */
@@ -163,29 +211,31 @@
     <script src="https://kit.fontawesome.com/1cc5c5deb6.js" crossorigin="anonymous"></script>
     <body>
     
-    <div class="column">
-      <h3 class="w3-center" style= "margin-bottom: 20px;">Analyzing</h3>
-      <i class="fa-solid fa-chart-line emoji" style=" margin-bottom: 5px;"></i>
-      <i class="fa-solid fa-microscope emoji" style="margin-right: 12px; margin-left: 12px;"></i>
-      <i class="fa-solid fa-magnifying-glass-chart emoji"></i>
-      <p style="font-size: 17px;">In a wide range of subject areas, I have analyzed structured and unstructured data to extract actionable business insights. I love to create captivating and insightful visual representations that bring out unexpected findings.</p>
+    <!-- Skills with icons2 -->
+    <div class="user">
+      <div class="tech" style="margin-left: 40px;">
+        <h2>Analyzing</h2>
+        <i class="fa-solid fa-chart-line emoji"></i>
+        <i class="fa-solid fa-microscope emoji"></i>
+        <i class="fa-solid fa-magnifying-glass-chart emoji"></i>
+        <p>In a wide range of subject areas, I have analyzed structured and unstructured data to extract actionable business insights. I love to create captivating and insightful visual representations that bring out unexpected findings.</p>
+      </div>
+      <div class="tech" style="margin-left: 40px;">
+        <h2>Developing</h2>
+        <i class="fa-solid fa-code emoji"></i>
+        <i class="fa-solid fa-file-lines emoji"></i>
+        <i class="fa-solid fa-sitemap emoji"></i>
+        <p>With a strong foundation in data science acquired from my master's degree in data science for decision making, I've enhanced my developing skills to bring machine learning models to life and create impactful, data-driven solutions.</p>
+      </div>
+      <div class="tech">
+        <h2>Communicating</h2>
+        <i class="fa-solid fa-pencil emoji"></i>
+        <i class="fa-solid fa-chalkboard-user emoji"></i>
+        <i class="fa-solid fa-comment emoji"></i>
+        <p>I enjoy writing professional articles, sharing my expertise, and engaging in conversations on a wide array of subjects. My background in economic science and management allows me to effectively present complex findings to non-technical audiences</p>
+      </div>
     </div>
-    
-    <div class="column">
-      <h3 class="w3-center" style=" margin-bottom: 20px;">Developing</h3>
-      <i class="fa-solid fa-code emoji" style=" margin-bottom: 5px;"></i>      
-      <i class="fa-solid fa-file-lines emoji" style="margin-right: 12px; margin-left: 12px;"></i>
-      <i class="fa-solid fa-sitemap emoji"></i>
-      <p style="font-size: 17px;">With a strong foundation in data science acquired from my master's degree in data science for decision making, I've enhanced my developing skills to bring machine learning models to life and create impactful, data-driven solutions.</p>
-    </div>
-    
-    <div class="column">
-      <h3 class="w3-center" style=" margin-bottom: 20px;">Communicating</h3>
-      <i class="fa-solid fa-pencil emoji" style=" margin-bottom: 5px;"></i>
-      <i class="fa-solid fa-chalkboard-user emoji" style="margin-right: 12px; margin-left: 5px;"></i> <!-- Add an emoji -->
-      <i class="fa-solid fa-comment emoji"></i>      
-      <p style="font-size: 17px;">I enjoy writing professional articles, sharing my expertise, and engaging in conversations on a wide array of subjects. My background in economic science and management allows me to effectively present complex findings to non-technical audiences</p>
-    </div>
+    <!-- Skills with icons -->
 
     <!-- Contact Section -->
     <div class="w3-container" style="margin-left: 128px; margin-right: 128px; margin-bottom: 300px; margin-top: 100px;">
