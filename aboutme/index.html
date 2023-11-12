@@ -71,98 +71,65 @@
             cursor: pointer;
         }
 
-        @media only screen and (max-device-width: 1600px) {
-            .bgimg-1,
-            .bgimg-2,
-            .bgimg-3 {
-                background-attachment: scroll;
-                min-height: 400px;
-            }
+        /* New Code */
+        /* Reset default margin and padding for better consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-            .tech {
-                margin: 15px;
-                width: 30%; /* Adjusted width for better alignment */
-                box-sizing: border-box;
-            }
+/* Ensure a clean slate for spacing */
+.user {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 25px;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 35px;
 
+                
+}
 
-            .user {
-                text-align: center;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                font-size: 60px;
-                color: #505050;
+.tech {
+    width: calc(33.33% - 25px); /* 33.33% width with 25px spacing */
+    text-align: center;
+}
 
-            }
+.emoji {
+    font-size: 62px;
+    color: #1a222c;
+    margin-top: 15px; /* Add space between emoji and title */
+    margin-bottom: 25px; /* Spacing between sections */
 
-            .user p {
-                font-size: 18px;
-                font-family: 'Montserrat', sans-serif;
-            }
+}
 
-            .user-details {
-                text-align: center;
-                margin: 5px auto;
-            }
+/* Style the header */
+h2 {
+      color: #1a222c;
+      /* Set header text color to black */
+      font-weight: bold;
+      /* Make the header text bold */
+      font-size: 30px;
+      /* Increase the header text size */
+      font-family: 'Montserrat', sans-serif;
+  }
 
-            .icons {
-                color: #1a222c;
-            }
-        }
-
-        /* Add some basic styling for the columns */
-        .column {
-            display: inline-block;
-            width: 100%;
-            /* Adjust the width as needed */
-            text-align: center;
-            margin: 35px;
-            /* Adjust the margin to reduce spacing */
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Style the emoji icons */
-        .emoji {
-            font-size: 62px;
-            color: #1a222c;
-        }
-
-        /* Set font family for text */
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Style the header */
-        h2 {
-            color: #1a222c;
-            /* Set header text color to black */
-            font-weight: bold;
-            /* Make the header text bold */
-            font-size: 30px;
-            /* Increase the header text size */
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Define the CSS for the colored footnote band */
-        .footnote {
-            background-color: #1a222c;
-            color: white;
-            /* Text color on the blue background */
-            padding: 10px;
-            /* Adjust the padding as needed */
-            text-align: center;
-            font-family: 'Montserrat', sans-serif;
-            /* Center-align the text within the band */
-        }
-
-        /* Added after */
-        * {
-        box-sizing: border-box;
-        }
-
+  /* Define the CSS for the colored footnote band */
+  .footnote {
+      background-color: #1a222c;
+      color: white;
+      /* Text color on the blue background */
+      padding: 25px;
+      /* Adjust the padding as needed */
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      /* Center-align the text within the band */
+  }
         
+   /* New code*/     
     </style>
     <!-- Font Awesome script -->
     <script src="https://kit.fontawesome.com/1cc5c5deb6.js" crossorigin="anonymous"></script>
@@ -195,7 +162,7 @@
     </div>
 
     <!-- About Section -->
-    <div class="w3-content w3-container w3-padding-64" id="about" style="text-align: center; margin-bottom: 40px;">
+    <div class="w3-content w3-container w3-padding-64" id="about" style="text-align: center; margin-bottom: 80px;">
         <h2 class="w3-center">ABOUT ME</h2>
         <p style="font-size: 18px;">
             My interest in data science started in high school when I discovered a deep affinity for numbers, economic theories, and analytical courses.
@@ -212,14 +179,14 @@
 
     <!-- Skills Section -->
     <div class="user">
-        <div class="tech" style="margin-left: 10px;">
+        <div class="tech">
             <h2>Analyzing</h2>
             <i class="fa-solid fa-chart-line emoji"></i>
             <i class="fa-solid fa-microscope emoji"></i>
             <i class="fa-solid fa-magnifying-glass-chart emoji"></i>
             <p>In a wide range of subject areas, I have analyzed structured and unstructured data to extract actionable business insights. I love to create captivating and insightful visual representations that bring out unexpected findings.</p>
         </div>
-        <div class="tech" style="margin-left: 15px;">
+        <div class="tech">
             <h2>Developing</h2>
             <i class="fa-solid fa-code emoji"></i>
             <i class="fa-solid fa-file-lines emoji"></i>
@@ -236,7 +203,7 @@
     </div>
 
     <!-- Contact Section -->
-    <div class="w3-container" style="text-align: center; margin-bottom: 300px; margin-top: 100px;">
+    <div class="w3-container" style="text-align: center; margin-bottom: 300px; margin-top: 150px;">
         <h2>Contact</h2>
         <div style="text-align: left; font-size: 18px; display: inline-block; margin: 0 auto; text-align: left;">
             <p>You can contact me through my email: <a href="mailto:mathieu.breier@bse.eu">mathieu.breier@bse.eu</a></p>
