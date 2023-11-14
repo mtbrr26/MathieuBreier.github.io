@@ -1,8 +1,35 @@
+<style>
+/* Apply hover effect to the hyperlink on the word "projects" */
+.hover-link {
+  position: relative;
+}
+
+.hover-link::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #1b4982;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-link:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+</style>
+
+
 <div class="user-details">
   <h3>
     <br>
     Welcome to my website where I share some of my projects.
     I am currently a Master student in Data Science at the Barcelona School of Economics.<br>
-    You can read my <span class="invisible-link"><a href="/MathieuBreier.github.io/hidden/index.html" style="text-decoration: none; color: inherit;">projects</a></span> below.
+    You can read my <span class="invisible-link"><a href="/MathieuBreier.github.io/hidden/index.html" class="hover-link" style="text-decoration: none; color: inherit;">projects</a></span> below.
   </h3>
 </div>
