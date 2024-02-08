@@ -1,1 +1,481 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6V4BZTRRN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+              
+          gtag('config', 'G-M6V4BZTRRN');
+        </script>
 
+        <title>Modelling Corruption</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: "avenir next,avenir,sans-serif";
+            }
+          
+
+            body,
+            html {
+                height: 100%;
+                color: #505050;
+                line-height: 1.8;
+                font-family: "avenir next,avenir,sans-serif";
+            }
+
+            /* Create a Parallax Effect */
+            .bgimg-1,
+            .bgimg-2,
+            .bgimg-3 {
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            /* First image (Logo. Full height) */
+            .bgimg-1 {
+                background-image: url('https://www.w3schools.com/w3images/parallax1.jpg');
+                min-height: 100%;
+            }
+
+            /* Second image (Portfolio) */
+            .bgimg-2 {
+                background-image: url("https://www.w3schools.com/w3images/parallax2.jpg");
+                min-height: 400px;
+            }
+
+            /* Third image (Contact) */
+            .bgimg-3 {
+                background-image: url("https://www.w3schools.com/w3images/parallax3.jpg");
+                min-height: 400px;
+            }
+
+            .w3-wide {
+                letter-spacing: 10px;
+            }
+
+            .w3-hover-opacity {
+                cursor: pointer;
+            }
+
+            /* Turn off parallax scrolling for tablets and phones */
+            @media only screen and (max-device-width: 1600px) {
+
+                .bgimg-1,
+                .bgimg-2,
+                .bgimg-3 {
+                    background-attachment: scroll;
+                    min-height: 400px;
+                }
+
+            /* Latex table */
+            /* Center the table */
+            .table-container {
+              text-align: center;
+              font-family: 'sans-serif';
+              display: flex;
+              justify-content: center;
+            }
+            /* ------------------------------------*/
+            .academia table {
+              border-collapse: collapse;
+              border-spacing: 0;
+              width: auto;
+              max-width: 100%;
+              border-top: 2.27px solid black;
+              border-bottom: 2.27px solid black;
+              overflow-x: auto; 
+              box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+              font-family: 'Montserrat', sans-serif; /* Set font-family */
+            }
+            .academia th,
+            .academia td {
+              border: 0 none !important;
+              text-align: left;
+              padding: 0.5rem;
+              line-height: 1.1;
+              font-size: 1.1rem; /* Adjust the font size */
+            }
+            .academia tbody tr:hover { /* Modify this line to affect the entire row */
+            background-color: #dddddd;
+            }
+            .academia table > tbody > tr:first-child > td,
+            .academia table > tbody > tr:first-child > th {
+              border-top: 1.36px solid black !important;
+            }
+            .academia table > tbody > tr:last-child > td,
+            .academia table > tbody > tr:last-child > th {
+              border-bottom: 1.36px solid black !important;
+            }
+            .academia thead th {
+                background-color: white !important;
+                font-weight: 700;
+            }
+            .academia tr:nth-child(even) { background-color: #ffffff ; 
+            }
+
+
+            /* -----------------SCROLL PROGRESS BAR-------------------*/
+            .progress-bar {
+            height: 4px;
+            background: #1a222c;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0; /* Adjust this value to set the distance below the top part */
+            left: 0;
+            right: 0;
+            }
+
+            /* ------------------------------------*/
+            }
+        </style>
+
+        <!-------------------SCROLL PROGRESS BAR--------------------->
+        <script>
+          // When the user scrolls the page, execute myFunction
+              window.onscroll = function() {myFunction()};
+              
+              function myFunction() {
+                var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var scrolled = (winScroll / height) * 100;
+                document.getElementById("myBar").style.width = scrolled + "%";
+        }</script>
+        <!-------------------SCROLL PROGRESS BAR--------------------->
+
+        <!-- Library for mathematical expression (and removing the brief message (math processing:100%)) -->
+        <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            messageStyle: "none"
+        });
+        </script>
+        <!-- Library for mathematical expression -->
+
+    </head>
+    
+    <!-------------------SCROLL PROGRESS BAR--------------------->
+    <div class="progress-bar" id="myBar"></div>
+    <!-------------------SCROLL PROGRESS BAR--------------------->
+
+<body>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top" style = "font-family: 'Montserrat',sans-serif;">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="../../" class="w3-bar-item w3-button" style="font-size: 1.1em;">HOME</a>
+            <a href="../../aboutme/index.html" class="w3-bar-item w3-button w3-hide-small" style="font-size: 1.1em;"> ABOUT ME </a>
+            <a href="../../#projects" class="w3-bar-item w3-button w3-hide-small" style="font-size: 1.1em;"> PORTFOLIO</a>
+            </a>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a href="../../aboutme/index.html" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+            <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+            <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+        </div>
+    </div>
+
+    <!-- First Parallax Image with Logo Text -->
+    <div class="w3-display-container" id="home" style="display: flex; justify-content: center; align-items: center; height: 55vh;">
+      <img src="../../economics/modelling_corruption/Images/anti-corruption.jpg" alt="Cover" style="width: 60vw; max-width: 100%; height: auto; opacity: 0.5;">
+        <div class="w3-display-middle" style="white-space:nowrap; text-align: center; font-family: Georgia, serif">
+            <span class="w3-center w3-padding-large w3-xxlarge w3-wide w3-animate-opacity w3-text-black"> Modelling Corruption using a Game Theory Approach</span>
+            <br>
+            <span class="w3-center w3-padding-large w3-large w3-animate-opacity w3-text-black" style = "font-family: avenir next,avenir,sans-serif;">GAME THEORY</span>
+        </div>
+    </div>
+
+  <!-- Container (Abstract) -->
+    
+  <div class="w3-content w3-container w3-padding-64" style ="max-width: 800px; margin-bottom: 50px;">
+      <h2 class="w3-center" style = "font-family: Georgia, serif">Abstract</h2>
+      <p class="w3-center">
+      <p style = "font-family: Georgia, serif; text-align: justify; font-size: 17px;"> This project uses game theory to explore what drives corruption. Starting with a basic interaction between firms and regulatory officials, it shows how officials might exploit their power without checks. The study then advances to a sequential game to reveal how such dynamics lead to corruption. By introducing a government agent who can penalize corruption and implementing a signaling mechanism for honesty, the project examines different information scenarios. The aim is to align incentives with societal benefits, in order to provide insights from real-world examples to support the theoretical models.</p>
+      <div class="w3-row">
+      </div>
+  </div>
+
+
+
+
+<div class="w3-container w3-border-bottom" style="margin-left: 128px; margin-right: 128px;">
+  <h1 style="font-size: 42px;">Modelling Corruption using a Game Theory Approach</h1>
+  <p style="margin-left: 5px; font-family: avenir next,avenir,sans-serif;">by <strong>Mathieu Breier & Luis Francisco Alvarez Poli</strong></p>
+  <p></p>
+  <p style="margin-left: 5px; margin-bottom: 40px; font-family: avenir next,avenir,sans-serif;"> December 12, 2023</p>
+</div>  
+
+<!--<div class="" style = 'font-family: avenir next,avenir,sans-serif;'>  defines the font for all the text below-->
+
+<!-- Container            -->
+<!-- Container (Article)  -->
+<!-- Container            -->
+
+
+<!-- Container (Introduction) -->
+<div style="margin-left: 228px; margin-right: 228px;">
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>1. Introduction</h2>
+    <p class="paragraph" style="text-align: justify;">Corruption constitutes an important obstacle for development, especially in developing countries. The International Monetary Fund estimated in 2019, that countries regarded as less corrupt tend to generate higher revenues. Specifically, governments with low corruption collect around 4 percent more of their GDP in taxes compared to nations with similar economic development but facing higher levels of corruption (Paolo Mauro (2019)). Empirical investigations by Pellegrini and Gerlagh (2006) similarly demonstrate a negative association between GDP growth rate and heightened corruption levels. Notably, richer countries, on average, exhibit lower corruption indices.<br></p>
+    <p class="paragraph" style="text-align: justify;">By proposing a simple interaction game between officials, firms and then, a governmental entity, we focus on identifying the incentives, as well as the fundamental assumptions in this build and the factors that could affect the outcomes. In our project, we aim to understand the rationality behind these type of behaviours, i.e. what justifies the decisions of rational agents to become corrupt. Our goal is, by making use of the model, to explain real-world dynamics on how agents make decisions but also on how they can be altered. We acknowledge that the model is simple and unrealistic, however we consider it can explain some behaviors observed, and we shall relate them to real life scenarios.<br></p>
+    </div>
+  </div>
+
+<!-- Container (Development) -->
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>2. Literature Review and Contributions</h2>
+    <p class="paragraph" style="text-align: justify;">This study gathers inspiration from a diverse body of research delving into the modeling of corruption through a game theory approach.</p>
+    <p class="paragraph" style="text-align: justify;">Macrae (1982) adopts the basic assumption that corruption is a rational decision deeply rooted in individuals seeking a competitive advantage. He investigates the rationale behind an overseas corporation considering bribing a local official as part of an attempt to gain a contract. In the analysis, he finds that corruption exerts a negative impact on economic development and income redistribution. He advocates for more stringent legal sanctions and enhanced transparency as potential remedies to curb corruption.</p>
+    <p class="paragraph" style="text-align: justify;">Cerqueti and Coppier (2016) investigate the relationship between public corruption, environmental deterioration and the role of the state. They design a simple game with incomplete information, where the State attempts to control pollution through an emission tax rate. They introduce 3 players, a polluting firm (tax payer), an environmental inspector (tax inspector) and a politician that all have the choice to behave in a corrupt manner or comply with the law. Their model assumes that corruption may occur at different levels. Polluting firms have an incentive to corrupt in order to reduce the amount of environmental taxes it would have to pay. The level of emission of the polluting firms is determined randomly by the nature. What sets their model apart is the possibility that the polluting firm might not be checked by the tax inspector, whilst it is often taken as an assumption. They find that the state, for environmental protection, can either increase monitoring to reduce evasion and boost tax revenues or enhance compliance among polluting firms, resulting in lower evasion and greater tax revenues. Although this paper is on a specific issue within corruption as polluting; it is still relevant for our analysis due to the fact that the underlying dynamic, driving the behaviours is unchanged.</p>
+    <p class="paragraph" style="text-align: justify;">Zhu (2012) contributes to this discourse by employing game theory to investigate the ineffective mechanisms employed in China to combat corruption. Contrary to the assumption that increasing penalties alone will deter corruption, Zhu (2012) finds that it would instead reduce the frequency of investigations. This happens because corruption and investigation of corruption are part of an interactive process between two rational players instead of a one-sided decision process. Therefore, he argues that to make penalties effective in prevent- ing corruption, it is crucial to link the payoffs of the officials in charge of anti-corruption with corruption punishment, so as to promote anti-corruption incentives. Lowering the level of corruption also requires promoting incentives for investigators, such as rewarding anti-corruption monetarily or politically.</p>
+    <p class="paragraph" style="text-align: justify;">In his study, Zhu (2012) considers four assumptions in his game referring to potential behaviors that the players, a lower official and a party secretary, could potentially exhibit: Assumption 1: the investigator is honest and responsible, i.e. always investigates and punishes corruption. Assumption 2: The lower official is attracted to corruption. The payoffs of accepting corruption are higher for the official compared to refusing corruption. Assumption 3: Investigating an honest official by mistake is more costly. Assumption 4: The lower official punishes corruption. The punishment of corruption brings a cost to the lower official, hence the official has an incentive to be honest rather than corrupt. To examine how the political reality interacts with penalty designs, Zhu (2012) make a distinction between a tough party secretary who benefits from investigation corruption, and a soft party secretary who will have higher cost of investigating than benefits. In his theoretical game, only the party secretary knows its own type, constituting a game with imperfect information. We draw inspiration from Zhu (2012) rationality framework and Tsebelis’ Robinson Crusoe Fallacy (1989) to construct our game.</p>
+    <p class="paragraph" style="text-align: justify;">Tsebelis (1989) emphasizes, via identifying Nash equilibrium in six different scenarios, that the mixed strategy of both players is always an equilibrium regardless of whether the game has complete or incomplete information, simultaneous or sequential moves and discrete or continuous choices. In other words, the payoffs of neither the investigator nor the official depends on their own utilities but rather on a cooperation of the players. We incorporate his rationality into our sequential game.</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>3. Firms and Officials</h2>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h3>The Initial Game</h3>
+    <p class="paragraph" style="text-align: justify;">The initial scenario consists of two set of agents, namely the officials and the firms. We characterize officials as employees who, on an individual basis, are responsible for enforcing regulations on the firms they oversee. The firms are defined as economic agents or organizations that aim to make revenue and profits.</p>
+    <p class="paragraph" style="text-align: justify;">In the context of our game, the players interact by deciding whether to corrupt/be corrupt or reject corruption. The firms gain a competitive advantage over the other firms if the officials take their bribe, which allows them to earn higher profits with the help of the officials. If they offer a bribe to an honest official, they will face a consequence. As for the officials, they will obtain a higher payoff in case they accept bribery and as a result earn more money. We define the action as bribing or not bribing for the firms and accept the corruption or reject the corruption for the officials.</p>
+    <p class="paragraph" style="text-align: justify;">We indicate each player’s payoffs in the illustration below:</p>
+    <p class="paragraph" style="text-align: justify;">The figure 1 plots the daily carbon policy surprise variable which is a measure of the percentage change in carbon price relative to the wholesale electricity price for 2019. From the figure we can observe that there is a lot of variation seen in the data. The red line corresponds to the week of 9 December 2018 which we choose arbitrarily as the week to use while displaying our event study results. We chose this week because its average change in carbon pricing fell in the 99th percentile of the data.</p>
+      <div style="text-align: center;">
+        <caption"><b>Figure 1</b> - Static Game representing the payoffs for the 2 players</caption>
+        <img src="../modelling_corruption/Images/payoffs.png" alt="Figure 1: Static Game representing the payoffs for the 2 players" style="width: 50vw; height: 43vh; display: block; margin: 0 auto;" />
+      </div> 
+    <p class="paragraph" style="text-align: justify;">The highest payoff of 5 occurs when both players choose to be corrupt. When the firm doesn’t bribe, both the official and the firm get 2 as their payoffs, which corresponds to a stationary situation where nothing changes. If the firm bribes, its payoff will be 5 if the official accepts the bribe, and -2 if the official refuses the bribe and reports the firm. Finally, it is relevant to highlight that firms have no power to ’call out’ corrupt officials. This assumption makes the game imbalanced in terms of power; which is what we wanted to model.</p>
+    <p class="paragraph" style="text-align: justify;">To solve the game, we first fix the firm choice to bribing the official. In this situation the official would accept the corruption. Conversely, when the firm decides to not bribe, the official would be indifferent between being corrupt or not. To obtain the firm’s optimal choices, we first set the official choice on being corrupt and we observe that the firm’s response would be to bribe. In this situation where the official is not corrupt, the firm would have an incentive to not bribe as well.</p>
+    <p class="paragraph" style="text-align: justify;">As a result, we obtain 2 equilibria. The first equilibrium corresponds to the situation where both players decide to engage in corruption: (C,B), and the second to the situation where both players decide to not be corrupted at all (NC,NB).</p>
+    <p class="paragraph" style="text-align: justify;">This result indicates that there is a positive probability for a corrupt equilibrium, both players would like to mimic the other’s strategy and maximize their payoffs.</p>  
+  </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h3>The Sequential Game</h3>
+    <p class="paragraph" style="text-align: justify;">To understand the rationality behind corruption in a more accurate and realistic manner, we transform our static game into a sequential game where players choose their action after observing the other players decision. More specifically, we assume that the official has the possibility to play first by choosing whether to become a corrupted official or not. This way, we are internalizing the characteristic of corruption as a decision, i.e. as a function of the parameters of the model (assumptions). The firm will choose its action after observing the state of the official. This scenario gets closer to reality because firms wouldn’t typically act in a simultaneous way due to the fear of being reported. Instead, they would usually wait and observe whether the official leans towards more or less corruption.</p>
+    <p class="paragraph" style="text-align: justify;">The sequential game, with the same payoffs as in the initial game, is illustrated below in Figure 2:</p>
+      <div style="text-align: center;">
+        <caption"><b>Figure 2</b> - Sequential Game</caption>
+        <img src="../modelling_corruption/Images/sequential.png" alt="Figure 2: Sequential Game" style="width: 40vw; height: 60vh; display: block; margin: 0 auto;" />
+      </div> 
+    <p class="paragraph" style="text-align: justify;">In order to obtain the sequence of optimal actions in the game, we use the backward induction process. It is clear that the firm’s strategy is unchanged, it will mimic the official’s strategy. However, in this new scenario, the official can internalize how the firm will act and adjust his strategy accordingly. Therefore, with backwards induction, the official will compare the payoffs of both being honest to both being corrupt; choosing the later option. Both players will obtain a payoffs of 5 in this case. This model predicts that a corrupt equilibrium will be found every time, if nothing changes from this proposition.</p>
+    <p class="paragraph" style="text-align: justify;">This sequential games particularly emphasizes the clear incentive for the official to be corrupt given that corruption is for the official, so far, not associated to any sanctions.</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>4. Adding Government</h2>
+    <p class="paragraph" style="text-align: justify;">In this final extension, we will introduce a new agent into the model, the government. Here we will remove the firms out of the equation. They become irrelevant in this new model, if we take into account that in the previous exercise the equilibrium was found at both players being corrupt. The firms cannot do anything to alter the officials behaviour. The government will then penalize the official if it considers him corrupt, by sending it to jail (J), although it cannot observe if the official is actually corrupt or not. We assume that the government has full power to decide which officials are sent to jail and which are not, even without any evidence. Its objective will be to minimize corruption, but without penalizing honest officials who indeed do not engage in corruption.</p>
+    <p class="paragraph" style="text-align: justify;">We can think of think of the following payoffs for the 4 possible resulting scenarios from this interaction in the form of: Payoffs = (O, G).</p>
+    <ul>
+      <li>Sending Corrupt official to jail: (-2,2)</li>
+      <li>Sending Not Corrupt official to jail: (-2,-2)</li>
+      <li>Not Sending Corrupt official to jail: (5,-1)</li>
+      <li>Not Sending Not Corrupt official to jail: (2,1)</li>
+    </ul>    
+    <p class="paragraph" style="text-align: justify;">The payoffs for the official will remain unchanged from the previous exercise in case it doesn’t go to jail. The payoff for being charged for corruption will be equal to -2. On the other hand, the government will get its highest ”utility” when it is able to send a corrupt official to jail, and its lowest when it charges of crimes to officials who didn’t commit them.</p>
+    <p class="paragraph" style="text-align: justify;">Ideally for the government, in a world with perfect information where the behaviour of the official is observable, it would like to send to jail corrupt officials and not pursue (honest) officials which it knows for certain that they are honest. Then, all corrupt officials would be sent to jail and all the ones that are not corrupt would escape the punishment. This scenario does not provide any insightful information, but will help us to visualize how does the government will try to align the incentives. We will now move from this perfect information scenario, and model a signalling game where the government tries to identify the officials by the signal they choose to provide.</p>
+    </div>
+  </div>
+
+    <div class="w3-container w3-large" style="margin-top: 30px;">
+  <div class="w3-left-align">
+    <h3>Signaling Game: Government and Officials</h3>
+    <p style="text-align: justify;">Consider a signaling game between the government (G) and officials (O). There are two types of officials: Honest (HO) and Dishonest (DO). The government cannot observe the official type but will receive a signal (or no signal) from the officials and make his strategy upon it.</p>
+    <h4><u>Strategies</u></h4>
+    <h4>&nbsp;&nbsp;&nbsp;Government (G):</h4>
+    <ul>
+        <li><strong>Jail (J):</strong> Send the official to jail if no signal is observed (penalty of -2).</li>
+        <li><strong>Reward for Signal (R):</strong> Reward any official who signals with 3.</li>
+    </ul>
+    <h4>&nbsp;&nbsp;&nbsp;Officials:</h4>
+    <ul>
+        <li><strong>Signal (S):</strong> Choose to signal honesty.</li>
+        <li><strong>No Signal (NS):</strong> Choose not to signal.</li>
+    </ul>
+    <h4><u>Costs and Rewards</u></h4>
+    <h4>&nbsp;&nbsp;&nbsp;Officials:</h4>
+    <ul>
+        <li><strong>Cost of Signal for Honest C(S|HO) =</strong> 3</li>
+        <li><strong>Cost of Signal for Dishonest C(S|DO) =</strong> 6</li>
+        <li><strong>Cost of No Signal C(NS) =</strong> 0</li>
+    </ul>
+    <h4>&nbsp;&nbsp;&nbsp;Rewards:</h4>
+    <ul>
+        <li><strong>Reward for Signal (Gov) =</strong> 3</li>
+    </ul>    
+    <p style="text-align: justify;">We can think of the signal as a legitimate certification, or some valid record that verifies the proper behaviour of the official. To get hold of this certificate, the officials need to work hard (and properly), incurring in a cost. Including the time and financial investment required to acquire the necessary skills, attend courses, and pass examinations and reject potential bribes. Dishonest individuals may incur a higher cost by engaging in fraudulent activities to obtain fake certifications, forging documents, or misrepresenting their qualifications. This higher cost includes the risk of legal actions, potential job loss if discovered, and damage to their professional reputation.</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h3>Solving the game</h3>
+    <p style="text-align: justify;">We can have 3 different types of equilibria. In a separating equilibrium, Honest officials signal (S), while Dishonest officials do not signal (NS). In a pooling equilibrium, both Honest and Dishonest officials either both signal (S) or both do not signal (NS). The three considered cases will be:</p>
+    <ul>
+      a) Separating equilibrium where the HO signal and DO don’t
+    </ul>   
+    <ul>
+      b) Pooling equilibrium where all officials signal
+    </ul> 
+    <ul>
+      c) Pooling equilibrium where no official will send a signal
+    </ul> 
+    <p style="text-align: justify;">Now let’s think about the payoffs in each scenario, and which assumptions would be necessary for each one. We will start with the separating equilibrium.</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Separating</u></h4>
+    <blockquote style="text-align: center; font-style: italic;">Reward − C(S|HO) = 3 − 3 = 0</blockquote>
+    <p style="text-align: justify;">While DO will face:</p>
+    <blockquote style="text-align: center; font-style: italic;">Reward − C(S|DO) = 3 − 6 = −3</blockquote>
+    <p style="text-align: justify;">Both of them will compare these payoffs with the expected one without signaling:</p>
+    <blockquote style="text-align: center; font-style: italic;">No Reward − C(NS) − J = 0 − 2 = −2</blockquote>
+    <p style="text-align: justify;">It is clear that no official has an incentive to deviate from their strategies. If either one changes their strategy, he will clearly be worse off.</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Pooling</u></h4>
+    <p style="text-align: justify;">If we now change the parameters (Costs/Rewards) we can obtain a set of equilibria where all officials play the same strategy. For example, in the case where Rewards are now 1 instead of 3, payoffs for (HO,DO) = (-2,-5). Thus both can choose to offer no signal and they would be at least as well as by playing the signal. This equilibrium is not useful for the government. On the other hand, if the Reward is too high (or cost too low), we could see both players signalling; hence DO deceiving the government into thinking they are HO. This is also useless for the government objective.</p>
+    <p style="text-align: justify;">Pooling vs. Separating will depend on the relationship between the cost of signalling, the punishment of going to jail and the reward the government might provide after observing the positive signal. More specifically the critical values will be:</p>
+    <blockquote style="text-align: center; font-style: italic;">We will have a separating equilibrium if: R ≤ C(DO) − J & R ≥ C(HO) − J</blockquote>
+    <blockquote style="text-align: center; font-style: italic;">We will have a pooling equilibrium if: R ≥ C(DO) − J or R ≤ C(HO) − J</blockquote>
+    <p style="text-align: justify;">The government will try to manipulate this values in order to reach a separating equilibrium and correctly identify the types of officials.</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>5. Application</h2>
+    <p style="text-align: justify;">The model we built could serve to better understand the underlying incentives and rationality driving corruption which ultimately provides key insights on how to counteract corrupt practices, for instance within the context of high-polluting firms. The unfortunate reality in numerous transitional economies involves firms resorting to illegal ways to avoid emission reduction and associated costs. High-pollution companies may attempt to influence local governments through lobbying or bribery to secure political protection (Huihua and Li (2013) & Fredriksson and Neumayer (2016)) or sidestep stringent environmental regulations (Biswas et al. (2012)). This underlines the importance of third-party regulations, starting by understanding the rationality behind corruption. As illustrated in our analysis, the key focus should be on identifying effective and relevant incentives that discourage officials from accepting bribes and instead encourage frequent investigations. The applicability of our model extends beyond the examined scenario, offering insights into corruption-related issues, incentives, and rationality.</p>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>6. Conclusion</h2>
+    <p style="text-align: justify;">As we conclude our exploration of the topic, we can mention a few key findings. If there is an unbalanced weight in terms of power, there is room for the abuse of the better positioned player to dictate the behaviour of the other one. In our first case, the official will decide whether to engage in corruption or not, and the firm will simply follow this strategy. When we tackle this decision, we show that there are mechanisms that, if properly implemented (assumptions/parameters) properly, can help to identify these corrupt agents. A governmental entity will play a big role in this interaction. We believe our model is very simple but powerful because it illustrates a behaviour that could be applied logically in many instances outside of our basic example.</p>
+  </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2>References</h2>
+    <ul>
+      <li>Biswas, A. K., Farzanegan, M. R., and Thum, M. (2012). Pollution, shadow economy and corruption: Theory and evidence. <em>Ecological Economics</em>, 75:114–125.</li>
+      <li>Cerqueti, R. and Coppier, R. (2016). Corruption, evasion and environmental policy: a game theory approach. <em>IMA Journal of Management Mathematics</em>, 27(2):235–253.</li>
+      <li>Fredriksson, P. G. and Neumayer, E. (2016). Corruption and climate change policies: do the bad old days matter? <em>Environmental and resource economics</em>, 63:451–469.</li>
+      <li>Huihua, N. and Li, J. (2013). Collusion and economic growth: a new perspective on the china model. <em>Economic and Political Studies</em>, 1(2):18–39.</li>
+      <li>Macrae, J. (1982). Underdevelopment and the economics of corruption: A game theory approach. <em>World development</em>, 10(8):677–687.</li>
+      <li>Paolo Mauro, Paulo Medas, J. M. F. (2019). The cost of corruption. Accessed on Saturday, December 16, 2023.</li>
+      <li>Pellegrini, L. and Gerlagh, R. (2006). Corruption and environmental policies: what are the implications for the enlarged eu? <em>European Environment</em>, 16(3):139–154.</li>
+      <li>Tsebelis, G. (1989). The abuse of probability in political analysis: The robinson crusoe fallacy. <em>American Political Science Review</em>, 83(1):77–91.</li>
+      <li>Zhu, J. (2012). Do severe penalties deter corruption? a game-theoretic analysis of the chinese case. <em>China Review</em>, pages 1–32.</li>
+      </ul>    
+    </div>
+  </div>
+
+<div class="w3-container w3-large" style="margin-top: 30px; margin-bottom: 130px;">
+  <div class="w3-left-align">
+    <h2>You can download the full paper here : </h2>
+      <p style="margin-left: 60px;"><i class="fa fa-arrow-right w3-text-black"></i>
+        <a href="../modelling_corruption/Modelling_Corruption.pdf" download> Modelling Corruption using a Game Theory Approach</a>
+      <p>
+        
+      </p>
+      <p style="margin-left: 60px;"><i class="fa fa-arrow-right w3-text-black"></i> The Github repository: <a href="https://github.com/mtbrr26" target="_blank">https://github.com/mtbrr26</a><br> 
+      </p> 
+  </div>
+</div>
+
+</div><!--defines the margin left and right for the whole text of the article -->
+
+<!--</div>  <!--defines the font for all the text -->
+
+</body>
+
+
+<style>
+  /* Define the CSS for the colored footnote band */
+  .footnote {
+      background-color: #1a222c;
+      color: white; /* Text color on the blue background */
+      padding: 10px; /* Adjust the padding as needed */
+      text-align: center;
+      font-family: "avenir next,avenir,sans-serif"; /* Center-align the text within the band */
+  }
+</style>
+<body>
+  
+<!-- Add the colored footnote band at the bottom of the page -->
+<div class="footnote">
+
+  <!-- Contact Section -->
+  <div class="w3-container" style="margin-left: 128px; margin-right: 128px; margin-bottom: 30px; margin-top: 30px;">
+    <div class="w3-left-align">
+      <h2>Contact</h2>
+      <p style="text-align: left; font-size: 16px; margin-left: 0px;">You can contact me through my email: <a href="mailto:mathieu.breier@bse.eu">mathieu.breier@bse.eu</a></p>
+      <p style="text-align: left; font-size: 16px; margin-left: 0px;">
+        You can download my CV <a href="../../Breier_Mathieu_CV_Website.pdf" download>here</a></p>
+        <p></p>
+      
+      <p style="text-align: left; font-size: 16px; margin-left: 0px;">
+        Follow me on these social media platforms:<br> 
+        Github: <a href="https://github.com/mtbrr26" target="_blank">https://github.com/mtbrr26</a><br> 
+        LinkedIn: <a href="https://www.linkedin.com/in/mathieu-breier/" target="_blank">https://www.linkedin.com/in/mathieu-breier/</a><br> 
+      </p>
+    </div>
+  </div>
+
+<p>&copy; Mathieu Breier</p>
+</div>
+
+
+<!-- Scroll Line-->
+<!-- Scroll Line-->
+
+
+
+
+</body>
+
+</html>
