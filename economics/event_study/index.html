@@ -140,8 +140,55 @@
             left: 0;
             right: 0;
             }
+            /* -------------------------------------------------------*/
 
-            /* ------------------------------------*/
+            /* -----------------Interactive Summary Table----------------------------*/
+            /* Ensure the sidebar is fixed and full height */
+            .sidebar {
+              position: fixed;
+              top: -80px;
+              /*sright: 50px; /* Align sidebar to the right */
+              height: 100vh;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+
+              opacity: 0; /* Start with the sidebar invisible */
+              visibility: hidden; /* Ensure it doesn't interfere when not shown */
+              transition: opacity 1s, visibility 1s; /* Smooth transition for both properties */
+            }
+
+            .nav {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              padding-left: 40px;
+              gap: 20px;
+            }
+
+            .nav a {
+              text-decoration: none;
+              color: #999999;
+              font-size: 17px;
+              line-height: 1.3;
+            }
+
+            .nav a:hover {
+              color: #1a222c;
+            }
+
+            /* Optional: a class for the active section */
+            .nav a.active {
+              color: #1a222c;
+              font-weight: bold;
+            }
+
+            .sidebar-visible {
+              opacity: 1; /* Fully visible */
+              visibility: visible; /* Can interact with the page */
+            }
+            /* -----------------Interactive Summary Table----------------------------*/
+
             }
         </style>
 
@@ -168,7 +215,64 @@
         });
         </script>
         <!-- Library for mathematical expression -->
-
+        
+        <!----------------------- Side bar summary table -------------------->
+        <script>
+          // JavaScript to add interactivity to the sidebar based on scroll position
+          // JavaScript to add interactivity to the sidebar based on scroll position
+          document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const firstSectionLink = document.querySelector('.nav a');
+            const firstSection = document.querySelector(decodeURIComponent(firstSectionLink.getAttribute('href')).replace(/\s+/g, '-'));
+  
+            function updateSidebarVisibility() {
+              const activeClass = 'active';
+              const viewportHeight = window.innerHeight;
+              const middleOfScreen = viewportHeight / 2 + window.pageYOffset;
+              const documentHeight = document.documentElement.scrollHeight;
+              const scrolledToBottom = window.pageYOffset + viewportHeight >= documentHeight;
+  
+              // Calculate first section's relative position each time
+              let firstSectionOffsetTop = firstSection.offsetTop;
+              let firstSectionHeight = firstSection.offsetHeight;
+  
+              // Condition to show sidebar, adjusted to account for bottom of the document
+              if (window.pageYOffset + middleOfScreen / 5 > firstSectionOffsetTop + firstSectionHeight && !scrolledToBottom) {
+                sidebar.classList.add('sidebar-visible');
+              } else {
+                sidebar.classList.remove('sidebar-visible');
+              }
+  
+              // Highlight the active section based on current scroll position
+              const sections = Array.from(document.querySelectorAll('.nav a'))
+                .map(link => ({
+                  link,
+                  section: document.querySelector(decodeURIComponent(link.getAttribute('href')).replace(/\s+/g, '-'))
+                }))
+                .filter(item => item.section)
+                .sort((a, b) => a.section.offsetTop - b.section.offsetTop);
+  
+              let currentSection = sections[0].link;
+              sections.forEach(item => {
+                if (item.section.getBoundingClientRect().top + window.pageYOffset < middleOfScreen) {
+                  currentSection = item.link;
+                }
+              });
+  
+              document.querySelectorAll('.nav a').forEach(link => {
+                link.classList.remove(activeClass);
+              });
+              currentSection && currentSection.classList.add(activeClass);
+            }
+  
+            window.addEventListener('scroll', updateSidebarVisibility);
+            updateSidebarVisibility(); // Call once to set initial state based on page load position
+          });
+  
+  
+        </script>
+        <!----------------------- Side bar summary table -------------------->    
+        
     </head>
 
     <!-------------------SCROLL PROGRESS BAR--------------------->
@@ -176,6 +280,20 @@
     <!-------------------SCROLL PROGRESS BAR--------------------->
     
 <body>
+      <!-- Fixed Sidebar -->
+      <div class="sidebar">
+        <nav class="nav">
+          <a href="#Introduction">Introduction</a>
+          <a href="#Literature_Review">Literature Review</a>
+          <a href="#Empirical_Strategy">Empirical Strategy</a>
+          <a href="#Results">Results</a>
+          <a href="#Robustness_Check">Robustness Check</a>
+          <a href="#Conclusion">Conclusion</a>
+          <a href="#References">References</a>
+        </nav>
+      </div>
+      <!-- Fixed Sidebar -->
+    
     <!-- Navbar (sit on top) -->
     <div class="w3-top" style = "font-family: 'Montserrat',sans-serif;">
         <div class="w3-bar" id="myNavbar">
@@ -236,7 +354,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>1. Introduction</h2>
+    <h2 id="Introduction">1. Introduction</h2>
     <p class="paragraph" style="text-align: justify;">According to the IPCC’s sixth assessment report on climate change, the previous decade is likely to have been the hottest period in the last 125,000 years. While the scientist community raises concerns over the climate change consequences, they also argue that global warming is reversible. To reverse centuries of high green- house gas emissions, a sound ecological transition towards renewable energies is part of the solution. In addressing this challenge, accurately estimating potential shocks on asset returns of companies operating in the renewable sectors is an imperative prerequisite to successfully guide investments to a green economy transition.<br></p>
     <p class="paragraph" style="text-align: justify;">This paper seeks to study how unexpected events affect asset returns. Specifically, we analyse firm-level data from a large sample of companies primarily operating in Spain to understand how investors in the stock markets react to unexpected policies or climate shocks. To answer this question, we focus our analysis on three major events. Firstly, we look at curtailment, i.e. an event specific to wind farms where grid operators ask energy producers to reduce their supply because the demand is too low or there is congestion in the grid. The second event consists of the implementation of the Royal Decree - Law 1/2012, which introduced changes to the electricity tariff structure and removed subsidies for non-renewable energy projects. The third event focuses on carbon policy surprises, defined as unexpected changes in the pricing of carbon emissions.<br></p>
     <p class="paragraph" style="text-align: justify;">The growing amount of wind power capacity within the Spanish electricity system significantly affects both the operation and costs of the energy system. This noteworthy impact brought about by wind power is particularly concerning due to the limited interconnections of the Iberian Peninsula Power System with other nations. In this situation, the power system’s security, reliability, and stability can be significantly influenced by the curtailment of wind energy. In our study, we define curtailment as the process whereby wind energy producers are requested to reduce their output in order to balance demand and supply or to ensure grid stability. This process aims to prevent the electricity price from reaching zero due to an excess supply, which would encourage energy producers from ceasing their generation of electricity.<br></p>
@@ -251,7 +369,7 @@
 <!-- Container (Development) -->
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>2. Literature Review and Contributions</h2>
+    <h2 id="Literature_Review">2. Literature Review and Contributions</h2>
     <p class="paragraph" style="text-align: justify;">This study contributes to the growing literature analyzing the effects of climate events, policies and carbon pricing on stock returns. Multiple studies have investigated how unforeseen climate change events affect stock market returns. Antoniuk and Leirvik (2021) find that unexpected events related to climate significantly im- pact stock abnormal returns. We incorporate in our study the method they employ to compute the firms’ abnormal return. The method itself was originally introduced by Sharpe (1964) and Linter (1965). In addition, they show that the presence of significant abnormal return variations indicate a delay in the market’s pricing of new information. We validate this result by finding that high curtailment events have a significant impact on stock abnormal returns and that the market takes some time to adjust.</p>
     <p class="paragraph" style="text-align: justify;">In a similar vein, Kuang et al. (2021) specifically study the effects of the 2016 Paris Agreement on investment behaviors. Using an event study methodology, they find that while the treaty had limited overall effects on green companies, its implementation appeared to have a statistically negative impact. Furthermore, U-Din et al. (2022) explore the influence of weather catastrophes on the Canadian stock market over a 20-year period. They discover that extreme weather events significantly de- crease stock markets returns. Supported by these findings, Pagnottoni et al. (2022) find that climatological events have the most extreme reactions on international financial markets among disaster types. Employing an event study methodology, they examine the effects of multiple disaster types on 27 global stock market indexes from 2001 to 2019. While the impacts on stock markets differ depending on the type of disaster, climatological events predominantly exhibit significant negative effects on financial markets. The literature confirms our beliefs that stock markets are likely to respond to unexpected events.</p>
     <p class="paragraph" style="text-align: justify;">Our study is structured into three distinct sections: curtailment, Royal Decree - Law 1/2012, and carbon policy surprises. In the following discussion, we review the literature and contributions for each of these sections.</p>
@@ -267,7 +385,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>3. Empirical Strategy</h2>
+    <h2 id="Empirical_Strategy">3. Empirical Strategy</h2>
     </div>
   </div>
 
@@ -345,7 +463,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>4. Results</h2>
+    <h2 id="Results">4. Results</h2>
     <h3>4.1. Curtailment</h3>
     <p class="paragraph" style="text-align: justify;">The first event that we focus on is wind energy curtailment. As a primary way to visualise the event study graphically we plot the average daily abnormal returns in the weeks surrounding the curtailment events on 31 March and 4 August 2019 for firms in the renewable energy sector and the non-renewable energy sector. We control for the market returns and the standardised value of the amount of energy curtailed. The event of curtailment on 19 December 2019, as seen in table 3, is excluded since including such an extreme event alongside the other two would bias our results. Also, since our sample is restricted to the year 2019 we would not have 5 weeks post the event in the week of 19 December 2019. The graphs display the abnormal returns for the 5 weeks before and after the curtailment occurs.</p>
     <p class="paragraph" style="text-align: justify;">In figure 2 the plot on the left shows the results for the renewable energy sector. Time period 0 reflect the abnormal returns obtained by firms in the renewable sector in the week where curtailment occurred relative to the week -1, i.e. the week before the curtailment event occurred. All the abnormal returns plotted are standardised to week -1. From this graph we can see that in the week where curtailment occurs the abnormal returns fall for the renewable energy sector, although this reduction is not statistically significant. This corroborates our hypothesis that curtailment leads to a reduction in the abnormal returns of firms in the renewable energy sector.</p>
@@ -435,7 +553,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>5. Robustness Check</h2>
+    <h2 id="Robustness_Check">5. Robustness Check</h2>
     <p style="text-align: justify;">In order to verify the validity of our results we run some robustness checks. To validate our regression results for the three event studies, we check whether the results hold by estimating the same regressions for different time periods. We present the results of the analysis in the table 8. While checking for consistency, we verify whether the results for curtailment hold when we conduct the analysis at the daily and weekly level since we would expect this to be a more short term effect. While for the royal decree and the carbon policy surprise we conduct the robustness checks at the weekly and monthly level. The existing literature on the carbon policy surprises does indicate that the effects of this variable would be more visible in longer horizons. We can also reasonably argue that the impacts of a policy on investment decisions would become more apparent in longer time-frames.</p>
       <div class="table-container" style="margin-top: 30px;">
         <caption"><b>Table 8</b> - Robustness Check</caption>
@@ -449,7 +567,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>6. Conclusion</h2>
+    <h2 id="Conclusion">6. Conclusion</h2>
     <p style="text-align: justify;">Climate change has become the biggest challenge humanity is poised to confront in this century. The consequences are far-reaching, as polar ice shields continue to melt and sea levels to rise. Certain regions experience more frequent extreme weather events and rainfall, while others suffer from severe heat waves and frequent droughts. The implications of climate change jeopardize various social, economic and territorial aspects of our lives. As such, it is crucial to understand the implications of climate, carbon pricing and policy events on the energy stock market, in order to effectively allocate financial resources to areas where they can generate the most significant impact. This paper contributes to that objective by providing new evidence on how particular events affect the abnormal returns of companies in the energy sector.</p>
     <p style="text-align: justify;">Firstly, we show that abnormal returns fall for the renewable energy sector during weeks with high curtailment and this reduction is statistically significant. More- over, from the event study we also observe that in periods where curtailment oc- curred there was a significant increase in the abnormal returns of the non-renewable sector. This could indicate that high curtailment events encourage investors to shift their investments from renewable energy to non-renewable energy companies. Lastly, our results suggest that curtailment is a rather small phenomenon. The majority of the results are not statistically significant at a 5% level, and the coefficient values are very small. This aligns with our hypothesis that curtailment is not a major consideration that investors take into account when making investment decisions.</p>
     <p style="text-align: justify;">Secondly, our findings indicate that the Royal Decree - Law 1/2012 had negative effects for the entire energy sector as we had hypothesized. Our results suggest that the suspension of all in-feed tariffs guaranteed to renewable electricity producers disincentivized investment in the energy sector. However, it is important to note that our results are statistically insignificant for the non-renewable sector and the energy sector as whole. They are however, significant and negative for the renewable energy sector.</p>
@@ -460,7 +578,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>References</h2>
+    <h2 id="References">References</h2>
     <ul>
       <li>Antoniuk, Y. and Leirvik, T. (2021). Climate change events and stock market returns. Journal of Sustainable Finance & Investment, pages 1–26.</li>
       <li>Corrado, C. J. (2011). Event studies: A methodology review. Accounting & Finance, 51(1):207–234.</li>
