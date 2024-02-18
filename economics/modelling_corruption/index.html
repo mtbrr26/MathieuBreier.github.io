@@ -143,6 +143,54 @@
             }
 
             /* ------------------------------------*/
+
+            /* -----------------Interactive Summary Table----------------------------*/
+            /* Ensure the sidebar is fixed and full height */
+            .sidebar {
+              position: fixed;
+              top: -80px;
+              /*sright: 50px; /* Align sidebar to the right */
+              height: 100vh;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+
+              opacity: 0; /* Start with the sidebar invisible */
+              visibility: hidden; /* Ensure it doesn't interfere when not shown */
+              transition: opacity 1s, visibility 1s; /* Smooth transition for both properties */
+            }
+
+            .nav {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              padding-left: 40px;
+              gap: 20px;
+            }
+
+            .nav a {
+              text-decoration: none;
+              color: #999999;
+              font-size: 17px;
+              line-height: 1.3;
+            }
+
+            .nav a:hover {
+              color: #1a222c;
+            }
+
+            /* Optional: a class for the active section */
+            .nav a.active {
+              color: #1a222c;
+              font-weight: bold;
+            }
+
+            .sidebar-visible {
+              opacity: 1; /* Fully visible */
+              visibility: visible; /* Can interact with the page */
+            }
+            /* -----------------Interactive Summary Table----------------------------*/
+
             }
         </style>
 
@@ -159,7 +207,7 @@
         }</script>
         <!-------------------SCROLL PROGRESS BAR--------------------->
 
-        <!-- Library for mathematical expression (and removing the brief message (math processing:100%)) -->
+        <!-------- Library for mathematical expression (and removing the brief message (math processing:100%)) ------->
         <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
         </script>
@@ -168,7 +216,63 @@
             messageStyle: "none"
         });
         </script>
-        <!-- Library for mathematical expression -->
+        <!-------- Library for mathematical expression ------>
+
+        <!----------------------- Side bar summary table -------------------->
+        <script>
+        // JavaScript to add interactivity to the sidebar based on scroll position
+        // JavaScript to add interactivity to the sidebar based on scroll position
+        document.addEventListener('DOMContentLoaded', () => {
+          const sidebar = document.querySelector('.sidebar');
+          const firstSectionLink = document.querySelector('.nav a');
+          const firstSection = document.querySelector(decodeURIComponent(firstSectionLink.getAttribute('href')).replace(/\s+/g, '-'));
+
+          function updateSidebarVisibility() {
+            const activeClass = 'active';
+            const viewportHeight = window.innerHeight;
+            const middleOfScreen = viewportHeight / 2 + window.pageYOffset;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrolledToBottom = window.pageYOffset + viewportHeight >= documentHeight;
+
+            // Calculate first section's relative position each time
+            let firstSectionOffsetTop = firstSection.offsetTop;
+            let firstSectionHeight = firstSection.offsetHeight;
+
+            // Condition to show sidebar, adjusted to account for bottom of the document
+            if (window.pageYOffset + middleOfScreen / 5 > firstSectionOffsetTop + firstSectionHeight && !scrolledToBottom) {
+              sidebar.classList.add('sidebar-visible');
+            } else {
+              sidebar.classList.remove('sidebar-visible');
+            }
+
+            // Highlight the active section based on current scroll position
+            const sections = Array.from(document.querySelectorAll('.nav a'))
+              .map(link => ({
+                link,
+                section: document.querySelector(decodeURIComponent(link.getAttribute('href')).replace(/\s+/g, '-'))
+              }))
+              .filter(item => item.section)
+              .sort((a, b) => a.section.offsetTop - b.section.offsetTop);
+
+            let currentSection = sections[0].link;
+            sections.forEach(item => {
+              if (item.section.getBoundingClientRect().top + window.pageYOffset < middleOfScreen) {
+                currentSection = item.link;
+              }
+            });
+
+            document.querySelectorAll('.nav a').forEach(link => {
+              link.classList.remove(activeClass);
+            });
+            currentSection && currentSection.classList.add(activeClass);
+          }
+
+          window.addEventListener('scroll', updateSidebarVisibility);
+          updateSidebarVisibility(); // Call once to set initial state based on page load position
+        });
+
+
+        </script>
 
     </head>
     
@@ -177,6 +281,20 @@
     <!-------------------SCROLL PROGRESS BAR--------------------->
 
 <body>
+
+    <!-- Fixed Sidebar -->
+    <div class="sidebar">
+      <nav class="nav">
+        <a href="#Introduction">Introduction</a>
+        <a href="#Literature_Review_and_Contributions">Literature Review</a>
+        <a href="#Firms_and_Officials">Firms and Officials</a>
+        <a href="#Adding_Government">Adding Government</a>
+        <a href="#Application">Application</a>
+        <a href="#Conclusion">Conclusion</a>
+        <a href="#References">References</a>
+      </nav>
+    </div>
+    
     <!-- Navbar (sit on top) -->
     <div class="w3-top" style = "font-family: 'Montserrat',sans-serif;">
         <div class="w3-bar" id="myNavbar">
@@ -240,7 +358,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>1. Introduction</h2>
+    <h2 id="Introduction">1. Introduction</h2>
     <p class="paragraph" style="text-align: justify;">Corruption constitutes an important obstacle for development, especially in developing countries. The International Monetary Fund estimated in 2019, that countries regarded as less corrupt tend to generate higher revenues. Specifically, governments with low corruption collect around 4 percent more of their GDP in taxes compared to nations with similar economic development but facing higher levels of corruption (Paolo Mauro (2019)). Empirical investigations by Pellegrini and Gerlagh (2006) similarly demonstrate a negative association between GDP growth rate and heightened corruption levels. Notably, richer countries, on average, exhibit lower corruption indices.<br></p>
     <p class="paragraph" style="text-align: justify;">By proposing a simple interaction game between officials, firms and then, a governmental entity, we focus on identifying the incentives, as well as the fundamental assumptions in this build and the factors that could affect the outcomes. In our project, we aim to understand the rationality behind these type of behaviours, i.e. what justifies the decisions of rational agents to become corrupt. Our goal is, by making use of the model, to explain real-world dynamics on how agents make decisions but also on how they can be altered. We acknowledge that the model is simple and unrealistic, however we consider it can explain some behaviors observed, and we shall relate them to real life scenarios.<br></p>
     </div>
@@ -249,7 +367,7 @@
 <!-- Container (Development) -->
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>2. Literature Review and Contributions</h2>
+    <h2 id="Literature_Review_and_Contributions">2. Literature Review and Contributions</h2>
     <p class="paragraph" style="text-align: justify;">This study gathers inspiration from a diverse body of research delving into the modeling of corruption through a game theory approach.</p>
     <p class="paragraph" style="text-align: justify;">Macrae (1982) adopts the basic assumption that corruption is a rational decision deeply rooted in individuals seeking a competitive advantage. He investigates the rationale behind an overseas corporation considering bribing a local official as part of an attempt to gain a contract. In the analysis, he finds that corruption exerts a negative impact on economic development and income redistribution. He advocates for more stringent legal sanctions and enhanced transparency as potential remedies to curb corruption.</p>
     <p class="paragraph" style="text-align: justify;">Cerqueti and Coppier (2016) investigate the relationship between public corruption, environmental deterioration and the role of the state. They design a simple game with incomplete information, where the State attempts to control pollution through an emission tax rate. They introduce 3 players, a polluting firm (tax payer), an environmental inspector (tax inspector) and a politician that all have the choice to behave in a corrupt manner or comply with the law. Their model assumes that corruption may occur at different levels. Polluting firms have an incentive to corrupt in order to reduce the amount of environmental taxes it would have to pay. The level of emission of the polluting firms is determined randomly by the nature. What sets their model apart is the possibility that the polluting firm might not be checked by the tax inspector, whilst it is often taken as an assumption. They find that the state, for environmental protection, can either increase monitoring to reduce evasion and boost tax revenues or enhance compliance among polluting firms, resulting in lower evasion and greater tax revenues. Although this paper is on a specific issue within corruption as polluting; it is still relevant for our analysis due to the fact that the underlying dynamic, driving the behaviours is unchanged.</p>
@@ -261,7 +379,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>3. Firms and Officials</h2>
+    <h2 id="Firms_and_Officials">3. Firms and Officials</h2>
     </div>
   </div>
 
@@ -298,7 +416,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>4. Adding Government</h2>
+    <h2 id="Adding_Government">4. Adding Government</h2>
     <p class="paragraph" style="text-align: justify;">In this final extension, we will introduce a new agent into the model, the government. Here we will remove the firms out of the equation. They become irrelevant in this new model, if we take into account that in the previous exercise the equilibrium was found at both players being corrupt. The firms cannot do anything to alter the officials behaviour. The government will then penalize the official if it considers him corrupt, by sending it to jail (J), although it cannot observe if the official is actually corrupt or not. We assume that the government has full power to decide which officials are sent to jail and which are not, even without any evidence. Its objective will be to minimize corruption, but without penalizing honest officials who indeed do not engage in corruption.</p>
     <p class="paragraph" style="text-align: justify;">We can think of think of the following payoffs for the 4 possible resulting scenarios from this interaction in the form of: Payoffs = (O, G).</p>
     <ul>
@@ -384,21 +502,21 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>5. Application</h2>
+    <h2 id="Application">5. Application</h2>
     <p style="text-align: justify;">The model we built could serve to better understand the underlying incentives and rationality driving corruption which ultimately provides key insights on how to counteract corrupt practices, for instance within the context of high-polluting firms. The unfortunate reality in numerous transitional economies involves firms resorting to illegal ways to avoid emission reduction and associated costs. High-pollution companies may attempt to influence local governments through lobbying or bribery to secure political protection (Huihua and Li (2013) & Fredriksson and Neumayer (2016)) or sidestep stringent environmental regulations (Biswas et al. (2012)). This underlines the importance of third-party regulations, starting by understanding the rationality behind corruption. As illustrated in our analysis, the key focus should be on identifying effective and relevant incentives that discourage officials from accepting bribes and instead encourage frequent investigations. The applicability of our model extends beyond the examined scenario, offering insights into corruption-related issues, incentives, and rationality.</p>
     </div>
   </div>
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>6. Conclusion</h2>
+    <h2 id="Conclusion">6. Conclusion</h2>
     <p style="text-align: justify;">As we conclude our exploration of the topic, we can mention a few key findings. If there is an unbalanced weight in terms of power, there is room for the abuse of the better positioned player to dictate the behaviour of the other one. In our first case, the official will decide whether to engage in corruption or not, and the firm will simply follow this strategy. When we tackle this decision, we show that there are mechanisms that, if properly implemented (assumptions/parameters) properly, can help to identify these corrupt agents. A governmental entity will play a big role in this interaction. We believe our model is very simple but powerful because it illustrates a behaviour that could be applied logically in many instances outside of our basic example.</p>
   </div>
   </div>
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>References</h2>
+    <h2 id="References">References</h2>
     <ul>
       <li>Biswas, A. K., Farzanegan, M. R., and Thum, M. (2012). Pollution, shadow economy and corruption: Theory and evidence. <em>Ecological Economics</em>, 75:114–125.</li>
       <li>Cerqueti, R. and Coppier, R. (2016). Corruption, evasion and environmental policy: a game theory approach. <em>IMA Journal of Management Mathematics</em>, 27(2):235–253.</li>
