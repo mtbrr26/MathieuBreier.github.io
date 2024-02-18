@@ -143,7 +143,55 @@
             right: 0;
             }
 
-            /* ------------------------------------*/
+            /* --------------------------------------------------------*/
+
+            /* -----------------Interactive Summary Table----------------------------*/
+            /* Ensure the sidebar is fixed and full height */
+            .sidebar {
+              position: fixed;
+              top: -80px;
+              /*sright: 50px; /* Align sidebar to the right */
+              height: 100vh;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              /*font-family: avenir next,avenir,sans-serif;*/
+              opacity: 0; /* Start with the sidebar invisible */
+              visibility: hidden; /* Ensure it doesn't interfere when not shown */
+              transition: opacity 1s, visibility 1s; /* Smooth transition for both properties */
+            }
+
+            .nav {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              padding-left: 40px;
+              gap: 20px;
+            }
+
+            .nav a {
+              text-decoration: none;
+              color: #999999;
+              font-size: 17px;
+              line-height: 1.3;
+            }
+
+            .nav a:hover {
+              color: #1a222c;
+            }
+
+            /* Optional: a class for the active section */
+            .nav a.active {
+              color: #1a222c;
+              font-weight: bold;
+            }
+
+            .sidebar-visible {
+              opacity: 1; /* Fully visible */
+              visibility: visible; /* Can interact with the page */
+            }
+            /* -----------------Interactive Summary Table----------------------------*/
+                
             }
         </style>
 
@@ -171,6 +219,62 @@
         </script>
         <!-- Library for mathematical expression -->
 
+        <!----------------------- Side bar summary table -------------------->
+        <script>
+          // JavaScript to add interactivity to the sidebar based on scroll position
+          // JavaScript to add interactivity to the sidebar based on scroll position
+          document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const firstSectionLink = document.querySelector('.nav a');
+            const firstSection = document.querySelector(decodeURIComponent(firstSectionLink.getAttribute('href')).replace(/\s+/g, '-'));
+  
+            function updateSidebarVisibility() {
+              const activeClass = 'active';
+              const viewportHeight = window.innerHeight;
+              const middleOfScreen = viewportHeight / 2 + window.pageYOffset;
+              const documentHeight = document.documentElement.scrollHeight;
+              const scrolledToBottom = window.pageYOffset + viewportHeight >= documentHeight;
+  
+              // Calculate first section's relative position each time
+              let firstSectionOffsetTop = firstSection.offsetTop;
+              let firstSectionHeight = firstSection.offsetHeight;
+  
+              // Condition to show sidebar, adjusted to account for bottom of the document
+              if (window.pageYOffset + middleOfScreen / 5 > firstSectionOffsetTop + firstSectionHeight && !scrolledToBottom) {
+                sidebar.classList.add('sidebar-visible');
+              } else {
+                sidebar.classList.remove('sidebar-visible');
+              }
+  
+              // Highlight the active section based on current scroll position
+              const sections = Array.from(document.querySelectorAll('.nav a'))
+                .map(link => ({
+                  link,
+                  section: document.querySelector(decodeURIComponent(link.getAttribute('href')).replace(/\s+/g, '-'))
+                }))
+                .filter(item => item.section)
+                .sort((a, b) => a.section.offsetTop - b.section.offsetTop);
+  
+              let currentSection = sections[0].link;
+              sections.forEach(item => {
+                if (item.section.getBoundingClientRect().top + window.pageYOffset < middleOfScreen) {
+                  currentSection = item.link;
+                }
+              });
+  
+              document.querySelectorAll('.nav a').forEach(link => {
+                link.classList.remove(activeClass);
+              });
+              currentSection && currentSection.classList.add(activeClass);
+            }
+  
+            window.addEventListener('scroll', updateSidebarVisibility);
+            updateSidebarVisibility(); // Call once to set initial state based on page load position
+          });
+  
+  
+          </script>        
+        
     </head>
     
     <!-------------------SCROLL PROGRESS BAR--------------------->
@@ -178,6 +282,21 @@
     <!-------------------SCROLL PROGRESS BAR--------------------->
 
 <body>
+
+    <!-- Fixed Sidebar -->
+    <div class="sidebar">
+      <nav class="nav">
+        <a href="#Introduction">Introduction</a>
+        <a href="#Literature_Review_and_Contributions">Literature Review</a>
+        <a href="#Data">Data</a>
+        <a href="#Empirical_Method">Empirical Method</a>
+        <a href="#Results">Results</a>
+        <a href="#Discussion">Discussion</a>
+        <a href="#Conclusions">Conclusions</a>
+        <a href="#References">References</a>
+      </nav>
+    </div>
+
     <!-- Navbar (sit on top) -->
     <div class="w3-top" style = "font-family: 'Montserrat',sans-serif;">
         <div class="w3-bar" id="myNavbar">
@@ -240,7 +359,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>1. Introduction</h2>
+    <h2 id="Introduction">1. Introduction</h2>
     <p class="paragraph" style="text-align: justify;">In the fight against climate change, reduction in CO2 emissions from road transport stands as a crucial factor. Recognizing its significance, we have chosen to focus our investigation on the Norwegian Battery Electric Vehicle (BEV) market. The success of Norway’s market for BEVs has been nothing short of remarkable. In April 2023, the country achieved a groundbreaking milestone, with over 90% of all cars sold being BEVs [5]. This exceptional achievement can be attributed to a combination of factors, including the effective policies implemented by the Norwegian government. Notably, Norway was one of the first countries to introduce tax incentives for BEV purchases, which played a significant role in driving up demand [12]. However, one of the most influential policies that contributed to the success of BEVs in Norway is the establishment of a robust charging infrastructure network.<br></p>
     <p class="paragraph" style="text-align: justify;">Ensuring widespread accessibility to charging points throughout the country has been instrumental in making BEVs a viable option for Norwegian consumers. Nor- way’s unique geographical characteristics, such as long distances and extreme cold weather conditions, have traditionally contributed to range anxiety, making potential BEV owners hesitant. However, by strategically installing charging infrastructure and providing easy access to charging points, the Norwegian government and private firms have successfully alleviated these concerns and created an enabling environment for BEV adoption.<br></p>
     <p class="paragraph" style="text-align: justify;">In our research, we place a particular focus on the geospatial analysis of charging infrastructure and its impact on BEV adoption in Norway. By incorporating geospa- tial computations and employing buffer zone calculations, we are able to quantify the accessibility of charging points for each municipality. This approach allows us to examine the spatial distribution of charging infrastructure and its influence on BEV adoption patterns across the country. Furthermore, to analyze the factors influencing the establishment of registered points, we constructed a secondary model incorporating the BEV share and the proximity of charging points, along with the relevant covariates.<br></p>
@@ -254,7 +373,7 @@
 <!-- Container (Development) -->
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>2. Literature Review and Contributions</h2>
+    <h2 id="Literature_Review_and_Contributions">2. Literature Review and Contributions</h2>
     <p class="paragraph" style="text-align: justify;">Our study aims to make a significant contribution to the existing literature on the Norwegian battery electric vehicle (BEV) market by investigating the impact of charging point proximity on BEV adoption in Norwegian municipalities. Norway has garnered international attention for its remarkable success in BEV adoption, largely attributed to the government’s long-standing support and favorable policies [7]. However, the availability of reliable and accessible charging infrastructure remains a critical factor in facilitating the widespread adoption of BEVs [14] [18].</p>
     <p class="paragraph" style="text-align: justify;">Charging infrastructure plays a pivotal role in overcoming the psychological barrier of range anxiety, which refers to the fear of running out of battery charge and being stranded without a charging option, even when the battery still has significant remaining autonomy. [15] [6] [10]. These barriers are most challenging to cross in such a cold country, where batteries are very likely to underperform. Mashoodi and van der Blij [11] have demonstrated that this fear may necessitate a substantial increase of charging points by 167% in the charging infrastructure of Amsterdam. However, as the number of charging points increases, we anticipate that this type of anxiety can be alleviated, potentially leading to even greater spillover effects. Our study is conducted in a context where charging points are densely distributed across the territory, allowing us to explore the relationship between charging point proximity and BEV adoption more comprehensively.</p>
     <p class="paragraph" style="text-align: justify;">By ensuring convenient access to charging points, potential BEV owners can gain the confidence to make the transition from traditional gasoline-powered vehicles to electric vehicles. This aspect has been recognized by governments and businesses worldwide, leading to significant investments in the development of charging infrastructure, including public charging stations in urban areas and along major highways [14] [18].</p>
@@ -268,7 +387,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>3. Data</h2>
+    <h2 id="Data">3. Data</h2>
     <p class="paragraph" style="text-align: justify;">To construct our panel data for analysis, we collected data from NOBIL [2], the Norwegian National Statistics website [4], the UC Davis database of global administra- tive areas (GADM) [19], and Nordpool [3]. These sources provided crucial informa- tion that contributed to the comprehensive nature of our study.</p>
     <p class="paragraph" style="text-align: justify;">The NOBIL dataset proved invaluable in providing detailed information about registered charging stations in Norway. It furnished us with precise spatial positions and exact date of establishment for each charging station. While the exact construction dates were not available, we used the time of addition to the NOBIL database as a proxy. Since NOBIL was established in March 2010, we made the assumption that charging points registered between March and May 2010 were already established in 2009. We make the assumption that these charging stations were established in 2009 because the government announced their plan to establish charging infrastructure across the country in 2008. Thus, for our analysis, we included data spanning from 2009 to 2022.</p>
     <p class="paragraph" style="text-align: justify;">Demographic data for the municipalities and the dependent variable, BEV share, were obtained from Statistics Norway. The registered vehicles dataset provided information on the number of cars registered by fuel type in each municipality, allowing us to calculate the BEV share. Our demographic variables encompassed population density, median household income, educational attainment, and average age at the municipality level.</p>
@@ -324,7 +443,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>4. Empirical Method</h2>
+    <h2 id="Empirical_Method">4. Empirical Method</h2>
     <h3>4.1. Correlation Analysis</h3>
     <p class="paragraph" style="text-align: justify;">In this study, we first conduct a correlation analysis between the variable of inter- est, BEV share, and other variables in our dataset. The objective is to examine the strength and direction of the relationships between BEV share and the other variables from our panel data. We set a significance threshold of 0.05 for the maxi- mum p-value to identify statistically significant correlations. This analysis provides valuable insights into the associations between BEV share and other variables, shed- ding light on potential factors that may influence the adoption and usage of electric vehicles. The analysis uses the years 2009-2022.</p>
     <h3>4.2. Geospatial Baseline Model</h3>
@@ -443,7 +562,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>5. Results</h2>
+    <h2 id="Results">5. Results</h2>
     <h3>5.1. Correlation Analysis</h3>
     <p style="text-align: justify;">In Figure 4, we observe significant relationships between our selected variables and the dependent variable, BEV share. Among these variables, Income exhibits the highest correlation with a coefficient of 0.706, indicating a strong positive relation- ship. This finding aligns with our expectations as higher income levels are often associated with increased purchasing power and a greater likelihood of affording electric vehicles. Additionally, Education shows a strong relationship, suggesting that individuals with higher education levels may be more inclined to adopt elec- tric vehicles. The impact of education on BEV share can be further explored by considering factors such as environmental awareness, technological familiarity, and sustainability values.</p>
     <p style="text-align: justify;">Another noteworthy variable is Electricity prices, which demonstrates one of the strongest correlations with BEV share. This finding is logical since electricity prices directly impact the overall cost of driving a car after its purchase. Higher electricity prices may discourage the adoption of electric vehicles due to concerns about ongoing expenses. On the other hand, lower electricity prices could incentivize potential BEV owners by reducing the cost of usage.</p>
@@ -493,7 +612,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>6. Discussion</h2>
+    <h2 id="Discussion">6. Discussion</h2>
     <h3>6.1. Proximity Point Calculations: Efficiency Gains</h3>
     <p style="text-align: justify;">While creating the variable for proximity points, we followed a procedure involving the creation of buffer zones around each charging point and intersecting them with the respective municipality borders. However, upon careful evaluation and with the guidance of our professor, we recognized that an alternative method where we create buffer zones around each municipality would likely have been more efficient in terms of computational resources and processing time.</p>
     <p style="text-align: justify;">By generating buffer zones around each municipality instead of each individual charging point, we could have significantly reduced the number of spatial inter- sections and computations required. This approach would have allowed for more streamlined data processing and quicker analysis.</p>
@@ -512,7 +631,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>7. Conclusions</h2>
+    <h2 id="Conclusions">7. Conclusions</h2>
     <p style="text-align: justify;">In conclusion, our study focused on the adoption and usage of Battery Electric Vehicles in Norwegian municipalities, emphasizing the role of charging infrastructure and proximity points. Our analysis provided valuable insights into the key factors driving BEV adoption.</p>
     <p style="text-align: justify;">The results highlight the significance of charging infrastructure and spatial proximity in influencing BEV adoption. Accessible charging points within proximity played a crucial role in adoption, surpassing registered points and addressing range anxiety. Higher income and education levels were found to positively impact adoption, while higher electricity prices were an obstacle.</p>
     <p style="text-align: justify;">With our chosen specification, we aimed to minimize biases and isolate the effect of spillover effects. The analysis consistently showed that proximity points positively influenced BEV adoption, with larger buffer zones capturing more of the impact on BEV adoption.</p>
@@ -525,7 +644,7 @@
 
   <div class="w3-container w3-large" style="margin-top: 30px;">
     <div class="w3-left-align">
-    <h2>References</h2>
+    <h2 id="References">References</h2>
     <ul>
       <li>[1] Hvor mange prosent av nordmenn har hytte? https://www.finanssenteret. as/emne/9457/hvor-mange-prosent-av-nordmenn-har-hytte. Accessed: Insert Date.</li>
       <li>[2] NOBIL. https://info.nobil.no/english. Accessed: 2023.</li>
