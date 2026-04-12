@@ -1,8 +1,8 @@
 # Site settings
-title: My projects portfolio
-description: A blog with some of my work in progress
-# baseurl: "/particle" # the subpath of your site, e.g. /blog
-# url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+title: Mathieu Breier — Data Science & Economics
+description: Portfolio of Mathieu Breier, Data Science and Economics of Energy MSc student at BSE. Spatial analysis, event studies, econometrics and more.
+baseurl: "" # no subpath — served at root
+url: "https://mathieubreier.github.io"
 
 # User settings
 username: Mathieu Breier
@@ -15,6 +15,6 @@ github_username:  mtbrr26
 
 # Google-analytics
 google-analytics:
-  id: ""
+  id: "G-M6V4BZTRRN"
 
 exclude: ['package.json', 'src' , 'node_modules']
