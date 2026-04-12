@@ -18,6 +18,11 @@ gtag('config', 'G-M6V4BZTRRN');
 <meta charset="utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>body { padding-top: 46px; }</style>
+<script>function toggleFunction(){var x=document.getElementById("navDemo");if(x.className.indexOf("w3-show")==-1){x.className+=" w3-show";}else{x.className=x.className.replace(" w3-show","");}}</script>
 
 
 <meta name="author" content="Lucas Santos, Mathieu Breier, Santiago Manotas-Arroyave" />
@@ -8730,6 +8735,23 @@ border-radius: 0px;
 </head>
 
 <body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top" style="font-family: 'Montserrat',sans-serif;">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+            href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="../../" class="w3-bar-item w3-button" style="font-size: 1.1em;">HOME</a>
+        <a href="../../aboutme/index.html" class="w3-bar-item w3-button w3-hide-small" style="font-size: 1.1em;">ABOUT ME</a>
+        <a href="../../#projects" class="w3-bar-item w3-button w3-hide-small" style="font-size: 1.1em;">PORTFOLIO</a>
+    </div>
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+        <a href="../../aboutme/index.html" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT ME</a>
+        <a href="../../#projects" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+    </div>
+</div>
 
 
 <div class="container-fluid main-container">
