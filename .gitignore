@@ -3,8 +3,3 @@ package-lock.json
 _site/
 .sass-cache/
 .jekyll-cache/
-node_modules/
-package-lock.json
-_site/
-.sass-cache/
-.jekyll-cache/
