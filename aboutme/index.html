@@ -9,10 +9,8 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-            
     gtag('config', 'G-M6V4BZTRRN');
     </script>
-    <!-- Google tag (gtag.js) -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +18,8 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <link rel="stylesheet" href="../assets/css/nav.css">
     <style>
         body,
         h1,
@@ -137,24 +137,22 @@ h2 {
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar" id="myNavbar">
-            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-                <i class="fa fa-bars"></i>
-            </a>
-            <a href="../" class="w3-bar-item w3-button" style="font-size: 1.1em;">HOME</a>
-            <a href="../aboutme/index.html" class="w3-bar-item w3-button w3-hide-small" style="font-size: 1.1em;">ABOUT ME</a>
-            <a href="../#projects" class="w3-bar-item w3-button w3-hide-small" style="font-size: 1.1em;">PORTFOLIO</a>
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-content">
+            <a href="../" class="nav-link">Home</a>
+            <a href="../#projects" class="nav-link">Portfolio</a>
+            <a href="../aboutme/" class="nav-link">About Me</a>
         </div>
-
-        <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-            <a href="../aboutme/index.html" class="w3-bar-item w3-button" onclick="toggleFunction()"> ABOUT ME</a>
-            <a href="../#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
-            <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+        <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+            <span></span><span></span>
+        </button>
+        <div class="nav-mobile">
+            <a href="../" onclick="toggleNav()">Home</a>
+            <a href="../#projects" onclick="toggleNav()">Portfolio</a>
+            <a href="../aboutme/" onclick="toggleNav()">About Me</a>
         </div>
-    </div>
+    </nav>
 
     <!-- Profile Image -->
     <div class="w3-center">
@@ -165,14 +163,15 @@ h2 {
     <div class="w3-content w3-container w3-padding-64" id="about" style="text-align: center; margin-bottom: 80px;">
         <h2 class="w3-center" style="margin-bottom: 30px;">ABOUT ME</h2>
         <p style="font-size: 18px; margin-bottom: 15px;">
-            My interest in data science started in high school when I discovered a deep affinity for numbers, economic theories, and analytical courses.
-            Later on, my academic journey led me to the Barcelona School of Economics (BSE), where I completed a first Master's degree in economics of energy, sustainability, and climate change.
-            Along this path, my curiosity for data science continuously grew, eventually leading me to pursue a second Master's degree in Data Science for Decision Making.
+            My interest in data science and economics began in high school with a deep affinity for numbers, analytical methods, and economic theory.
+            This led me to the Barcelona School of Economics, where I completed two Master's degrees: one in Economics of Energy, Sustainability and Climate Change, and a second in Data Science for Decision Making —
+            where I explored machine learning, deep learning, NLP, and their applications in finance.
         </p>
         <p style="font-size: 18px;">
-            Beyond the classroom, I've had the privilege of gaining practical experience in a recruitment agency and the Munich Liaison Office of the European Parliament.
-            Throughout this journey, I've witnessed the incredible potential of data science across diverse fields, and I'm thrilled to be a part of its transformative impact.
-            On my website, I eagerly share my experiences, insights, and ongoing projects in the world of data science and economics of energy.
+            Beyond academia, I have gained substantial professional experience across leading institutions.
+            At the <strong>European Central Bank</strong>, I developed a full-stack web application for supervisory metadata, built automated validation pipelines for Pillar 3 compliance, and prototyped a Python AI inbox agent using a RAG pipeline.
+            At the <strong>International Energy Agency</strong>, I migrated investment calculation models to Python, co-authored a section of the IEA's published report on electricity in the Middle East and North Africa, and built a web scraping tool for large-scale data collection.
+            At <strong>Deloitte</strong>, I created Tableau dashboards and Python/SQL workflows for M&A due diligence analytics.
         </p>
         <div class="w3-row"></div>
     </div>
@@ -184,21 +183,21 @@ h2 {
             <i class="fa-solid fa-chart-line emoji"></i>
             <i class="fa-solid fa-microscope emoji"></i>
             <i class="fa-solid fa-magnifying-glass-chart emoji"></i>
-            <p>In a wide range of subject areas, I have analyzed structured and unstructured data to extract actionable business insights. I love to create captivating and insightful visual representations that bring out unexpected findings.</p>
+            <p>From validating Pillar 3 bank disclosures at the ECB to spatial econometrics and event studies, I analyze structured and unstructured data to extract actionable insights. I enjoy building visual representations that surface unexpected findings.</p>
         </div>
         <div class="tech">
             <h2>Developing</h2>
             <i class="fa-solid fa-code emoji"></i>
             <i class="fa-solid fa-file-lines emoji"></i>
             <i class="fa-solid fa-sitemap emoji"></i>
-            <p>With a strong foundation in data science acquired from my master's degree in data science for decision making, I've enhanced my developing skills to bring machine learning models to life and create impactful, data-driven solutions.</p>
+            <p>I build end-to-end data solutions: full-stack web applications, Python automation pipelines, AI agents with RAG, and ML models. My stack spans Python, SQL, R, and web technologies, deployed across financial, energy, and supervisory domains.</p>
         </div>
         <div class="tech">
             <h2>Communicating</h2>
             <i class="fa-solid fa-pencil emoji"></i>
             <i class="fa-solid fa-chalkboard-user emoji"></i>
             <i class="fa-solid fa-comment emoji"></i>
-            <p>I enjoy writing professional articles, sharing my expertise, and engaging in conversations on a wide array of subjects. My background in economic science and management allows me to effectively present complex findings to non-technical audiences</p>
+            <p>I co-authored a section of the IEA's published report on electricity in MENA, and regularly present complex findings to technical and non-technical audiences alike. Fluent in French, English, and German, I work effectively across international and multilingual teams.</p>
         </div>
     </div>
 
@@ -207,7 +206,7 @@ h2 {
         <h2>Contact</h2>
         <div style="text-align: left; font-size: 18px; display: inline-block; margin: 0 auto; text-align: left; margin-top: 30px;">
             <p style ="margin-bottom: 15px;">You can contact me through my email: <a href="mailto:mathieu.breier@bse.eu">mathieu.breier@bse.eu</a></p>
-            <p style ="margin-bottom: 15px;"> You can download my CV <a href="../Breier_Mathieu_CV_Website.pdf" download>here</a></p>
+            <p style ="margin-bottom: 15px;"> You can download my CV <a href="../downloads/cv.pdf" download>here</a></p>
             <p></p>
             <p>
                 Follow me on these social media platforms:<br>
@@ -223,4 +222,5 @@ h2 {
   </div>
 </body>
 
+<script src="../assets/js/navbar.js"></script>
 </html>

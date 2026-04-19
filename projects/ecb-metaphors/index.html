@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6V4BZTRRN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-M6V4BZTRRN');
+        </script>
+
+        <title>Metaphors and Inflation — ECB Communication</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+        <link rel="stylesheet" href="../../assets/css/nav.css">
+        <link rel="stylesheet" href="../../assets/css/project.css">
+        <script src="../../assets/js/project.js" defer></script>
+        <script src="../../assets/js/navbar.js" defer></script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({ messageStyle: "none" });</script>
+    </head>
+
+<body>
+    <div class="progress-bar" id="myBar"></div>
+
+    <!-- Fixed Sidebar -->
+    <div class="sidebar">
+      <nav class="nav">
+        <a href="#Introduction">Introduction</a>
+        <a href="#Data">Data</a>
+        <a href="#Labeling">Labeling</a>
+        <a href="#Metaphor_Detection">Metaphor Detection</a>
+        <a href="#Results">Results</a>
+        <a href="#Conclusions">Conclusions</a>
+        <a href="#References">References</a>
+      </nav>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-content">
+            <a href="../../" class="nav-link">Home</a>
+            <a href="../../#projects" class="nav-link">Portfolio</a>
+            <a href="../../aboutme/" class="nav-link">About Me</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+            <span></span><span></span>
+        </button>
+        <div class="nav-mobile">
+            <a href="../../" onclick="toggleNav()">Home</a>
+            <a href="../../#projects" onclick="toggleNav()">Portfolio</a>
+            <a href="../../aboutme/" onclick="toggleNav()">About Me</a>
+        </div>
+    </nav>
+
+    <!-- Hero Image -->
+    <div class="w3-display-container" id="home">
+      <img src="./images/background_image.png" alt="European Central Bank" style="width: 100vw; height: 60vh; object-fit: contain; background: #fff;">
+        <div class="w3-display-middle" style="white-space:nowrap; text-align: center; font-family: Georgia, serif">
+            <span class="w3-center w3-padding-large w3-xxlarge w3-wide w3-animate-opacity w3-text-black" style="text-shadow: 1px 1px 3px rgba(255,255,255,0.8);">Metaphors and Inflation:<br> A Study of ECB Communication</span>
+            <br>
+            <span class="w3-center w3-padding-large w3-large w3-animate-opacity w3-text-black" style="font-family: avenir next,avenir,sans-serif;">DATA SCIENCE FOR DECISION MAKING</span>
+        </div>
+    </div>
+
+  <!-- Container (Abstract) -->
+  <div class="w3-content w3-container w3-padding-64" style ="max-width: 800px; margin-bottom: 50px;">
+      <h2 class="w3-center" style = "font-family: Georgia, serif">Abstract</h2>
+      <p class="w3-center">
+      <p style = "font-family: Georgia, serif; text-align: justify; font-size: 17px;">This study systematically identifies and categorizes conceptual metaphors related to inflation in ECB board member communications, following the methodology outlined by Chunyu Hu and Zhi Chen in their paper, <em>"Inflation Metaphor in Contemporary American English"</em>. Analyzing a corpus of ECB communications from 2005 to 2024, we identify and classify inflation-related metaphors using regular expressions (REGEX), part-of-speech (POS) tagging, and neural network models. Our findings reveal a consistent use of inflation metaphors across ECB executive board members, with notable variations in frequency and type depending on the individual and the time period. We leveraged the GPT API to consistently label and categorize these metaphors, enabling robust performance analysis on the models and contributing to the emerging field of research in AI-driven text analysis.</p>
+      <p style = "font-family: Georgia, serif; text-align: justify; font-size: 14px; color: #666;"><strong>Keywords:</strong> Conceptual Metaphors, Inflation, ECB Communications, Regular Expressions, Part-of-Speech Tagging, Neural Network Models, GPT API, AI-driven Text Analysis, Metaphor Classification</p>
+      <div class="w3-row">
+      </div>
+  </div>
+
+  <div class="w3-container w3-border-bottom" style="margin-left: 128px; margin-right: 128px;">
+<h1 style="font-size: 42px;">Metaphors and Inflation: A Study of ECB Communication</h1>
+<p style="margin-left: 5px; font-family: avenir next,avenir,sans-serif;">by <strong>Luis Francisco Alvarez, Sebastien Boxho &amp; Mathieu Breier</strong></p>
+<p></p>
+<p style="margin-left: 5px; margin-bottom: 40px; font-family: avenir next,avenir,sans-serif;"> July 2, 2024</p>
+  </div>
+
+<div style="margin-left: 228px; margin-right: 228px;">
+
+  <!-- ==================== INTRODUCTION ==================== -->
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2 id="Introduction">1. Introduction</h2>
+
+    <h3>1.1 Context</h3>
+  <p class="paragraph" style="text-align: justify;">
+    Inflation stands as a pivotal concern for economic policymakers and financial analysts globally, particularly exacerbated by the aftermath of the Covid-19 pandemic. The sudden resurgence of inflation has thrust it back into the forefront of economic discourse, sparking intense debates and policy considerations. Explaining inflation and justifying monetary policies in this context often demands intricate and nuanced communication. Among the European Central Bank (ECB) board members, metaphors emerge as indispensable linguistic tools. These metaphors play a critical role in clarifying an abstract concept such as inflation and its surrounding phenomena, making them more accessible to diverse audiences.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    This study aims to systematically identify and categorize conceptual metaphors related to inflation in ECB board member communications, following the methodology outlined by Chunyu Hu and Zhi Chen in their paper, "Inflation Metaphor in Contemporary American English". In this study, 'inflation' is treated in a broad sense, encompassing metaphors related to disinflation and deflation as well. Leveraging advanced methodologies such as regular expressions (REGEX), part-of-speech (POS) tagging, and neural networks for enhanced word embeddings, we aim to dissect the metaphoric language employed. Additionally, the integration of the ChatGPT API facilitates automated corpus labeling, enhancing efficiency and accuracy in metaphor identification.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    By applying these analytical approaches, this study not only contributes to the understanding of how metaphors operate in economic discourse but also sheds light on their strategic use in communicating complex economic phenomena. The insights gained are expected to offer valuable implications for both academic research and practical policymaking strategies. More notably, this task can be insightful for further research into the way metaphors actually perform in a more qualitative way and their subsequent implications.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Finally, all of our working code and data files can be found in the <a href="https://github.com/lalvarezpoli/DSDM_Thesis" target="_blank">Github repository</a>.
+  </p>
+
+  <h3>1.2 Motivation</h3>
+  <p class="paragraph" style="text-align: justify;">
+    Metaphors, by their very nature, bridge the gap between abstract concepts and more tangible, easily understood elements from the real world. More specifically, conceptual metaphors are mental mappings from a (typically concrete) source domain to a (typically abstract) target domain. In our analysis case, inflation metaphors are implemented in order to facilitate the broader audience's understanding. However, they serve not only to clarify, but also to legitimize potentially unpopular monetary policy measures. This persuasive power is essential in garnering support and drawing attention to the complex dynamics of inflation. As in Den Hartog et al. 1997: <em>"metaphors can serve not just to entertain but also to inspire and persuade"</em>. Therefore, it is noted by Chunyu Hu and Zhi Chen in their paper, "Inflation Metaphor in Contemporary American English", metaphors can significantly influence public perception and policy reception.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    The main goal of this paper, as stated before, is to set up an automated method to uncover these metaphors, by employing a multi-faceted analytical approach. First, the integration of the ChatGPT API facilitates our analysis, offering advanced natural language processing capabilities to identify and categorize metaphors while also serving as a proxy for human labeling and allowing for performance metrics calculation. We employ the GPT capabilities to replicate human labeling and later use these values for the evaluation of our models. Regex matching, Part of Speech tagging and Neural Network models are applied for the identification of metaphorical language patterns, related to inflation, within ECB speeches.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    By exploring the inflation metaphors used, this paper aims to answer the fundamental question: <em>do ECB board members actually use conceptual metaphors in their communications?</em> Our findings indicate that they do. The subsequent objective is to understand how these metaphors are used. This study will shed light on the rhetorical strategies in economic discourse, emphasizing the role of language in shaping economic narratives and the perception of monetary policies.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    By identifying and classifying these metaphors, this research quantifies the frequency and types of metaphors used by ECB board members. Additionally, by leveraging large language models (LLMs) for metaphor identification, this paper facilitates future research on the practical impacts of metaphors, such as their role in building legitimacy for monetary policy measures, explaining abstract economic concepts, and serving as persuasive tools in ECB communications. This investigation thus contributes to a deeper understanding of the prevalence and types of metaphors in economic discourse and sets the stage for further exploration into their effectiveness.
+  </p>
+
+  <h3>1.3 Related Literature</h3>
+  <p class="paragraph" style="text-align: justify;">
+    The fundamental challenge of this study is to build an automated process to consistently identify the conceptual metaphors discussed, applying the Hu et al. findings over the ECB conferences. We use similar techniques to the ones implemented in the study "Political Metaphors in U.S. Governor Speeches" by Léo Picard and Dominik Stammbach. This approach involves <em>"a deep-learning-based algorithm that scores word pairs (adjective-noun, subject-verb, or verb-object) by their metaphoricity."</em>
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    To effectively identify metaphors within the ECB board member communications, we employ a model similar to the one outlined in the paper <em>Grasping the Finer Point: A Supervised Similarity Network for Metaphor Detection</em> by Marek Rei, Luana Bulat, Douwe Kiela, and Ekaterina Shutova. This model employs a similarity neural network designed specifically for the task of metaphor detection. The approach combines the strengths of both neural networks and traditional (cosine) similarity measures, a common practice in natural language processing (NLP). It uses a supervised learning framework to train a network on a dataset of metaphorical and literal language examples. The network learns to identify metaphors by measuring the similarity between words in a context-sensitive manner, allowing it to grasp subtle differences in usage that signify metaphorical intent. Key components of the model include contextual embedding, which represents words within specific contexts to enable the model to differentiate metaphorical usage from literal usage, and similarity measurement, which calculates similarity scores between word pairs to help distinguish between these uses. By training on annotated datasets, the network predicts the likelihood of a given word being used metaphorically in a particular context.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    This method enhances the accuracy of metaphor detection by incorporating a nuanced understanding of word meanings and their contextual relationships, rather than just comparing the "literal meaning" distance between the word pairs. Applying this model to ECB communications allows us to systematically identify and analyze the metaphors used, thereby contributing to a deeper understanding of the rhetorical strategies employed by board members.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    The classification of these metaphors will be guided by the framework established by Hu and Chen, allowing for a structured understanding of how inflation is metaphorically conceptualized in the data corpus we shall be working on. This classification will reveal the underlying cognitive structures and rhetorical strategies employed by ECB board members to communicate their policies effectively.
+  </p>
+
+    </div>
+  </div>
+
+  <!-- ==================== DATA ==================== -->
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2 id="Data">2. Data</h2>
+
+  <h3>2.1 Source</h3>
+  <p class="paragraph" style="text-align: justify;">
+    Initially, we had a dataset of around 200 interviews provided by the ECB to work with. However, this data had some partitioning issues, an unstructured division between questions and answers, and several missing values. To address these problems, we decided to develop a web scraper to retrieve all the transcripts of interest directly from the Central Bank's website. The scraper parses the central bank's site using the Selenium package. Instead of using the original dataset provided with the challenge, we use our scraped data, which encompasses the entire original corpus and includes additional valuable information and observations.
+  </p>
+
+  <h3>2.2 Scraping</h3>
+  <p class="paragraph" style="text-align: justify;">
+    This section was instrumental in accessing additional information from each document, such as the date, the speaker, and the questioner. We were also able to, more accurately, partition questions and answers directly from the source, rather than implementing a preprocessing pipeline to extract this information from the text, as we had initially planned. This method not only reduces the likelihood of errors but also results in a more structured dataset to exploit for our task.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    The resulting data corpus counts a total of <strong>519 interviews</strong> spanning from 2005 to early 2024. In Figure 1, we display the monthly number of interviews and the average European inflation rate, for the final 7 years of our period range and identify some key events, such as the Covid-19 pandemic and the outbreak of the Ukrainian-Russian war.
+  </p>
+
+  <!-- Figure 1 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 1</b> - Monthly Interviews Trend and European Inflation Rate (2017 to 2024)</caption>
+        <img src="./images/monthly_interview_trend.png" alt="Monthly Interviews Trend and European Inflation Rate (2017 to 2024)" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <h3>2.3 Member Information</h3>
+  <p class="paragraph" style="text-align: justify;">
+    The final step in our information gathering process for this thesis involves collecting individual data from the board members. We selected several features for all the speakers:
+  </p>
+  <ul>
+    <li>Country of origin</li>
+    <li>Gender</li>
+    <li>Year of birth</li>
+    <li>Period of service on the board</li>
+  </ul>
+  <p class="paragraph" style="text-align: justify;">
+    All information was obtained directly from the ECB website. Given that we are dealing with 19 different ECB members who have been part of the executive board, we opted to manually scrape the necessary information for each individual case. This additional data proves valuable for subsequent quantitative analysis of the metaphors identified.
+  </p>
+
+    </div>
+  </div>
+
+  <!-- ==================== LABELING ==================== -->
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2 id="Labeling">3. Labeling</h2>
+
+  <h3>3.1 Manual Metaphors Labeling</h3>
+  <p class="paragraph" style="text-align: justify;">
+    Initially, we did not have labeled data, as our dataset consisted solely of scraped transcripts from ECB communications. Therefore, it was essential to label the data to train a supervised learning model capable of predicting metaphors.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Our approach involved manually labeling a subset of 68 interviews to identify the inflation-related metaphors in each one. We adhered to the methodology outlined in the Hu et al. paper to ensure a consistent and rigorous labeling process. These manually labeled transcripts serve as our 'true labels', in order to compare with the GPT's output later.
+  </p>
+
+  <h3>3.2 Manual Categories Labeling</h3>
+  <p class="paragraph" style="text-align: justify;">
+    The other task at hand was to classify the identified metaphors into their respective categories. In 85% of the sentences containing the word 'inflation,' we found that the word was used as part of a metaphor, which leaves an average of 7.25 metaphors per interview. We categorized our metaphors into the following 10 types:
+  </p>
+
+  <!-- Table 1: Metaphor Categories -->
+  <div class="table-container">
+      <caption"><b>Table 1</b> - Metaphor Categories</caption>
+      <table class="academia">
+        <thead>
+          <tr><th colspan="2">Categories</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Machine</td><td>Liquid</td></tr>
+          <tr><td>Disease</td><td>Animal</td></tr>
+          <tr><td>Plant</td><td>Sports</td></tr>
+          <tr><td>Warfare</td><td>Other</td></tr>
+          <tr><td>Fire</td><td>Orientation</td></tr>
+        </tbody>
+      </table>
+  </div>
+
+  <p class="paragraph" style="text-align: justify;">Some examples of the types of metaphors found in the corpus:</p>
+  <ul>
+    <li><strong>Inflation as warfare:</strong> <em>"[...] we allowed inflation to become entrenched in the economy"</em> &amp; <em>"This monetary tightening, which we need to do to kill inflation [...]"</em></li>
+    <li><strong>Inflation as machine:</strong> <em>"[...] restrictive policy has helped cool down inflation"</em></li>
+    <li><strong>Inflation as an animal:</strong> <em>"Taming inflation in the early 1980s"</em> &amp; <em>"[...] feeding inflation."</em></li>
+    <li><strong>Inflation as fire:</strong> <em>"[...] he is sure to fuel inflation in the German economy [...]"</em></li>
+  </ul>
+
+  <h3>3.3 GPT API</h3>
+  <p class="paragraph" style="text-align: justify;">
+    The GPT-4 API's capability to grasp and classify metaphors is supported by findings in the paper "Does GPT-3 Grasp Metaphors? Identifying Metaphor Mappings with Generative Language Models" by Wachowiak and Gromann. This study illustrates GPT-3's ability to understand and identify metaphorical language with a high degree of accuracy, providing a strong foundation for its use in our analysis of ECB communications. It demonstrates that generative language models like GPT-3, and subsequently GPT-4, possess a nuanced understanding of language, enabling them to detect and categorize metaphors effectively. Additionally, the robustness of GPT-4 in natural language understanding has been evidenced by various studies and applications, further validating its reliability for our purpose.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    To ensure the accuracy of its classification, we compared the results to manually labeled data. This process was similar to the one used for metaphor identification. To enhance the robustness of the output, we used three different prompts and applied a <strong>majority voting</strong> system to obtain the final result. The baseline prompts were designed to instruct the model to identify and classify conceptual metaphors in a given set of sentences, returning the results in a standardized format. This approach helped mitigate variability in responses and ensure consistency.
+  </p>
+
+  <!-- Table 2: Comparison of Prompts -->
+  <div class="table-container">
+      <caption"><b>Table 2</b> - Comparison of Prompts</caption>
+      <table class="academia">
+        <thead>
+          <tr><th></th><th>Prompt 1</th><th>Prompt 2</th><th>Prompt 3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Identify, extract and classify conceptual metaphors</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr>
+          <tr><td>Definition of Conceptual Metaphors</td><td>&#10003;</td><td>&#10003;</td><td>&#10007;</td></tr>
+          <tr><td>Example Categories (from Hu et al.)</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td></tr>
+          <tr><td>Examples metaphors / Counter-example</td><td>5 / 3</td><td>2 / 0</td><td>9 / 0</td></tr>
+        </tbody>
+      </table>
+  </div>
+
+  <h3>3.4 Final Labels</h3>
+  <p class="paragraph" style="text-align: justify;">
+    A "majority vote" approach was employed to determine the final result, ensuring that at least two out of three GPT responses agreed on a metaphor for it to be selected. This method involved connecting to the GPT-4o model with a temperature setting of 0 and a seed of 123. Each interview was processed individually, resulting in a total of 204 API calls (68 interviews × 3 prompts).
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    The total number of sentences sent for analysis was 577. Although ChatGPT occasionally returned sentences with slight grammatical variations, we used approximate string matching techniques to align the results with the initial sentences. Two methods were employed: Levenshtein distance and Fuzzy Matching. Fuzzy Matching proved to be more effective and appropriate for our needs, providing a higher degree of accuracy in matching the results to the initial sentences.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    The results from the majority vote after the three GPT prompts indicate notable consistency:
+  </p>
+
+  <!-- Table 3: Results Comparison -->
+  <div class="table-container">
+      <caption"><b>Table 3</b> - Results Comparison of the 3 different prompts and the Majority vote decision</caption>
+      <table class="academia">
+        <thead>
+          <tr><th></th><th>Returned</th><th>Ratio (%)</th><th>Sentences Identified (%)</th><th>Categories Identified (%)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GPT 1</td><td>497</td><td>86.1</td><td>90.7</td><td>80.4</td></tr>
+          <tr><td>GPT 2</td><td>497</td><td>86.1</td><td>91.1</td><td>78.1</td></tr>
+          <tr><td>GPT 3</td><td>505</td><td>87.5</td><td>91.1</td><td>77.8</td></tr>
+          <tr><td><strong>Majority Vote</strong></td><td><strong>506</strong></td><td><strong>87.7</strong></td><td><strong>91.1</strong></td><td><strong>80.0</strong></td></tr>
+          <tr><td>Human Label</td><td>493</td><td>85.4</td><td>100</td><td>100</td></tr>
+        </tbody>
+      </table>
+  </div>
+
+  <p class="paragraph" style="text-align: justify;">
+    Out of the 505 categories, 7 were mistakenly categorized into different categories and thus added to 'other'. The lower categorization accuracy could be due to interpretation issues. Maintaining consistency in labeling has been challenging due to the subtle differences and context-dependent nature of many similar metaphors. One key difference noted between our manual labels and GPT's output is that the API classifies a considerable proportion of the observations into the 'other' category. In contrast, when reading the metaphors, we tended to assign them to one of our nine categories rather than 'other'.
+  </p>
+
+  <!-- Figure 2: Confusion Matrix -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 2</b> - Confusion Matrix of Majority Vote</caption>
+        <img src="./images/confusion_matrix.png" alt="Confusion Matrix of Majority Vote" style="width: 45vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    Given that this exercise proved to be accurate, we decided to label the entire dataset of ECB communications, thus significantly enhancing the efficiency and accuracy of our metaphor analysis. Ultimately, GPT-4o was used to label the entire dataset, employing the same three prompts and retaining only the majority vote decisions. This involved 3 × 519 API calls for the 519 interviews. Out of the 3437 sentences we successfully matched 97.5% of the metaphors back to the initial sentences using Fuzzy matching. The majority vote approach resulted in 3083 metaphors, with 88.4% of the sentences being identified as metaphors.
+  </p>
+
+  <!-- Table 4: Full Dataset Results -->
+  <div class="table-container">
+      <caption"><b>Table 4</b> - Results Comparison — Full Dataset</caption>
+      <table class="academia">
+        <thead>
+          <tr><th></th><th>Returned</th><th>Ratio (%)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GPT 1</td><td>3060</td><td>89.0</td></tr>
+          <tr><td>GPT 2</td><td>3073</td><td>89.4</td></tr>
+          <tr><td>GPT 3</td><td>2999</td><td>87.2</td></tr>
+          <tr><td><strong>Majority Vote</strong></td><td><strong>3083</strong></td><td><strong>88.4</strong></td></tr>
+        </tbody>
+      </table>
+  </div>
+
+  <p class="paragraph" style="text-align: justify;">
+    By using GPT-4o and the majority vote method, we achieved a high level of accuracy in identifying and categorizing metaphors, thereby demonstrating the effectiveness of AI-driven text analysis in linguistic studies. Given the success of this approach in our initial analysis, we employed it to label the entire dataset of ECB communications, enhancing the accuracy and depth of our metaphorical analysis, contributing valuable insights to the field of AI-driven text analysis.
+  </p>
+
+    </div>
+  </div>
+
+  <!-- ==================== METAPHOR DETECTION ==================== -->
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2 id="Metaphor_Detection">4. Metaphor Detection</h2>
+
+  <p class="paragraph" style="text-align: justify;">
+    This section represents the core of our study, where we progressively build more complex model architectures to detect metaphors. We begin with a simple word matcher using regular expressions, progress to a naive part-of-speech (POS) comparison, and ultimately apply a neural network model as described in Rei et al. to capture deeper and more nuanced embeddings in the text.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    For all the following methods, we employ a standard preprocessing pipeline. This involves lowercasing all words, removing special characters, numbers, and stopwords, and finally tokenizing the words for modeling. It is important to mention that we chose not to modify punctuation, as we need to preserve full stops to separate sentences.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    To evaluate the performance of our models, we compare their detection with our 'augmented' manually labeled dataset. By using the GPT-labeled output as the true labels, we can subsequently compute performance metrics for our models.
+  </p>
+
+  <h3>4.1 Regular Expressions (REGEX)</h3>
+  <p class="paragraph" style="text-align: justify;">
+    Our first model is based on regular expressions to identify metaphors in the text. This method involves scanning sentences for the presence of both inflation-related terms and a set of predefined keywords. The list of relevant words for the metaphors is derived from the Hu et al. paper. Despite its simplicity, this method mirrors the approach used in the paper mentioned previously, where metaphors are defined and subsequently categorized based on the presence of specific keywords. This approach aligns with the methodology we used for manually labeling the interviews and will be the closest to what is done in the paper.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    In addition to the preprocessing pipeline mentioned earlier, we also apply lemmatization to both our data corpus and our set of keywords. The logic behind this pruning approach is to account for variations of our words of interest that may appear in the text, ensuring we do not miss any relevant terms. For instance, the word <em>accelerate</em> may appear in the corpus as <em>accelerating</em>, and with the lemmatization method, we can match both variations to the dictionary form, lemma: <em>accelerate</em>.
+  </p>
+
+  <h3>4.2 Part of Speech (PoS)</h3>
+  <p class="paragraph" style="text-align: justify;">
+    We identify relationships between the word "inflation" and a predefined set of keywords within three syntactic structures:
+  </p>
+  <ul>
+    <li><strong>Subject - Verb</strong></li>
+    <li><strong>Verb - Object</strong></li>
+    <li><strong>Adjective - Noun</strong></li>
+  </ul>
+  <p class="paragraph" style="text-align: justify;">
+    POS tagging involves labeling each word in a sentence with its corresponding part of speech, such as a noun, verb, adjective, etc. This process helps in understanding the grammatical structure of the text. In our context, we use POS tagging to identify specific syntactic relationships that involve the word "inflation" and our set of keywords.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    This method extends our initial Regex identifier, for a more precise prediction of metaphors. By checking for specific syntactic relationships, we can better determine the metaphoricity of matches. Naturally, we expect this model to predict fewer metaphors overall, but those identified should be more accurate representations of true metaphors.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Unlike the first model, here we are required to retain all tokens (words) in their original form initially. This is because Part of Speech (POS) tagging relies on analyzing words within the context of their sentences. Pruning the words to their base forms right away would strip away these important contextual interactions. Therefore, lemmatization must be performed after POS tagging and before matching keywords, ensuring we preserve the necessary context for accurate tagging, but we are also able to match out keywords as done in the previous model.
+  </p>
+
+  <h3>4.3 Neural Network</h3>
+  <p class="paragraph" style="text-align: justify;">
+    To enhance the detection and classification of metaphors, we employed a Neural Network approach. The rationale behind using a neural network is supported by the findings in the paper <em>Neural Metaphor Detection in Context</em>, which demonstrates their effectiveness in capturing the nuanced, metaphorical meaning of sentences. Given the task's complexity in understanding metaphorical context within sentences, neural networks provide a sophisticated method of analysis compared to simpler models. We opted for a basic yet robust implementation, acknowledging that while our approach may not compete with the most advanced neural network models, it remains effective for the scope of this study. The dataset was split into an 80/20% training-test ratio, resulting in 2,749 sentences for training and 688 for testing.
+  </p>
+
+  <h4>4.3.1 Model Architecture</h4>
+  <p class="paragraph" style="text-align: justify;">
+    The model was designed for simplicity and efficiency, consisting of an embedding layer followed by dense layers with dropout and layer normalization to prevent overfitting. Specifically, we limited the architecture to a maximum of 3 hidden layers and a total number of weights between 200,000 and 400,000. Given our relatively small data corpus, fitting a highly complex model may not be the most suitable choice for our problem, and we conducted an optimization search to find the best configuration.
+  </p>
+
+  <h3>4.4 Optimization</h3>
+  <p class="paragraph" style="text-align: justify;">
+    To improve the model, a grid search was conducted to explore different configurations of layers, learning rates, and other hyperparameters. This approach ensured the model achieved the best possible performance given the constraints. The optimal combination turned out to be two hidden layers with 220 nodes each, using the sigmoid activation function and a dropout rate of 0.5.
+  </p>
+
+  <h4>4.4.1 Model Summary</h4>
+  <p class="paragraph" style="text-align: justify;">
+    The final neural network model consisted of approximately 231,000 parameters, balanced between embedding and dense layers. This architecture, though basic, is effective in capturing the metaphorical meaning of sentences and provides a foundation for further refinement.
+  </p>
+
+  <h3>4.5 Pre-trained Large Language Model</h3>
+  <p class="paragraph" style="text-align: justify;">
+    The decision to use a pre-trained Large Language Model (LLM) stems from our objective to assess the performance enhancement it offers without the computational overhead of training from scratch. In text classification, pre-trained large language models have demonstrated significant effectiveness, as evidenced by their successful application in various tasks.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Given the complexity of metaphor identification and the absence of available pre-trained models for metaphor identification or classification, we selected the general-purpose pre-trained model <em>distilbert-base-uncased</em>, consisting of approximately 66.3 million parameters. This model, though not specifically trained on metaphors, leverages its deep contextual understanding to perform effectively in this domain. We plan to fine-tune specific parameters of this transferred model to tailor it for our specific task setup. As with our previous approaches, the dataset was divided into a train-test split of 80/20%, resulting in a training set of 2,749 sentences and a test set of 688 sentences.
+  </p>
+
+  <h4>4.5.1 Model Architecture</h4>
+  <p class="paragraph" style="text-align: justify;">
+    The model utilized the distilbert-base-uncased checkpoint. This architecture begins with an embedding layer sourced from the DistilBERT model, followed by a dense layer to process the embeddings. To mitigate the risk of overfitting, a dropout layer is included in the design.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    To effectively leverage the pre-trained embeddings of DistilBERT, the model's layers were initially frozen. This approach allows the dense layers to benefit from the robust pre-trained representations without modification, thus expediting the training process. Following a preliminary warm-up period, the layers were unfrozen to fine-tune the model for our specific task. Hence, the training process was executed in two distinct phases:
+  </p>
+  <ul>
+    <li><strong>Warm-up Phase:</strong> The model was trained with the BERT parameters frozen for 10 epochs, allowing the dense layers to adapt and learn from the pre-trained embeddings without altering them.</li>
+    <li><strong>Fine-tuning Phase:</strong> The entire model, including the BERT layers, was then trained for an additional 20 epochs to fine-tune the parameters specifically for metaphor detection.</li>
+  </ul>
+  <p class="paragraph" style="text-align: justify;">
+    By integrating a pre-trained large language model, we harnessed the capabilities of advanced transformer-based architectures. This approach facilitated a more nuanced and precise understanding of metaphorical language, thereby making a significant contribution to the field of AI-driven text analysis.
+  </p>
+
+    </div>
+  </div>
+
+  <!-- ==================== RESULTS ==================== -->
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2 id="Results">5. Results</h2>
+
+  <h3>5.1 Metaphors Identification</h3>
+  <p class="paragraph" style="text-align: justify;">
+    In this section, we present the results from the identification models. These results were obtained by evaluating data from the test set, which consists of a total of 688 sentences. Our first finding is that the Regex model shows fairly consistent performance across all computed metrics, with values around 68%. The Part of Speech model, on the other hand, performs poorly overall. This can be attributed to the method's reliance on a specific word pair structure, leading to the prediction of very few metaphors. Finally, both the simple neural network (NN) and the imported Large Language model perform similarly, with the latter having an edge in all categories. This indicates that the LLM was able to capture more nuanced embeddings in the text. However, when compared to the Regex model, the LLM cannot be definitively chosen over it. While the LLM achieves better accuracy, its recall is worse, indicating it does not offer a more comprehensive approach:
+  </p>
+
+  <!-- Table 5: Performance Comparison -->
+  <div class="table-container">
+      <caption"><b>Table 5</b> - Performance Comparison</caption>
+      <table class="academia">
+        <thead>
+          <tr><th></th><th>Regex (%)</th><th>Part of Speech (%)</th><th>Neural Network (%)</th><th>LLM (%)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Accuracy</td><td>68.79</td><td>30.05</td><td>84.88</td><td>86.19</td></tr>
+          <tr><td>Precision</td><td>68.10</td><td>43.80</td><td>60.53</td><td>67.67</td></tr>
+          <tr><td>Recall</td><td>68.79</td><td>30.06</td><td>54.51</td><td>58.94</td></tr>
+          <tr><td>F1</td><td>67.53</td><td>35.30</td><td>55.21</td><td>60.99</td></tr>
+        </tbody>
+      </table>
+  </div>
+
+  <!-- Figure 3: Distribution -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 3</b> - Distribution of Metaphors per Interview</caption>
+        <img src="./images/distribution_metaphors.png" alt="Distribution of Metaphors per Interview" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    We observe that, in terms of metaphor identification, the empirical distribution of the results closely mirrors the true labels, except for the Part of Speech model. As previously mentioned, the Part of Speech model captures fewer metaphors.
+  </p>
+
+  <h3>5.2 Descriptive Analysis of Metaphors</h3>
+  <p class="paragraph" style="text-align: justify;">
+    After having identified the metaphors related to inflation in ECB communications, we proceed by analyzing who employed these metaphors and the context in which they were used by ECB members. This analysis seeks to offer a more profound comprehension of the role and use of metaphors about inflation within ECB communications.
+  </p>
+
+  <h4>5.2.1 Analysis of Metaphor Usage by ECB Members</h4>
+  <p class="paragraph" style="text-align: justify;">
+    To determine which ECB executive board members use metaphors most frequently in their communications, we calculated the total number of words spoken by each of the 19 members throughout the entire period. Next, we quantified the total number of metaphors each member used during this period. By dividing the number of metaphors by the total number of words spoken by each member, we obtained a ratio representing the frequency of metaphor usage per word spoken. This ratio allowed us to compare the metaphor usage across members, independent of their overall volume of speech.
+  </p>
+
+  <!-- Figure 4 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 4</b> - Ratio of Metaphors per Words Spoken by Member</caption>
+        <img src="./images/metaphors_per_word_member.png" alt="Ratio of Metaphors per Words Spoken by Member" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    Figure 4 shows that Philip R. Lane (Chief Economist and Executive Member at the ECB), Isabel Schnabel (ECB Executive Member), and Luis de Guindos (Vice-President and Executive Member at the ECB) are the top three members in terms of metaphor usage per word. Philip R. Lane employs an average of 7 metaphors per 1,000 words, Isabel Schnabel uses 6 metaphors per 1,000 words, and Luis de Guindos averages 5.5 metaphors per 1,000 words.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Subsequently, we studied metaphor usage by gender. We calculated the ratio of total metaphors used by gender to the total number of words spoken by gender. The results are presented in Figure 5.
+  </p>
+
+  <!-- Figure 5 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 5</b> - Metaphor Usage Ratios per Words Spoken by Gender</caption>
+        <img src="./images/metaphors_per_word_gender.png" alt="Metaphor Usage Ratios per Words Spoken by Gender" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    We observe no significant differences in metaphor usage about inflation between male and female ECB members.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Finally, we examined metaphor usage based on the media outlet conducting the interview with the ECB member. We calculate the ratio of metaphors per interview for the twenty media outlets with the highest number of interviews in the dataset. The results are depicted in Figure 6.
+  </p>
+
+  <!-- Figure 6 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 6</b> - Metaphor Usage Ratios per Interview Across the Top 20 Media Outlets</caption>
+        <img src="./images/metaphors_per_interview_media.png" alt="Metaphor Usage Ratios per Interview Across the Top 20 Media Outlets" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    Figure 6 shows that ECB members tend to use more metaphors when interviewed by Reuters, the Financial Times, and Bloomberg. On average, ECB members use 15.25 metaphors per interview with Reuters, 14.30 metaphors with the Financial Times, and 10.18 metaphors with Bloomberg. This suggests that ECB members may tailor their communication style based on the media outlet.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    To further investigate this assumption, we categorized each media outlet manually into two groups. Outlets focusing on economics, business, and finance were classified as "Economics and Finance," while those with different focuses were classified as "General." Figure 7 plots the ratio of metaphors per interview for these two categories.
+  </p>
+
+  <!-- Figure 7 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 7</b> - Metaphor Usage Ratios per Interview by Media Specialization</caption>
+        <img src="./images/metaphors_per_interview_specialization.png" alt="Metaphor Usage Ratios per Interview by Media Specialization" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    ECB members tend to use more metaphors per interview when speaking to media specializing in economics and finance — an average of 7 metaphors per interview compared to 4.9 with general media.
+  </p>
+
+  <h4>5.2.2 Analysis of Metaphor Categories</h4>
+  <p class="paragraph" style="text-align: justify;">
+    Next, we explore and try to understand which types of metaphors are most commonly used and whether any patterns exist concerning ECB members, gender, and media. We seek to explore how the usage of each metaphor category varies across ECB members, genders, and media outlets. As a reminder, each metaphor was initially classified into one of 10 different categories: fire, disease, plant, warfare, orientation, sports, machine, liquids, animal, and others. For example, the metaphor <em>"cool down inflation"</em> was classified under machine. The metaphors <em>"Even 3% inflation will hurt fixed payments eventually,"</em> <em>"The battle against inflation is not over yet,"</em> and <em>"the threat of deflation could come to the fore"</em> were classified under warfare. Metaphors such as <em>"inflation tends to rise,"</em> <em>"maintaining inflation rates below but close to 2 percent,"</em> and <em>"inflation will converge,"</em> which illustrate ideas and concepts using directions, were classified under orientation.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    We then studied which metaphor categories were most commonly employed in ECB member speeches. We decided to remove the "other" category, which accounts for 26% of all metaphors, as we believe it does not provide valuable insights into the ECB's communication style:
+  </p>
+
+  <!-- Table 6: Metaphor Categories -->
+  <div class="table-container">
+      <caption"><b>Table 6</b> - Counts and Percentages of Metaphor Categories used by ECB Members</caption>
+      <table class="academia">
+        <thead>
+          <tr><th>Category</th><th>Count</th><th>Percentage (%)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>orientation</td><td>1326</td><td>59.12</td></tr>
+          <tr><td>disease</td><td>279</td><td>12.44</td></tr>
+          <tr><td>machine</td><td>238</td><td>10.61</td></tr>
+          <tr><td>warfare</td><td>212</td><td>9.45</td></tr>
+          <tr><td>plant</td><td>66</td><td>2.94</td></tr>
+          <tr><td>fire</td><td>40</td><td>1.78</td></tr>
+          <tr><td>liquids</td><td>39</td><td>1.74</td></tr>
+          <tr><td>sports</td><td>25</td><td>1.11</td></tr>
+          <tr><td>animal</td><td>18</td><td>0.80</td></tr>
+        </tbody>
+      </table>
+  </div>
+
+  <p class="paragraph" style="text-align: justify;">
+    The most commonly used metaphor categories by ECB members are orientation, disease, machine, and warfare, accounting for 59.12%, 12.44%, 10.61%, and 9.45% of all identified metaphors, respectively. Before delving deeper into the usage of different metaphor categories, we chose to eliminate the "orientation" category. Metaphors under "orientation" were the most frequent, with terms like "higher inflation," "increasing inflation," and "the ability of inflation to return" often cited as conceptual metaphors in literature. However, we found that these terms do not provide valuable insights into the ECB's communication strategy. Instead, they align more closely with standard economic terminology rather than offering a distinct analogy about inflation.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Subsequently, we analyzed the types of metaphors about inflation used by each ECB executive member. Table 7 displays the most frequently used metaphor category for each ECB member:
+  </p>
+
+  <!-- Table 7: Most Frequent Category by Member -->
+  <div class="table-container">
+      <caption"><b>Table 7</b> - Most Frequently Used Metaphor Category by ECB Member</caption>
+      <table class="academia">
+        <thead>
+          <tr><th>Member</th><th>Most Frequent Category</th><th>Count</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Benoît Cœuré</td><td>disease</td><td>29</td></tr>
+          <tr><td>Christine Lagarde</td><td>machine</td><td>18</td></tr>
+          <tr><td>Fabio Panetta</td><td>disease</td><td>13</td></tr>
+          <tr><td>Frank Elderson</td><td>disease</td><td>5</td></tr>
+          <tr><td>Isabel Schnabel</td><td>warfare</td><td>47</td></tr>
+          <tr><td>Jean-Claude Trichet</td><td>machine</td><td>29</td></tr>
+          <tr><td>José Manuel González-Páramo</td><td>disease</td><td>2</td></tr>
+          <tr><td>Jörg Asmussen</td><td>machine</td><td>4</td></tr>
+          <tr><td>Lorenzo Bini Smaghi</td><td>disease</td><td>1</td></tr>
+          <tr><td>Lucas Papademos</td><td>fire</td><td>4</td></tr>
+          <tr><td>Luis de Guindos</td><td>machine</td><td>41</td></tr>
+          <tr><td>Mario Draghi</td><td>disease</td><td>15</td></tr>
+          <tr><td>Otmar Issing</td><td>machine</td><td>1</td></tr>
+          <tr><td>Peter Praet</td><td>disease</td><td>38</td></tr>
+          <tr><td>Philip R. Lane</td><td>machine</td><td>53</td></tr>
+          <tr><td>Sabine Lautenschläger</td><td>disease</td><td>4</td></tr>
+          <tr><td>Tommaso Padoa-Schioppa</td><td>fire</td><td>1</td></tr>
+          <tr><td>Vítor Constâncio</td><td>disease</td><td>13</td></tr>
+          <tr><td>Yves Mersch</td><td>disease</td><td>7</td></tr>
+        </tbody>
+      </table>
+  </div>
+
+  <!-- Figure 8 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 8</b> - Percentage of Metaphor Categories Used by ECB Members with Over 40 Metaphors in Total</caption>
+        <img src="./images/categories_by_member.png" alt="Percentage of Metaphor Categories Used by ECB Members" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    Christine Lagarde (President of the European Central Bank) uses significantly more metaphors about inflation from the fire and animal categories compared to other members. Fabio Panetta and Isabel Schnabel also employ more metaphors from the fire category relative to other members. Conversely, most other members seldom use metaphors from the fire category. Benoît Cœuré and Peter Praet tend to favor metaphors from the disease category. Metaphors from the machine and warfare categories are used by all members, and their usage is relatively uniform across the board.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Next, we look at the differences in the use of metaphor categories by gender. Results are shown in percentages in Figure 9.
+  </p>
+
+  <!-- Figure 9 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 9</b> - Percentage of Metaphor Categories Used by Each Gender</caption>
+        <img src="./images/categories_by_gender.png" alt="Percentage of Metaphor Categories Used by Each Gender" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    Figure 9 reveals several notable differences in the use of metaphor categories between male and female ECB executive board members. Female members tend to use more metaphors from the fire, animal, and warfare categories but fewer from the disease category compared to their male counterparts. Conversely, there are no significant differences between genders in the use of metaphors from the liquids, sports, machine, and plant categories.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Lastly, we investigate the relationship between the types of metaphors used by ECB members and the ten media outlets with the most interviews. First, we grouped all the metaphors by these top ten media outlets and summed the occurrences of each category. To facilitate comparison, we converted these numbers into percentages. The results are illustrated in Figure 10.
+  </p>
+
+  <!-- Figure 10 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 10</b> - Percentage of Metaphor Categories by Top 10 Media</caption>
+        <img src="./images/categories_by_media.png" alt="Percentage of Metaphor Categories by Top 10 Media" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    Next, we decide to examine the types of metaphors about inflation used based on the media's area of interest. Using the same media classification as before, we explored any differences in the types of metaphors employed by ECB members when interviewed by media specializing in economics and finance compared to general media. Our findings are presented in Figure 11.
+  </p>
+
+  <!-- Figure 11 -->
+      <div style="text-align: center;">
+        <caption"><b>Figure 11</b> - Percentage of Metaphor Categories by Media Specialization</caption>
+        <img src="./images/categories_by_specialization.png" alt="Percentage of Metaphor Categories by Media Specialization" style="width: 55vw; height: 55vh; display: block; margin: 0 auto;" />
+      </div>    
+
+  <p class="paragraph" style="text-align: justify;">
+    Figure 11 shows distinct patterns in the metaphor usage by ECB members based on the type of media. Specifically, ECB members tend to employ more metaphors from the machine category and fewer from the sports and disease categories when interviewed by media specializing in economics and finance. Metaphors from other categories are used with similar frequency across both specialized and general media.
+  </p>
+
+    </div>
+  </div>
+
+  <!-- ==================== CONCLUSIONS ==================== -->
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2 id="Conclusions">6. Conclusions</h2>
+  <p class="paragraph" style="text-align: justify;">
+    This thesis sets out to systematically identify and categorize conceptual metaphors related to inflation in the communications of ECB board members, employing advanced methodologies such as regular expressions, part-of-speech tagging, and neural networks. In particular, this study lays the foundation for further research.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Our analysis confirms that ECB board members consistently use metaphors when discussing inflation, reflecting the complex and abstract nature of economic concepts. There was no substantial improvement when implementing more complex models for detection. However, this result may stem from the strict definition of metaphors as per the referenced paper. Considering more flexibility in the structure of metaphors could potentially enhance the performance of large language models and lead to better detection improvements.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Among the identified metaphors, the most prevalent categories were orientational, warfare, and disease. These categories reveal the board members' tendencies to frame inflation in familiar and relatable terms, highlighting the underlying narratives that shape public understanding and policy perceptions. For instance, orientational metaphors suggest movement and directionality, warfare metaphors evoke a sense of struggle and conflict, and disease metaphors imply a pathological condition needing remedy. We also find that female executive members tend to use more metaphors from the fire, animal, and warfare categories compared to their male counterparts.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    Interestingly, more metaphors are employed when answering questions for economic-specific news portals compared to mainstream media. Contrary to our initial hypothesis that speakers might use more metaphors when addressing a broader audience, it appears that they employ more metaphors when communicating with more specialized listeners.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    The use of the ChatGPT API was instrumental in automating the labeling and categorization process, ensuring efficiency and accuracy. This integration underscores the potential of leveraging advanced language models in linguistic research, offering new avenues for future studies.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    This study provides an overview of metaphor usage by ECB board members and paves the way for further research that could delve into the specific functions of these metaphors and explore the distinctions among different metaphor categories. Additionally, examining how these metaphors influence public perception and policy effectiveness would be a valuable extension of this work.
+  </p>
+  <p class="paragraph" style="text-align: justify;">
+    In conclusion, the findings affirm that metaphors are a pivotal element in the discourse on inflation among ECB board members, shaping both the communication strategy and the interpretative frameworks of economic policies.
+  </p>
+
+    </div>
+  </div>
+
+  <!-- ==================== REFERENCES ==================== -->
+  <div class="w3-container w3-large" style="margin-top: 30px;">
+    <div class="w3-left-align">
+    <h2 id="References">References</h2>
+  <ol style="font-size: 15px; line-height: 2;">
+    <li>Aghazadeh, E., Fayyaz, M., and Yaghoobzadeh, Y. (2022). Metaphors in pre-trained language models. <em>arXiv preprint arXiv:2203.14139</em>.</li>
+    <li>Alvarez, L. F., Boxho, S., and Breier, M. (2024). DSDM Thesis. <a href="https://github.com/lalvarezpoli/DSDM_Thesis" target="_blank">github.com/lalvarezpoli/DSDM_Thesis</a></li>
+    <li>Charteris-Black, J. (2004). <em>Corpus Approaches to Critical Metaphor Analysis</em>. Palgrave Macmillan.</li>
+    <li>Den Hartog, D. N. and Verburg, R. M. (1997). Charisma and rhetoric. <em>The Leadership Quarterly</em>, 8(4):355–391.</li>
+    <li>Gao, G., et al. (2018). Neural metaphor detection in context. <em>Proceedings of EMNLP</em>, pages 607–613.</li>
+    <li>Hu, C. and Chen, Z. (2019). Inflation metaphor in contemporary American English. <em>Journal of Pragmatics</em>, 146:72–84.</li>
+    <li>Picard, L. and Stammbach, D. (2019). Political metaphors in U.S. governor speeches. <em>Proceedings of ACL</em>, pages 3658–3664.</li>
+    <li>Rei, M., Bulat, L., Kiela, D., and Shutova, E. (2017). Grasping the finer point: A supervised similarity network for metaphor detection. <em>Proceedings of EMNLP</em>, pages 1539–1548.</li>
+    <li>Sanh, V., et al. (2019). DistilBERT: A distilled version of BERT for fast inference.</li>
+    <li>Wachowiak, L. and Gromann, D. (2023). Does GPT-3 grasp metaphors? <em>Proceedings of ACL</em>, pages 1018–1032.</li>
+  </ol>
+    </div>
+  </div>
+
+  <div class="w3-container w3-large" style="margin-top: 30px; margin-bottom: 130px;">
+    <div class="w3-left-align">
+      <h2>You can download the full paper here:</h2>
+      <p style="margin-left: 60px;"><i class="fa fa-arrow-right w3-text-black"></i>
+        <a href="./Metaphors_and_Inflation_ECB.pdf" download> Metaphors and Inflation: A Study of ECB Communication</a>
+      </p>
+      <p style="margin-left: 60px;"><i class="fa fa-arrow-right w3-text-black"></i>
+        The Github repository: <a href="https://github.com/lalvarezpoli/DSDM_Thesis" target="_blank">https://github.com/lalvarezpoli/DSDM_Thesis</a>
+      </p>
+    </div>
+  </div>
+
+</div><!--defines the margin left and right for the whole text of the article -->
+
+<!-- Footnote band -->
+<div class="footnote">
+  <div class="w3-container" style="margin-left: 128px; margin-right: 128px; margin-bottom: 30px; margin-top: 30px;">
+    <div class="w3-left-align">
+      <h2>Contact</h2>
+      <p style="text-align: left; font-size: 16px;">You can contact me through my email: <a href="mailto:mathieu.breier@bse.eu">mathieu.breier@bse.eu</a></p>
+      <p style="text-align: left; font-size: 16px;">You can download my CV <a href="../../downloads/cv.pdf" download>here</a></p>
+      <p style="text-align: left; font-size: 16px;">
+        Follow me on these social media platforms:<br>
+        Github: <a href="https://github.com/mtbrr26" target="_blank">https://github.com/mtbrr26</a><br>
+        LinkedIn: <a href="https://www.linkedin.com/in/mathieu-breier/" target="_blank">https://www.linkedin.com/in/mathieu-breier/</a>
+      </p>
+    </div>
+  </div>
+  <p>&copy; Mathieu Breier</p>
+</div>
+
+</body>
+</html>

@@ -1,13 +1,13 @@
 # Site settings
-title: My projects portfolio
-description: A blog with some of my work in progress
-# baseurl: "/particle" # the subpath of your site, e.g. /blog
-# url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+title: Mathieu Breier — Data Science & Economics
+description: Portfolio of Mathieu Breier, Data Science & Economics graduate from the Barcelona School of Economics. Former Data Science Trainee at the ECB and Energy Modeling Analyst at the IEA. Projects in machine learning, spatial analysis, econometrics and more.
+baseurl: "" # no subpath — served at root
+url: "https://mathieubreier.github.io"
 
 # User settings
 username: Mathieu Breier
-user_description: Welcome to my website where I share some of my projects. I am currently a Master student in Data Science at the Barcelona School of Economics (BSE). You can explore the projects I have included below.
-user_title: Data Science and Economics of Energy
+user_description: Welcome to my website where I share some of my projects. I hold two Master's degrees from the Barcelona School of Economics in Data Science and Economics of Energy. I have worked as a Data Science Trainee at the European Central Bank and as an Energy Modeling Analyst at the International Energy Agency. You can explore some of my projects below.
+user_title: Data Science & Economics
 email: breiermathieu@gmail.com
 #twitter_username: lorem_ipsum
 github_username:  mtbrr26
@@ -15,6 +15,6 @@ github_username:  mtbrr26
 
 # Google-analytics
 google-analytics:
-  id: ""
+  id: "G-M6V4BZTRRN"
 
 exclude: ['package.json', 'src' , 'node_modules']
