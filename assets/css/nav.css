@@ -1,0 +1,115 @@
+/* ── Apple-inspired site navigation ── */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2.4rem;
+  padding: 0 1.5rem 0 3rem;
+  height: 48px;
+}
+
+.nav-link {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.01rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: #1d1d1f;
+  text-decoration: none;
+  transition: color 0.30s ease;
+}
+
+.nav-link:hover {
+  color: #6e6e73;
+}
+
+/* ── Mobile toggle button ── */
+
+.nav-toggle {
+  display: none;
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: #1d1d1f;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animate to X when open */
+.nav-toggle.open span:first-child {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.nav-toggle.open span:last-child {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+/* ── Mobile menu ── */
+
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 0 1.25rem;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.nav-mobile.open {
+  display: flex;
+}
+
+.nav-mobile a {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1d1d1f;
+  text-decoration: none;
+  padding: 0.6rem 0;
+  transition: color 0.25s ease;
+}
+
+.nav-mobile a:hover {
+  color: #6e6e73;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 600px) {
+  .nav-content .nav-link {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+}
