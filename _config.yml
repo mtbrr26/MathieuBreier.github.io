@@ -1,8 +1,8 @@
 # Site settings
 title: Mathieu Breier — Data Science & Economics
 description: Portfolio of Mathieu Breier, Data Science & Economics graduate from the Barcelona School of Economics. Former Data Science Trainee at the ECB and Energy Modeling Analyst at the IEA. Projects in machine learning, spatial analysis, econometrics and more.
-baseurl: "" # no subpath — served at root
-url: "https://mathieubreier.github.io"
+baseurl: "/MathieuBreier.github.io"
+url: "https://mtbrr26.github.io"
 
 # User settings
 username: Mathieu Breier
