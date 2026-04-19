@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+        <link rel="stylesheet" href="../../assets/css/nav.css">
         <style>
             body,
             h1,
@@ -295,26 +296,22 @@
       </nav>
     </div>
     
-    <!-- Navbar (sit on top) -->
-    <div class="w3-top" style = "font-family: 'Montserrat',sans-serif;">
-        <div class="w3-bar" id="myNavbar">
-            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
-                href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-                <i class="fa fa-bars"></i>
-            </a>
-            <a href="../../" class="w3-bar-item w3-button" style="font-size: 1.1em;">HOME</a>
-            <a href="../../aboutme/index.html" class="w3-bar-item w3-button w3-hide-small" style="font-size: 1.1em;"> ABOUT ME </a>
-            <a href="../../#projects" class="w3-bar-item w3-button w3-hide-small" style="font-size: 1.1em;"> PORTFOLIO</a>
-            </a>
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-content">
+            <a href="../../" class="nav-link">Home</a>
+            <a href="../../#projects" class="nav-link">Portfolio</a>
+            <a href="../../aboutme/" class="nav-link">About Me</a>
         </div>
-
-        <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-            <a href="../../aboutme/index.html" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
-            <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
-            <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+        <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+            <span></span><span></span>
+        </button>
+        <div class="nav-mobile">
+            <a href="../../" onclick="toggleNav()">Home</a>
+            <a href="../../#projects" onclick="toggleNav()">Portfolio</a>
+            <a href="../../aboutme/" onclick="toggleNav()">About Me</a>
         </div>
-    </div>
+    </nav>
 
     <!-- First Parallax Image with Logo Text -->
     <div class="w3-display-container" id="home" style="display: flex; justify-content: center; align-items: center; height: 55vh;">

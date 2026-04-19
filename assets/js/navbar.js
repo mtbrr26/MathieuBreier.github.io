@@ -1,8 +1,7 @@
-function toggleFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") === -1) {
-    x.className += " w3-show";
-  } else {
-    x.className = x.className.replace(" w3-show", "");
-  }
+function toggleNav() {
+  document.querySelector('.nav-toggle').classList.toggle('open');
+  document.querySelector('.nav-mobile').classList.toggle('open');
 }
+
+/* legacy alias so old pages still work if not yet updated */
+function toggleFunction() { toggleNav(); }
