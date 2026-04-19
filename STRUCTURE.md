@@ -61,9 +61,3 @@ Downloadable files. Contains `cv.pdf`.
 
 Jekyll build output (not committed to Git).
 
-# To run the website in local
-
-```bash
-npm run dev
-```
-
