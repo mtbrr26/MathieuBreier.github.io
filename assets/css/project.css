@@ -19,6 +19,10 @@ body, html {
 
 /* ── Parallax hero images ── */
 
+.w3-display-container#home {
+  padding-top: 48px;
+}
+
 .bgimg-1, .bgimg-2, .bgimg-3 {
   background-attachment: fixed;
   background-position: center;
@@ -62,18 +66,19 @@ body, html {
 .table-container {
   text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.academia table {
+.academia table,
+table.academia {
   border-collapse: collapse;
   border-spacing: 0;
   width: auto;
   max-width: 100%;
-  border-top: 2.27px solid black;
-  border-bottom: 2.27px solid black;
-  overflow-x: auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -81,9 +86,10 @@ body, html {
 .academia td {
   border: 0 none !important;
   text-align: left;
-  padding: 0.5rem;
-  line-height: 1.1;
-  font-size: 1.1rem;
+  padding: 0.6rem 1rem;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  color: #333;
 }
 
 .academia tbody tr {
@@ -92,26 +98,32 @@ body, html {
 }
 
 .academia tbody tr:hover {
-  background-color: #dddddd;
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .academia table > tbody > tr:first-child > td,
-.academia table > tbody > tr:first-child > th {
-  border-top: 1.36px solid black !important;
+.academia table > tbody > tr:first-child > th,
+table.academia > tbody > tr:first-child > td,
+table.academia > tbody > tr:first-child > th {
+  border-top: 1px solid #999 !important;
 }
 
 .academia table > tbody > tr:last-child > td,
-.academia table > tbody > tr:last-child > th {
-  border-bottom: 1.36px solid black !important;
+.academia table > tbody > tr:last-child > th,
+table.academia > tbody > tr:last-child > td,
+table.academia > tbody > tr:last-child > th {
+  border-bottom: 1px solid #999 !important;
 }
 
 .academia thead th {
-  background-color: white !important;
-  font-weight: 700;
+  background-color: transparent;
+  font-weight: 600;
+  color: #222;
+  padding-bottom: 0.5rem;
 }
 
 .academia tr:nth-child(even) {
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 /* Make tables scroll horizontally on small screens */

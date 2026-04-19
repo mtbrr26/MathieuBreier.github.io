@@ -60,3 +60,10 @@ Downloadable files. Contains `cv.pdf`.
 ### `_site/`
 
 Jekyll build output (not committed to Git).
+
+# To run the website in local
+
+```bash
+npm run dev
+```
+
