@@ -22,6 +22,13 @@
         <link rel="stylesheet" href="../../assets/css/project.css">
         <script src="../../assets/js/project.js" defer></script>
         <script src="../../assets/js/navbar.js" defer></script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        <style>
+            .img-placeholder { background: #f0f0f0; border: 2px dashed #aaa; display: flex; align-items: center; justify-content: center; color: #888; font-style: italic; font-size: 14px; width: 100%; height: 260px; border-radius: 5px; margin: 10px 0; }
+            .academia caption { caption-side: top; text-align: center; font-style: italic; font-size: 0.9rem; color: #555; padding-bottom: 0.5rem; }
+            .academia tr.separator td { border-top: 1px solid #999 !important; }
+        </style>
     </head>
 
 <body>
@@ -29,595 +36,536 @@
 
     <!-- Fixed Sidebar -->
     <div class="sidebar">
-      <nav class="nav">
-        <a href="#Abstract">Abstract</a>
-        <a href="#Web_Scraping">Web Scraping</a>
-        <a href="#Sentiment_Analysis">Sentiment Analysis</a>
-        <a href="#Results">Results</a>
-        <a href="#Conclusion">Conclusion</a>
-        <a href="#Further_Study">Further Study</a>
-      </nav>
+        <nav class="nav">
+            <a href="#Introduction">1. Introduction</a>
+            <a href="#Literature_Review">2. Literature Review</a>
+            <a href="#Data">3. Data</a>
+            <a href="#Methodology">4. Methodology</a>
+            <a href="#Results">5. Results</a>
+            <a href="#Limitations">6. Limitations</a>
+            <a href="#Conclusion">7. Conclusion</a>
+            <a href="#Bibliography">Bibliography</a>
+            <a href="#Appendix">Appendix</a>
+        </nav>
     </div>
 
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6V4BZTRRN"></script>
-            <script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-M6V4BZTRRN');
-            </script>
-
-            <title>NLP: Sentiment Analysis of Earnings Calls</title>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
-            <link rel="stylesheet" href="../../assets/css/nav.css">
-            <link rel="stylesheet" href="../../assets/css/project.css">
-            <script src="../../assets/js/project.js" defer></script>
-            <script src="../../assets/js/navbar.js" defer></script>
-            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-            <style>
-                .regression-table { border-collapse: collapse; width: 100%; max-width: 560px; margin: 20px auto; font-family: 'Lato', sans-serif; font-size: 15px; }
-                .regression-table th, .regression-table td { border: 1px solid #ccc; padding: 8px 14px; text-align: right; }
-                .regression-table th { background-color: #f2f2f2; font-weight: bold; }
-                .regression-table td:first-child { text-align: left; }
-                .regression-table tr.separator td { border-top: 2px solid #333; }
-                .regression-table caption { text-align: center; font-style: italic; margin-bottom: 8px; font-size: 14px; }
-                .img-placeholder { background: #f0f0f0; border: 2px dashed #aaa; display: flex; align-items: center; justify-content: center; color: #888; font-style: italic; font-size: 14px; width: 100%; height: 260px; border-radius: 5px; margin: 10px 0; }
-                .word-table { border-collapse: collapse; margin: 20px auto; font-size: 14px; }
-                .word-table th, .word-table td { border: 1px solid #ccc; padding: 6px 20px; text-align: left; }
-                .word-table th { background: #f2f2f2; font-weight: bold; }
-                .sample-table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 20px 0; }
-                .sample-table th, .sample-table td { border: 1px solid #ccc; padding: 5px 10px; text-align: right; }
-                .sample-table th { background: #f2f2f2; font-weight: bold; }
-                .sample-table td:first-child, .sample-table td:nth-child(3) { text-align: left; }
-            </style>
-        </head>
-
-    <body>
-        <div class="progress-bar" id="myBar"></div>
-
-        <!-- Fixed Sidebar -->
-        <div class="sidebar">
-            <nav class="nav">
-                <a href="#Introduction">1. Introduction</a>
-                <a href="#Literature_Review">2. Literature Review</a>
-                <a href="#Data">3. Data</a>
-                <a href="#Methodology">4. Methodology</a>
-                <a href="#Results">5. Results</a>
-                <a href="#Limitations">6. Limitations</a>
-                <a href="#Conclusion">7. Conclusion</a>
-                <a href="#Bibliography">Bibliography</a>
-                <a href="#Appendix">Appendix</a>
-            </nav>
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-content">
+            <a href="../../" class="nav-link">Home</a>
+            <a href="../../#projects" class="nav-link">Portfolio</a>
+            <a href="../../aboutme/" class="nav-link">About Me</a>
         </div>
-
-        <!-- Navigation -->
-        <nav class="site-nav">
-            <div class="nav-content">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="../../#projects" class="nav-link">Portfolio</a>
-                <a href="../../aboutme/" class="nav-link">About Me</a>
-            </div>
-            <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
-                <span></span><span></span>
-            </button>
-            <div class="nav-mobile">
-                <a href="../../" onclick="toggleNav()">Home</a>
-                <a href="../../#projects" onclick="toggleNav()">Portfolio</a>
-                <a href="../../aboutme/" onclick="toggleNav()">About Me</a>
-            </div>
-        </nav>
-
-        <!-- Hero -->
-        <div class="w3-display-container" id="home" style="display:flex;justify-content:center;align-items:center;height:55vh;background:linear-gradient(135deg,#1a222c 0%,#2a3a4c 100%);">
-            <div class="w3-display-middle" style="white-space:nowrap;text-align:center;font-family:Georgia,serif;padding:20px;">
-                <span class="w3-center w3-padding-large w3-xxlarge w3-wide w3-animate-opacity" style="color:#fff;display:block;">
-                    Sentiment Analysis of Earnings Call Transcripts
-                </span>
-                <span class="w3-center w3-padding-large w3-large w3-animate-opacity" style="color:#c9d6df;font-family:avenir next,avenir,sans-serif;display:block;">
-                    NATURAL LANGUAGE PROCESSING &nbsp;&middot;&nbsp; SENTIMENT ANALYSIS &nbsp;&middot;&nbsp; FINANCE
-                </span>
-            </div>
+        <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+            <span></span><span></span>
+        </button>
+        <div class="nav-mobile">
+            <a href="../../" onclick="toggleNav()">Home</a>
+            <a href="../../#projects" onclick="toggleNav()">Portfolio</a>
+            <a href="../../aboutme/" onclick="toggleNav()">About Me</a>
         </div>
+    </nav>
 
-        <!-- Abstract -->
-        <div class="w3-content w3-container w3-padding-64" style="max-width:800px;margin-bottom:50px;">
-            <h2 class="w3-center" style="font-family:Georgia,serif;">Abstract</h2>
-            <p style="font-family:Georgia,serif;text-align:justify;font-size:17px;">
-                This paper explores the dynamic shifts in sentiment expressed by CEOs and CFOs during economic crises and assesses the accuracy of their communications in such times. We analyzed earnings call transcripts from four distinct companies, applying sentiment analysis to texts from both CEOs and CFOs. The sentiment scores obtained were then regressed against share price data to gauge the correlation with actual company performance. Our findings reveal that although CEOs generally exhibit higher sentiment scores, this disparity lessens during periods of economic crisis. Significantly, the analysis indicates that CFOs consistently offer a more accurate reflection of company performance in relation to share prices. This study acknowledges its own limitations and suggests directions for future research, aiming to deepen the understanding of executive sentiment in corporate communications during economic downturns.
+    <!-- Hero -->
+    <div class="w3-display-container" id="home" style="display:flex;justify-content:center;align-items:center;height:55vh;background:linear-gradient(135deg,#1a222c 0%,#2a3a4c 100%);">
+        <div class="w3-display-middle" style="white-space:nowrap;text-align:center;font-family:Georgia,serif;padding:20px;">
+            <span class="w3-center w3-padding-large w3-xxlarge w3-wide w3-animate-opacity" style="color:#fff;display:block;">
+                Sentiment Analysis of Earnings Call Transcripts
+            </span>
+            <span class="w3-center w3-padding-large w3-large w3-animate-opacity" style="color:#c9d6df;font-family:avenir next,avenir,sans-serif;display:block;">
+                NATURAL LANGUAGE PROCESSING &nbsp;&middot;&nbsp; SENTIMENT ANALYSIS &nbsp;&middot;&nbsp; FINANCE
+            </span>
+        </div>
+    </div>
+
+    <!-- Abstract -->
+    <div class="w3-content w3-container w3-padding-64" style="max-width:800px;margin-bottom:50px;">
+        <h2 class="w3-center" style="font-family:Georgia,serif;">Abstract</h2>
+        <p style="font-family:Georgia,serif;text-align:justify;font-size:17px;">
+            This paper explores the dynamic shifts in sentiment expressed by CEOs and CFOs during economic crises and assesses the accuracy of their communications in such times. We analyzed earnings call transcripts from four distinct companies, applying sentiment analysis to texts from both CEOs and CFOs. The sentiment scores obtained were then regressed against share price data to gauge the correlation with actual company performance. Our findings reveal that although CEOs generally exhibit higher sentiment scores, this disparity lessens during periods of economic crisis. Significantly, the analysis indicates that CFOs consistently offer a more accurate reflection of company performance in relation to share prices. This study acknowledges its own limitations and suggests directions for future research, aiming to deepen the understanding of executive sentiment in corporate communications during economic downturns.
+        </p>
+    </div>
+
+    <!-- Title block -->
+    <div class="w3-container w3-border-bottom" style="margin-left:128px;margin-right:128px;">
+        <h1 style="font-size:42px;">How Do CEOs and CFOs Modify Their Sentiment in Times of Economic Crisis?</h1>
+        <p style="margin-left:5px;font-family:avenir next,avenir,sans-serif;">by <strong>Mathieu Breier, Edward Monbiot &amp; Amber Walker</strong></p>
+        <p style="margin-left:5px;margin-bottom:40px;font-family:avenir next,avenir,sans-serif;">March 18, 2024</p>
+    </div>
+
+    <!-- Article body -->
+    <div style="margin-left:228px;margin-right:228px;">
+
+        <!-- SECTION 1 -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Introduction">1. Introduction</h2>
+
+            <h3>1.1 Context: Quarterly Earnings Calls</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Quarterly earnings calls are pivotal events where public company leadership engages with equity analysts, members of the media, and investors. Scheduled four times a year, these calls offer executives a crucial opportunity to update listeners on recent performance, future objectives and importantly, to directly address investors' questions, bolstering confidence in the firm. Transcripts of these calls, made publicly available post-event, are meticulously analysed by equity analysts for sentiment indicators not discernible from financial statements alone. The stakes are high on these calls. Institutional investors often time their trades around earnings call dates, with the direction and volume of these trades influenced by their interpretation of the call's sentiment.
+            </p>
+
+            <h3>1.2 CEO and CFO Responsibilities</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The Chief Executive Officer (CEO) and Chief Financial Officer (CFO) are the principal speakers on a company's earnings call. The CEO, often seen as the public face of the company, is tasked with setting the strategic direction, vision and oversees the development of long-term strategies to enhance shareholder value. During earnings calls, the CEO focuses on the broader narrative of the firm, addressing market positioning, future growth opportunities, and responses to major events. Meanwhile, the CFO is responsible for financial stewardship, in charge of budgeting and forecasting. On earnings calls, the CFO delves into financial specifics with a more serious and quantitative tone, explaining revenue sources, cost levels, and the company's liquidity position.
+            </p>
+
+            <h3>1.3 Motivation</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Earnings calls provide a rich source of unstructured verbal and textual data. The content of these calls, often influenced by economic conditions, can vary significantly. In light of the unprecedented impacts of the COVID-19 pandemic, this report expects to observe large shifts in the sentiment expressed by CEOs and CFOs during this period. Such shifts, reflecting the drastic changes in the business environment, are particularly crucial to understanding how leadership communication adapts in times of crisis. Natural language processing techniques can quantitatively assess the sentiment of CEOs and CFOs. The way these executives discuss company performance and their confidence levels can yield insights into the firm's future prospects. This report will use the firm's share price as a proxy for investor confidence, contrasting and regressing this data against the sentiment scores of each executive.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                The study aims to investigate how CEO and CFO sentiments shift during a crisis and to determine which executive provides more accurate information in such times. The timeframe for this report spans 2018&ndash;2024, encompassing the period before, during, and after the COVID-19 lockdowns. The four companies under study, categorised as airlines or cruise operators, were chosen for the anticipated significant changes in their earnings call lexicon across the timeline. These companies faced substantial business disruptions during this period. However, the easing of COVID-19 restrictions and pent-up travel demand later fuelled significant recoveries in their share prices.
             </p>
         </div>
 
-        <!-- Title block -->
-        <div class="w3-container w3-border-bottom" style="margin-left:128px;margin-right:128px;">
-            <h1 style="font-size:42px;">How Do CEOs and CFOs Modify Their Sentiment in Times of Economic Crisis?</h1>
-            <p style="margin-left:5px;font-family:avenir next,avenir,sans-serif;">by <strong>Mathieu Breier, Edward Monbiot &amp; Amber Walker</strong></p>
-            <p style="margin-left:5px;margin-bottom:40px;font-family:avenir next,avenir,sans-serif;">March 18, 2024</p>
+        <!-- SECTION 2 -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Literature_Review">2. Literature Review</h2>
+
+            <h3>2.1 Challenges of the Dataset</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Quarterly earnings reports present a unique textual blend, combining quantitative financial data discussion with qualitative strategic narratives. The language, typically formal and laced with technical financial terms and general business jargon, requires contextual understanding for accurate interpretation. Particularly significant in this report are the forward-looking statements within the earnings calls. Rich in sentiment, these statements are crucial for investors to assess leadership confidence and they play a vital role in shaping financial models, investment decisions, and stock recommendations.
+            </p>
+
+            <h3>2.2 Natural Language Processing Techniques from Literature</h3>
+
+            <h4>TF-IDF</h4>
+            <p class="paragraph" style="text-align:justify;">
+                To extract CEO and CFO sentiment from earnings calls, various NLP techniques were reviewed from academic and commercial sources. A well-known method used to evaluate the importance of words is Term Frequency&ndash;Inverse Document Frequency (TF-IDF). Chin and Fan, in their study of thousands of global company earnings calls transcripts from 2010&ndash;2021, utilised TF-IDF to weigh the impact of &ldquo;significant words or phrases&rdquo; across documents by &ldquo;using the inverse of relative frequencies&rdquo;. Key themes identified and TF-IDF scores can be tracked for specific time periods. This method is particularly relevant for analysing thematic prevalence in economic crises.<sup><a href="#ref1">[1]</a></sup>
+            </p>
+
+            <h4>Loughran-McDonald</h4>
+            <p class="paragraph" style="text-align:justify;">
+                The investigation into sentiment analysis tailored for financial texts led to the Loughran-McDonald (LM) sentiment word list. This method was identified from reading a paper comparing different NLP approaches for earnings calls by Kantos, Joldzic, Mitra and Hoang.<sup><a href="#ref2">[2]</a></sup> Developed by Loughran and McDonald in 2011, the LM dictionary was created by analysing language in 10-Q and 10-K filings with the Securities and Exchange Commission (SEC) between 1994 to 2008, incorporating around 5,000 words from these documents and over 80,000 from the Harvard Dictionary. Categorised as negative, positive, uncertainty, litigious, strong modal, and weak modal, the LM dictionary is widely used in various financial sentiment applications, from measuring the sentiment of annual reports to gauge financial distress in U.S. banks<sup><a href="#ref3">[3]</a></sup> to measuring the impact of financial news articles on stock price return.<sup><a href="#ref4">[4]</a></sup> This makes LM a suitable choice for this paper's analysis of earnings transcripts.
+            </p>
+
+            <h4>Deep Learning</h4>
+            <p class="paragraph" style="text-align:justify;">
+                More recent studies have explored deep-learning models to enhance traditional TF-IDF and bag-of-words methods. Albrizio, Dizioli, and Simon from the IMF, for instance, studied inflation expectations in earnings calls by creating a training sample from sentences featuring &ldquo;inflation&rdquo; and &ldquo;expectation.&rdquo; This data was fed into the GPT model to create a machine classification identifying whether a sentence referred to inflation expectations.<sup><a href="#ref5">[5]</a></sup> Although these deep-learning techniques, such as the GPT model, offer advanced capabilities, they are beyond the scope of this paper.
+            </p>
         </div>
 
-        <!-- Article body -->
-        <div style="margin-left:228px;margin-right:228px;">
+        <!-- SECTION 3 -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Data">3. Data</h2>
 
-            <!-- SECTION 1 -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Introduction">1. Introduction</h2>
+            <h3>3.1 Data Collection</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Our research focused on analysing earnings call transcripts from two major cruise lines &mdash; Royal Caribbean and Norwegian Cruise Line &mdash; and two leading airlines &mdash; Delta Air Lines and Southwest Airlines. To gather the data, we utilised the financial services website Fool.com, a platform designed to help investors make informed decisions. Among its offerings, Fool.com provides direct links to quarterly earnings call transcripts for many companies. We developed a web scraping pipeline designed to navigate through each company's section on Fool.com, extract the links to all available earnings call transcripts, and collect metadata from each transcript. We moved through the webpage's elements to extract the first texts attributed to the CEOs and CFOs. We deliberately decided to only extract the first speeches of the CEO and CFO to prevent any potential bias that might arise from operators' questions subsequently asked during each earnings call.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                The financial data collection process involved gathering historical share prices for each company, accomplished through the use of the <code>yfinance</code> Python library, a tool that provides simple access to financial data available on Yahoo Finance. For each company, we fetched historical data by defining a start and end date spanning from January 1, 2018, to February 1, 2024.
+            </p>
 
-                <h3>1.1 Context: Quarterly Earnings Calls</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    Quarterly earnings calls are pivotal events where public company leadership engages with equity analysts, members of the media, and investors. Scheduled four times a year, these calls offer executives a crucial opportunity to update listeners on recent performance, future objectives and importantly, to directly address investors' questions, bolstering confidence in the firm. Transcripts of these calls, made publicly available post-event, are meticulously analysed by equity analysts for sentiment indicators not discernible from financial statements alone. The stakes are high on these calls. Institutional investors often time their trades around earnings call dates, with the direction and volume of these trades influenced by their interpretation of the call's sentiment.
-                </p>
+            <h3>3.2 Data Preprocessing</h3>
+            <p class="paragraph" style="text-align:justify;">
+                To ensure the clarity and quality of the dataset before it undergoes analysis, we implemented the following preprocessing pipeline on raw text data:
+            </p>
+            <ul>
+                <li><strong>HTML tag removal</strong> &mdash; stripping the text of web-specific markup from scraping that could confound the analysis.</li>
+                <li><strong>Lowercasing</strong> &mdash; converting the text to lowercase to homogenize the dataset, eliminating variability caused by capitalisation.</li>
+                <li><strong>Special character &amp; punctuation removal</strong> &mdash; characters that do not contribute to sentiment understanding are removed. Numbers are preserved as they are significant in the financial context.</li>
+                <li><strong>Stop word filtering</strong> &mdash; common words such as &ldquo;like&rdquo;, &ldquo;is&rdquo;, and &ldquo;the&rdquo; are removed.</li>
+                <li><strong>Stemming</strong> &mdash; words are condensed to their root forms to reduce dimensionality.</li>
+            </ul>
+            <p class="paragraph" style="text-align:justify;">By adopting this preprocessing pipeline, we build a solid foundation for the analytical exploration ahead.</p>
+        </div>
 
-                <h3>1.2 CEO and CFO Responsibilities</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    The Chief Executive Officer (CEO) and Chief Financial Officer (CFO) are the principal speakers on a company's earnings call. The CEO, often seen as the public face of the company, is tasked with setting the strategic direction, vision and oversees the development of long-term strategies to enhance shareholder value. During earnings calls, the CEO focuses on the broader narrative of the firm, addressing market positioning, future growth opportunities, and responses to major events. Meanwhile, the CFO is responsible for financial stewardship, in charge of budgeting and forecasting. On earnings calls, the CFO delves into financial specifics with a more serious and quantitative tone, explaining revenue sources, cost levels, and the company's liquidity position.
-                </p>
+        <!-- SECTION 4 -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Methodology">4. Methodology</h2>
 
-                <h3>1.3 Motivation</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    Earnings calls provide a rich source of unstructured verbal and textual data. The content of these calls, often influenced by economic conditions, can vary significantly. In light of the unprecedented impacts of the COVID-19 pandemic, this report expects to observe large shifts in the sentiment expressed by CEOs and CFOs during this period. Such shifts, reflecting the drastic changes in the business environment, are particularly crucial to understanding how leadership communication adapts in times of crisis. Natural language processing techniques can quantitatively assess the sentiment of CEOs and CFOs. The way these executives discuss company performance and their confidence levels can yield insights into the firm's future prospects. This report will use the firm's share price as a proxy for investor confidence, contrasting and regressing this data against the sentiment scores of each executive.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    The study aims to investigate how CEO and CFO sentiments shift during a crisis and to determine which executive provides more accurate information in such times. The timeframe for this report spans 2018&ndash;2024, encompassing the period before, during, and after the COVID-19 lockdowns. The four companies under study, categorised as airlines or cruise operators, were chosen for the anticipated significant changes in their earnings call lexicon across the timeline. These companies faced substantial business disruptions during this period. However, the easing of COVID-19 restrictions and pent-up travel demand later fuelled significant recoveries in their share prices.
-                </p>
+            <h3>4.1 TF-IDF</h3>
+            <p class="paragraph" style="text-align:justify;">
+                To gain insights into the key points of the CEOs' and CFOs' speeches, we employed a TF-IDF (Term Frequency-Inverse Document Frequency) analysis. This method highlights words that are prevalent in a specific document but not commonly used across all documents.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                <strong>Term Frequency</strong> for a word is the number of times the word appears in a transcript, normalized by the total word count in the document. The TF for term \(i\) in document \(j\) is:
+            </p>
+            <p style="text-align:center;">\[ tf_{i,j} = \frac{n_{i,j}}{\sum_k n_{k,j}} \]</p>
+            <p class="paragraph" style="text-align:justify;">
+                where \(n_{i,j}\) is the count of occurrences of term \(i\) in transcript \(j\). <strong>Inverse Document Frequency</strong> is determined by taking the logarithm of the ratio of the total number of transcripts to the number of transcripts containing the word \(w\):
+            </p>
+            <p style="text-align:center;">\[ idf(w) = \log\left(\frac{N}{df_w}\right) \]</p>
+            <p class="paragraph" style="text-align:justify;">where \(N\) is the total number of transcripts in the corpus. The TF-IDF score is the product of TF and IDF:</p>
+            <p style="text-align:center;">\[ tf\text{-}idf_{i,j} = tf_{i,j} \times idf(i) \]</p>
+            <p class="paragraph" style="text-align:justify;">
+                Our first step involves aggregating all individual transcripts into a corpus encompassing texts from the CEO and CFO, providing the foundation for WordCloud visualizations. These visualizations graphically depict the relative importance of terms, with larger font sizes indicating higher TF-IDF scores and thus greater significance within the corpus.
+            </p>
+
+            <h3>4.2 Sentiment Analysis</h3>
+            <p class="paragraph" style="text-align:justify;">
+                We utilize the Loughran-McDonald Sentiment Analyzer, which leverages the Loughran-McDonald Master Dictionary &mdash; a comprehensive lexicon tailored for financial and economic text analysis. This dictionary categorizes words into sentiment categories including Negative, Positive, Uncertainty, Litigious, and Constraining. We built a class which utilizes this dictionary to quantify sentiment in the earnings call transcripts.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Our first analytical step involves the extraction of sentiment-indicative words from the Master Dictionary. Following the word extraction, the analyzer quantifies the presence of each sentiment within the texts. Mathematically, it is a sum of indicator functions &mdash; for each word \(w\) in text \(t\):
+            </p>
+            <p style="text-align:center;">\[ \text{count} = \sum_{w \in t} \mathbf{1}_{w \in W_s} \]</p>
+            <p class="paragraph" style="text-align:justify;">
+                where the indicator function \(\mathbf{1}\) equals 1 if word \(w\) belongs to the set \(W_s\) of sentiment-indicative words, and 0 otherwise. Net sentiment for each executive is then calculated as:
+            </p>
+            <p style="text-align:center;">\[ \text{CEO Net Sentiment} = \text{CEO Positive Word Count} - \text{CEO Negative Word Count} \]</p>
+
+            <h3>4.3 CEO and CFO Analysis</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Our analysis is structured in two parts. The first part focuses on identifying shifts in CEO and CFO sentiment during economic crises compared to more stable periods. The second part examines whether the CEO or CFO offers more accurate predictions about the company's future performance. Overall, this study aims to provide investors with clearer insights into whose guidance &mdash; CEO or CFO &mdash; better indicates the future trajectory of the company.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                To assess sentiment changes, we plot the sentiment scores of both CEOs and CFOs over time, providing direct insight into any significant shifts. This method also illuminates how their communication strategies might have adapted during the COVID-19 lockdown period, marked by economic instability and uncertainty.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Determining who provides more realistic projections about future company performance is more complex. To gain insights into whether the CEO's or CFO's sentiments more accurately reflect company performance, we regress the company's share price (used as a performance proxy) against their sentiment scores. This involves merging share price data with the CEO and CFO sentiment scores and the dates of earnings calls. The resulting dataset (see Table 4 in the Appendix) includes daily share price movements and the associated sentiment scores from the preceding earnings call. This setup allows us to analyse how the sentiments expressed during an earnings call correlate with subsequent share price movements until the next earnings call.
+            </p>
+            <p class="paragraph" style="text-align:justify;">The regression equation is:</p>
+            <p style="text-align:center;">\[ \text{Share Price}_i = \beta_0 + \beta_1 \times \text{CEO Sentiment Score}_i + \beta_2 \times \text{CFO Sentiment Score}_i + \varepsilon \]</p>
+            <p class="paragraph" style="text-align:justify;">
+                To understand the relationship between CEO and CFO sentiment scores and share price movements, we examine the coefficients \(\beta_1\) and \(\beta_2\) along with their respective levels of significance. A positive coefficient would suggest similarity between sentiment scores and share price direction. Conversely, a negative coefficient might indicate a misalignment or reflect dynamics not directly observable within the scope of this analysis.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                We hypothesise that CFOs, on average, offer more realistic assessments of company performance. Therefore, we anticipate a positive and higher significant coefficient for the CFO sentiment score, indicating a positive correlation with the company's share price. In contrast, CEOs might exhibit over-optimism, a reflection of their role as visionary leaders guiding the company's strategic direction. If this hypothesis holds, it would manifest in the regression as an insignificant coefficient for the CEO sentiment score, suggesting no clear linear relationship between the CEO's sentiment and share price movements.
+            </p>
+        </div>
+
+        <!-- SECTION 5 -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Results">5. Results</h2>
+
+            <h3>5.1 CEO &amp; CFO Sentiment Differences</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Figure 1 illustrates the most relevant words used by CEOs and CFOs across various companies, with the top 20 words for each role detailed in Table 3 (see Appendix). The CEO word cloud includes terms like &ldquo;guest&rdquo;, &ldquo;brand&rdquo;, and &ldquo;book&rdquo;, indicating a focus on customer experience and branding, alongside strategic elements like &ldquo;plan&rdquo;, &ldquo;capacity&rdquo;, and &ldquo;safety&rdquo;. In contrast, the CFO word cloud features words such as &ldquo;cash&rdquo;, &ldquo;billion&rdquo;, &ldquo;approx&rdquo;, and &ldquo;revenue&rdquo;, highlighting a concentration on financial aspects. Additional terms like &ldquo;cost&rdquo;, &ldquo;invest&rdquo;, and &ldquo;fuel&rdquo; suggest a focus on cost management and operational efficiency.
+            </p>
+
+            <div style="text-align:center;margin:30px 0;">
+                <div class="img-placeholder">Figure 1 &mdash; TF-IDF WordCloud (image not available in repository)</div>
+                <p style="font-style:italic;font-size:14px;margin-top:8px;"><b>Figure 1</b> &mdash; TF-IDF WordCloud: most important words used by CEO (left) and CFO (right)</p>
             </div>
 
-            <!-- SECTION 2 -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Literature_Review">2. Literature Review</h2>
+            <p class="paragraph" style="text-align:justify;">
+                The CEO's communication is more outward-looking, broadly covering marketing strategies, customer relations, and long-term growth. The CFO's language is inward-facing and financially oriented, emphasising cost control, risk management and economic forecasting.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Figure 2 presents sentiment scores for the CEO (blue) and CFO (orange) from Royal Caribbean Cruises (RCL) earnings calls, spanning Q3 2018 to Q4 2023. It shows variability in sentiment, with the CEO's sentiment score generally higher than the CFO's in most quarters. Scores below zero indicate a more negative sentiment for that call.
+            </p>
 
-                <h3>2.1 Challenges of the Dataset</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    Quarterly earnings reports present a unique textual blend, combining quantitative financial data discussion with qualitative strategic narratives. The language, typically formal and laced with technical financial terms and general business jargon, requires contextual understanding for accurate interpretation. Particularly significant in this report are the forward-looking statements within the earnings calls. Rich in sentiment, these statements are crucial for investors to assess leadership confidence and they play a vital role in shaping financial models, investment decisions, and stock recommendations.
-                </p>
-
-                <h3>2.2 Natural Language Processing Techniques from Literature</h3>
-
-                <h4>TF-IDF</h4>
-                <p class="paragraph" style="text-align:justify;">
-                    To extract CEO and CFO sentiment from earnings calls, various NLP techniques were reviewed from academic and commercial sources. A well-known method used to evaluate the importance of words is Term Frequency&ndash;Inverse Document Frequency (TF-IDF). Chin and Fan, in their study of thousands of global company earnings calls transcripts from 2010&ndash;2021, utilised TF-IDF to weigh the impact of &ldquo;significant words or phrases&rdquo; across documents by &ldquo;using the inverse of relative frequencies&rdquo;. Key themes identified and TF-IDF scores can be tracked for specific time periods. This method is particularly relevant for analysing thematic prevalence in economic crises.<sup><a href="#ref1">[1]</a></sup>
-                </p>
-
-                <h4>Loughran-McDonald</h4>
-                <p class="paragraph" style="text-align:justify;">
-                    The investigation into sentiment analysis tailored for financial texts led to the Loughran-McDonald (LM) sentiment word list. This method was identified from reading a paper comparing different NLP approaches for earnings calls by Kantos, Joldzic, Mitra and Hoang.<sup><a href="#ref2">[2]</a></sup> Developed by Loughran and McDonald in 2011, the LM dictionary was created by analysing language in 10-Q and 10-K filings with the Securities and Exchange Commission (SEC) between 1994 to 2008, incorporating around 5,000 words from these documents and over 80,000 from the Harvard Dictionary. Categorised as negative, positive, uncertainty, litigious, strong modal, and weak modal, the LM dictionary is widely used in various financial sentiment applications, from measuring the sentiment of annual reports to gauge financial distress in U.S. banks<sup><a href="#ref3">[3]</a></sup> to measuring the impact of financial news articles on stock price return.<sup><a href="#ref4">[4]</a></sup> This makes LM a suitable choice for this paper's analysis of earnings transcripts.
-                </p>
-
-                <h4>Deep Learning</h4>
-                <p class="paragraph" style="text-align:justify;">
-                    More recent studies have explored deep-learning models to enhance traditional TF-IDF and bag-of-words methods. Albrizio, Dizioli, and Simon from the IMF, for instance, studied inflation expectations in earnings calls by creating a training sample from sentences featuring &ldquo;inflation&rdquo; and &ldquo;expectation.&rdquo; This data was fed into the GPT model to create a machine classification identifying whether a sentence referred to inflation expectations.<sup><a href="#ref5">[5]</a></sup> Although these deep-learning techniques, such as the GPT model, offer advanced capabilities, they are beyond the scope of this paper.
-                </p>
+            <div style="text-align:center;margin:30px 0;">
+                <div class="img-placeholder">Figure 2 &mdash; CEO and CFO Sentiment Scores by Earnings Call &mdash; RCL (image not available in repository)</div>
+                <p style="font-style:italic;font-size:14px;margin-top:8px;"><b>Figure 2</b> &mdash; CEO and CFO quarterly sentiment scores for Royal Caribbean (RCL)</p>
             </div>
 
-            <!-- SECTION 3 -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Data">3. Data</h2>
+            <p class="paragraph" style="text-align:justify;">As with Royal Caribbean, the CEO's sentiment is persistently higher for Delta Airlines, as shown in Figure 3.</p>
 
-                <h3>3.1 Data Collection</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    Our research focused on analysing earnings call transcripts from two major cruise lines &mdash; Royal Caribbean and Norwegian Cruise Line &mdash; and two leading airlines &mdash; Delta Air Lines and Southwest Airlines. To gather the data, we utilised the financial services website Fool.com, a platform designed to help investors make informed decisions. Among its offerings, Fool.com provides direct links to quarterly earnings call transcripts for many companies. We developed a web scraping pipeline designed to navigate through each company's section on Fool.com, extract the links to all available earnings call transcripts, and collect metadata from each transcript. We moved through the webpage's elements to extract the first texts attributed to the CEOs and CFOs. We deliberately decided to only extract the first speeches of the CEO and CFO to prevent any potential bias that might arise from operators' questions subsequently asked during each earnings call.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    The financial data collection process involved gathering historical share prices for each company, accomplished through the use of the <code>yfinance</code> Python library, a tool that provides simple access to financial data available on Yahoo Finance. For each company, we fetched historical data by defining a start and end date spanning from January 1, 2018, to February 1, 2024.
-                </p>
-
-                <h3>3.2 Data Preprocessing</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    To ensure the clarity and quality of the dataset before it undergoes analysis, we implemented the following preprocessing pipeline on raw text data:
-                </p>
-                <ul>
-                    <li><strong>HTML tag removal</strong> &mdash; stripping the text of web-specific markup from scraping that could confound the analysis.</li>
-                    <li><strong>Lowercasing</strong> &mdash; converting the text to lowercase to homogenize the dataset, eliminating variability caused by capitalisation.</li>
-                    <li><strong>Special character &amp; punctuation removal</strong> &mdash; characters that do not contribute to sentiment understanding are removed. Numbers are preserved as they are significant in the financial context.</li>
-                    <li><strong>Stop word filtering</strong> &mdash; common words such as &ldquo;like&rdquo;, &ldquo;is&rdquo;, and &ldquo;the&rdquo; are removed.</li>
-                    <li><strong>Stemming</strong> &mdash; words are condensed to their root forms to reduce dimensionality.</li>
-                </ul>
-                <p class="paragraph" style="text-align:justify;">By adopting this preprocessing pipeline, we build a solid foundation for the analytical exploration ahead.</p>
+            <div style="text-align:center;margin:30px 0;">
+                <div class="img-placeholder">Figure 3 &mdash; CEO and CFO Sentiment Scores by Earnings Call &mdash; DAL (image not available in repository)</div>
+                <p style="font-style:italic;font-size:14px;margin-top:8px;"><b>Figure 3</b> &mdash; CEO and CFO quarterly sentiment scores for Delta Air Lines (DAL)</p>
             </div>
 
-            <!-- SECTION 4 -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Methodology">4. Methodology</h2>
+            <p class="paragraph" style="text-align:justify;">
+                The line plots in Figures 4 &amp; 5 track the sentiment scores of RCL's and DAL's CEO and CFO over time, with background colours marking different phases of the COVID-19 pandemic: Pre-COVID (white), COVID Lockdowns (blue), and Post-COVID (white). Notably, the CEO's sentiment dips significantly during lockdown, reaching its lowest in early 2020, with the sentiment score spread between the CEO and CFO tightening during the crisis.
+            </p>
 
-                <h3>4.1 TF-IDF</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    To gain insights into the key points of the CEOs' and CFOs' speeches, we employed a TF-IDF (Term Frequency-Inverse Document Frequency) analysis. This method highlights words that are prevalent in a specific document but not commonly used across all documents.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    <strong>Term Frequency</strong> for a word is the number of times the word appears in a transcript, normalized by the total word count in the document. The TF for term \(i\) in document \(j\) is:
-                </p>
-                <p style="text-align:center;">\[ tf_{i,j} = \frac{n_{i,j}}{\sum_k n_{k,j}} \]</p>
-                <p class="paragraph" style="text-align:justify;">
-                    where \(n_{i,j}\) is the count of occurrences of term \(i\) in transcript \(j\). <strong>Inverse Document Frequency</strong> is determined by taking the logarithm of the ratio of the total number of transcripts to the number of transcripts containing the word \(w\):
-                </p>
-                <p style="text-align:center;">\[ idf(w) = \log\left(\frac{N}{df_w}\right) \]</p>
-                <p class="paragraph" style="text-align:justify;">where \(N\) is the total number of transcripts in the corpus. The TF-IDF score is the product of TF and IDF:</p>
-                <p style="text-align:center;">\[ tf\text{-}idf_{i,j} = tf_{i,j} \times idf(i) \]</p>
-                <p class="paragraph" style="text-align:justify;">
-                    Our first step involves aggregating all individual transcripts into a corpus encompassing texts from the CEO and CFO, providing the foundation for WordCloud visualizations. These visualizations graphically depict the relative importance of terms, with larger font sizes indicating higher TF-IDF scores and thus greater significance within the corpus.
-                </p>
-
-                <h3>4.2 Sentiment Analysis</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    We utilize the Loughran-McDonald Sentiment Analyzer, which leverages the Loughran-McDonald Master Dictionary &mdash; a comprehensive lexicon tailored for financial and economic text analysis. This dictionary categorizes words into sentiment categories including Negative, Positive, Uncertainty, Litigious, and Constraining. We built a class which utilizes this dictionary to quantify sentiment in the earnings call transcripts.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    Our first analytical step involves the extraction of sentiment-indicative words from the Master Dictionary. Following the word extraction, the analyzer quantifies the presence of each sentiment within the texts. Mathematically, it is a sum of indicator functions &mdash; for each word \(w\) in text \(t\):
-                </p>
-                <p style="text-align:center;">\[ \text{count} = \sum_{w \in t} \mathbf{1}_{w \in W_s} \]</p>
-                <p class="paragraph" style="text-align:justify;">
-                    where the indicator function \(\mathbf{1}\) equals 1 if word \(w\) belongs to the set \(W_s\) of sentiment-indicative words, and 0 otherwise. Net sentiment for each executive is then calculated as:
-                </p>
-                <p style="text-align:center;">\[ \text{CEO Net Sentiment} = \text{CEO Positive Word Count} - \text{CEO Negative Word Count} \]</p>
-
-                <h3>4.3 CEO and CFO Analysis</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    Our analysis is structured in two parts. The first part focuses on identifying shifts in CEO and CFO sentiment during economic crises compared to more stable periods. The second part examines whether the CEO or CFO offers more accurate predictions about the company's future performance. Overall, this study aims to provide investors with clearer insights into whose guidance &mdash; CEO or CFO &mdash; better indicates the future trajectory of the company.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    To assess sentiment changes, we plot the sentiment scores of both CEOs and CFOs over time, providing direct insight into any significant shifts. This method also illuminates how their communication strategies might have adapted during the COVID-19 lockdown period, marked by economic instability and uncertainty.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    Determining who provides more realistic projections about future company performance is more complex. To gain insights into whether the CEO's or CFO's sentiments more accurately reflect company performance, we regress the company's share price (used as a performance proxy) against their sentiment scores. This involves merging share price data with the CEO and CFO sentiment scores and the dates of earnings calls. The resulting dataset (see Table 4 in the Appendix) includes daily share price movements and the associated sentiment scores from the preceding earnings call. This setup allows us to analyse how the sentiments expressed during an earnings call correlate with subsequent share price movements until the next earnings call.
-                </p>
-                <p class="paragraph" style="text-align:justify;">The regression equation is:</p>
-                <p style="text-align:center;">\[ \text{Share Price}_i = \beta_0 + \beta_1 \times \text{CEO Sentiment Score}_i + \beta_2 \times \text{CFO Sentiment Score}_i + \varepsilon \]</p>
-                <p class="paragraph" style="text-align:justify;">
-                    To understand the relationship between CEO and CFO sentiment scores and share price movements, we examine the coefficients \(\beta_1\) and \(\beta_2\) along with their respective levels of significance. A positive coefficient would suggest similarity between sentiment scores and share price direction. Conversely, a negative coefficient might indicate a misalignment or reflect dynamics not directly observable within the scope of this analysis.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    We hypothesise that CFOs, on average, offer more realistic assessments of company performance. Therefore, we anticipate a positive and higher significant coefficient for the CFO sentiment score, indicating a positive correlation with the company's share price. In contrast, CEOs might exhibit over-optimism, a reflection of their role as visionary leaders guiding the company's strategic direction. If this hypothesis holds, it would manifest in the regression as an insignificant coefficient for the CEO sentiment score, suggesting no clear linear relationship between the CEO's sentiment and share price movements.
-                </p>
-            </div>
-
-            <!-- SECTION 5 -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Results">5. Results</h2>
-
-                <h3>5.1 CEO &amp; CFO Sentiment Differences</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    Figure 1 illustrates the most relevant words used by CEOs and CFOs across various companies, with the top 20 words for each role detailed in Table 3 (see Appendix). The CEO word cloud includes terms like &ldquo;guest&rdquo;, &ldquo;brand&rdquo;, and &ldquo;book&rdquo;, indicating a focus on customer experience and branding, alongside strategic elements like &ldquo;plan&rdquo;, &ldquo;capacity&rdquo;, and &ldquo;safety&rdquo;. In contrast, the CFO word cloud features words such as &ldquo;cash&rdquo;, &ldquo;billion&rdquo;, &ldquo;approx&rdquo;, and &ldquo;revenue&rdquo;, highlighting a concentration on financial aspects. Additional terms like &ldquo;cost&rdquo;, &ldquo;invest&rdquo;, and &ldquo;fuel&rdquo; suggest a focus on cost management and operational efficiency.
-                </p>
-
-                <div style="text-align:center;margin:30px 0;">
-                    <div class="img-placeholder">Figure 1 &mdash; TF-IDF WordCloud (image not available in repository)</div>
-                    <p style="font-style:italic;font-size:14px;margin-top:8px;"><b>Figure 1</b> &mdash; TF-IDF WordCloud: most important words used by CEO (left) and CFO (right)</p>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin:30px 0;">
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/RCL_SentimentScore_SharePrice.png" alt="Royal Caribbean CEO and CFO Sentiment Score Over Time" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 4</b> &mdash; RCL: CEO &amp; CFO Sentiment Score over time with COVID periods</p>
                 </div>
-
-                <p class="paragraph" style="text-align:justify;">
-                    The CEO's communication is more outward-looking, broadly covering marketing strategies, customer relations, and long-term growth. The CFO's language is inward-facing and financially oriented, emphasising cost control, risk management and economic forecasting.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    Figure 2 presents sentiment scores for the CEO (blue) and CFO (orange) from Royal Caribbean Cruises (RCL) earnings calls, spanning Q3 2018 to Q4 2023. It shows variability in sentiment, with the CEO's sentiment score generally higher than the CFO's in most quarters. Scores below zero indicate a more negative sentiment for that call.
-                </p>
-
-                <div style="text-align:center;margin:30px 0;">
-                    <div class="img-placeholder">Figure 2 &mdash; CEO and CFO Sentiment Scores by Earnings Call &mdash; RCL (image not available in repository)</div>
-                    <p style="font-style:italic;font-size:14px;margin-top:8px;"><b>Figure 2</b> &mdash; CEO and CFO quarterly sentiment scores for Royal Caribbean (RCL)</p>
-                </div>
-
-                <p class="paragraph" style="text-align:justify;">As with Royal Caribbean, the CEO's sentiment is persistently higher for Delta Airlines, as shown in Figure 3.</p>
-
-                <div style="text-align:center;margin:30px 0;">
-                    <div class="img-placeholder">Figure 3 &mdash; CEO and CFO Sentiment Scores by Earnings Call &mdash; DAL (image not available in repository)</div>
-                    <p style="font-style:italic;font-size:14px;margin-top:8px;"><b>Figure 3</b> &mdash; CEO and CFO quarterly sentiment scores for Delta Air Lines (DAL)</p>
-                </div>
-
-                <p class="paragraph" style="text-align:justify;">
-                    The line plots in Figures 4 &amp; 5 track the sentiment scores of RCL's and DAL's CEO and CFO over time, with background colours marking different phases of the COVID-19 pandemic: Pre-COVID (white), COVID Lockdowns (blue), and Post-COVID (white). Notably, the CEO's sentiment dips significantly during lockdown, reaching its lowest in early 2020, with the sentiment score spread between the CEO and CFO tightening during the crisis.
-                </p>
-
-                <div style="display:flex;gap:20px;flex-wrap:wrap;margin:30px 0;">
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/RCL_SentimentScore_SharePrice.png" alt="Royal Caribbean CEO and CFO Sentiment Score Over Time" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 4</b> &mdash; RCL: CEO &amp; CFO Sentiment Score over time with COVID periods</p>
-                    </div>
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/DAL_SentimentScore_SharePrice.png" alt="Delta Airlines CEO and CFO Sentiment Score Over Time" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 5</b> &mdash; DAL: CEO &amp; CFO Sentiment Score over time with COVID periods</p>
-                    </div>
-                </div>
-
-                <h3>5.2 CEO &amp; CFO Sentiment Accuracy</h3>
-                <p class="paragraph" style="text-align:justify;">
-                    Figures 6 and 7 show the share price alongside CEO and CFO sentiment of Royal Caribbean and Delta Airlines, respectively. A marked drop in share prices during the COVID-19 period, highlighted in light blue, signifies the catastrophic economic conditions. In these charts, we also observe a notable decline in CEO sentiment, with the lowest point reached in early 2020. Additionally, both figures display a secondary decrease around May/June 2022, likely associated with the energy crisis following the Russian invasion of Ukraine.
-                </p>
-
-                <div style="display:flex;gap:20px;flex-wrap:wrap;margin:30px 0;">
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/RCL_SentimentScore_SharePrice.png" alt="RCL CEO and CFO Sentiment Score and Share Price" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 6</b> &mdash; RCL: CEO &amp; CFO Sentiment Score &amp; Share Price over time</p>
-                    </div>
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/DAL_SentimentScore_SharePrice.png" alt="DAL CEO and CFO Sentiment Score and Share Price" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 7</b> &mdash; DAL: CEO &amp; CFO Sentiment Score &amp; Share Price over time</p>
-                    </div>
-                </div>
-
-                <p class="paragraph" style="text-align:justify;">
-                    From Figure 6, it is apparent that the sentiment score of Royal Caribbean Cruise's CEO closely aligns with the company's share price, suggesting a potential correlation. The CEO's sentiment scores decreased during COVID-19 but began to rise again towards the end of the period. In contrast, the CFO's sentiment score did not decrease at the onset of the pandemic but instead increased as the pandemic neared its end.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    Figure 7, however, shows more ambiguous patterns, making it challenging to discern clear associations between the sentiment scores of Delta Airline's CEO and CFO and the company's share price.
-                </p>
-
-                <h4>Regression Analysis</h4>
-                <p class="paragraph" style="text-align:justify;">To quantitatively explore the relationship between different sentiment scores and share price, the results of the linear regressions are presented below.</p>
-
-                <div style="text-align:center;margin:30px 0;">
-                    <table class="regression-table">
-                        <caption><b>Table 1</b> &mdash; Regression analysis of RCL Share Price on CEO &amp; CFO Sentiment Score</caption>
-                        <thead><tr><th style="text-align:left;">Dependent variable: RCL Share Price</th><th>(1)</th></tr></thead>
-                        <tbody>
-                            <tr><td>CEO Sentiment Score</td><td>-0.573***</td></tr>
-                            <tr><td></td><td>(0.085)</td></tr>
-                            <tr><td>CFO Sentiment Score</td><td>1.432***</td></tr>
-                            <tr><td></td><td>(0.168)</td></tr>
-                            <tr><td>Constant</td><td>89.746***</td></tr>
-                            <tr><td></td><td>(1.392)</td></tr>
-                            <tr class="separator"><td>Observations</td><td>1,354</td></tr>
-                            <tr><td>R&sup2;</td><td>0.051</td></tr>
-                            <tr><td>Adjusted R&sup2;</td><td>0.050</td></tr>
-                            <tr><td>Residual Std. Error</td><td>25.423 (df = 1351)</td></tr>
-                            <tr><td>F Statistic</td><td>36.368*** (df = 2; 1351)</td></tr>
-                        </tbody>
-                    </table>
-                    <p style="font-size:13px;font-style:italic;">Note: *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</p>
-                </div>
-
-                <p class="paragraph" style="text-align:justify;">
-                    In our first regression, we examine the relationship between Royal Caribbean's share price and the sentiment scores of its CEO and CFO. The CEO's sentiment score exhibits a <strong>negative correlation</strong> with the company's share price, while the CFO's sentiment score shows a <strong>positive correlation</strong>, both significant at the 99% confidence level. This finding supports our hypothesis that the CFO's statements are more closely aligned with the company's actual future performance. The negative coefficient associated with the CEO's sentiment score suggests either an overestimation of the company's performance by the CEO or the utilization of sentiment that is unrelated to the company's future performance.
-                </p>
-
-                <div style="text-align:center;margin:30px 0;">
-                    <table class="regression-table">
-                        <caption><b>Table 2</b> &mdash; Regression analysis of DAL Share Price on CEO &amp; CFO Sentiment Score</caption>
-                        <thead><tr><th style="text-align:left;">Dependent variable: DAL Share Price</th><th>(1)</th></tr></thead>
-                        <tbody>
-                            <tr><td>CEO Sentiment Score</td><td>0.106***</td></tr>
-                            <tr><td></td><td>(0.038)</td></tr>
-                            <tr><td>CFO Sentiment Score</td><td>1.300***</td></tr>
-                            <tr><td></td><td>(0.052)</td></tr>
-                            <tr><td>Constant</td><td>31.636***</td></tr>
-                            <tr><td></td><td>(0.529)</td></tr>
-                            <tr class="separator"><td>Observations</td><td>1,355</td></tr>
-                            <tr><td>R&sup2;</td><td>0.329</td></tr>
-                            <tr><td>Adjusted R&sup2;</td><td>0.328</td></tr>
-                            <tr><td>Residual Std. Error</td><td>7.686 (df = 1352)</td></tr>
-                            <tr><td>F Statistic</td><td>332.125*** (df = 2; 1352)</td></tr>
-                        </tbody>
-                    </table>
-                    <p style="font-size:13px;font-style:italic;">Note: *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</p>
-                </div>
-
-                <p class="paragraph" style="text-align:justify;">
-                    The regression of Delta Air Lines reveals a positive association between the CFO's sentiment score and share price movements in the subsequent quarter. Similarly, a positive association is observed between the CEO's sentiment score and share price movements during the same period, however this correlation is weaker compared to that of the CFO's sentiment score. This again suggests that the CFO's sentiment tends to be a more accurate indicator of future performance in the following quarter.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    Similar patterns are observed for Norwegian Cruise Line and Southwest Airlines (Tables 5 &amp; 6 in the Appendix). In both cases, the CEO's sentiment score is negatively correlated and not statistically significant, indicating no strong association with share price movements. In contrast, the CFO's sentiment scores show a positive correlation with subsequent quarter share price movements, significant at a 99% confidence level.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    The consistency across all four regressions suggests that CFOs generally provide a more accurate assessment of the company's future performance, as measured by share price. While confirming our hypothesis, we recognise the limitations of our approach and address potential improvements in the following section. It is important to note that our analysis should be interpreted as indicating associations and trends between sentiment scores and company performance, rather than as a tool for predicting share prices.
-                </p>
-            </div>
-
-            <!-- SECTION 6 -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Limitations">6. Limitations and Further Research</h2>
-                <p class="paragraph" style="text-align:justify;">
-                    While our initial regression model establishes a direct association between sentiment scores and share prices, it lacks the depth needed to fully substantiate our hypotheses, as it doesn't consider the complexities of time-related dependencies and variables interactions over time.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    To enhance the model's capacity to capture these dynamics, incorporating <strong>time lags</strong> into sentiment scores is a recommended next step, which would enable a more nuanced analysis of how sentiment influences share prices in the following quarters. The introduction of lags could also provide more information on how long the association between the sentiment scores and the share prices can last. Future research could explore <strong>Vector Autoregressive (VAR) models</strong>, where each variable is modelled as a linear function of its own past values as well as the past values of all other variables in the system, providing a more comprehensive analysis of inter-dependencies over time.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    Refining the computation of sentiment scores is another area for enhancement. Normalising scores for CEOs and CFOs would mitigate biases originating from potential variations in speech length and style, ensuring a more equitable comparison. Implementing <strong>TF-IDF weighting</strong> to calculate sentiment scores could account for the varying significance of terms, acknowledging that certain words have more weight in conveying sentiment. Sentiment scores could then be calculated by determining the difference between the aggregated TF-IDF weights of positive and negative terms within each speech, thus providing a nuanced measure of sentiment. This approach would account for the varying importance of each term, offering a more sophisticated measure of sentiment.
-                </p>
-                <p class="paragraph" style="text-align:justify;">
-                    These advancements in modelling techniques and sentiment score calculation would strengthen the empirical foundation of our analysis and better explain how executive sentiment correlates to share price movements.
-                </p>
-            </div>
-
-            <!-- SECTION 7 -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Conclusion">7. Conclusion</h2>
-                <p class="paragraph" style="text-align:justify;">
-                    The objective of this paper was to investigate the changes in CEO and CFO sentiment during crises and identify which individual provides more accurate information in such times. Earnings call transcripts were extracted from four companies, sentiment analysis was conducted on the CEO and CFO texts, and sentiment scores were regressed against share price data. Results showed that while CEOs typically had higher sentiment scores, the gap narrowed during crises. Moreover, our analysis revealed that, in general, CFOs tended to provide a more precise reflection of future company performance compared to share prices across all four companies. The limitations of the study were acknowledged and the report outlined potential directions for further research.
-                </p>
-            </div>
-
-            <!-- BIBLIOGRAPHY -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Bibliography">Bibliography</h2>
-                <ol>
-                    <li id="ref1" style="margin-bottom:10px;">Andrew Chin, Yuyu Fan (2023). Leveraging Text Mining to Extract Insights from Earnings Call Transcripts. <em>Journal of Investment Management</em>, Vol 21, No.1, pp 81&ndash;102.</li>
-                    <li id="ref2" style="margin-bottom:10px;">Christopher Kantos, Dan Joldzic, Gautam Mitra, Kieu Thi Hoang (2022). Comparative Analysis of NLP Approaches for Earnings Calls. Alexandria Technology, OptiRisk Systems.</li>
-                    <li id="ref3" style="margin-bottom:10px;">Priyank Gandhi, Tim Loughran &amp; Bill McDonald (2019). Using Annual Report Sentiment as a Proxy for Financial Distress in U.S. Banks. <em>Journal of Behavioral Finance</em>, 20:4, 424&ndash;436.</li>
-                    <li id="ref4" style="margin-bottom:10px;">Xiaodong Li, Haoran Xie, Li Chen, Jianping Wang, Xiaotie Deng (2014). News Impact on Stock Price Return via Sentiment Analysis. <em>Knowledge-Based Systems</em>.</li>
-                    <li id="ref5" style="margin-bottom:10px;">Silvia Albrizio, Allan Dizioli, Philippe Simon (2023). Mining the gap: Extracting firms' inflation expectations from earnings call. <em>IMF Working Papers 23/202</em>, Washington D.C., International Monetary Fund.</li>
-                    <li id="ref6" style="margin-bottom:10px;">Cruise Industry News. (2022, August 7). CDC Cruise Ship Timeline: From No Sail to the End of COVID-19 Program. Available at: <a href="https://cruiseindustrynews.com/cruise-news/2022/08/cdc-cruise-ship-timeline-from-no-sail-to-the-end-of-covid-19-program/" target="_blank">cruiseindustrynews.com</a></li>
-                </ol>
-            </div>
-
-            <!-- APPENDIX -->
-            <div class="w3-container w3-large" style="margin-top:40px;">
-                <h2 id="Appendix">Appendix</h2>
-
-                <h4>Table 3 &mdash; Top 20 Most Important Words for CEO and CFO (TF-IDF)</h4>
-                <div style="overflow-x:auto;">
-                    <table class="word-table">
-                        <thead><tr><th>#</th><th>CEO</th><th>CFO</th></tr></thead>
-                        <tbody>
-                            <tr><td>1</td><td>cruis</td><td>billion</td></tr>
-                            <tr><td>2</td><td>guest</td><td>fuel</td></tr>
-                            <tr><td>3</td><td>delta</td><td>approxim</td></tr>
-                            <tr><td>4</td><td>book</td><td>cash</td></tr>
-                            <tr><td>5</td><td>brand</td><td>increas</td></tr>
-                            <tr><td>6</td><td>ship</td><td>2019</td></tr>
-                            <tr><td>7</td><td>norwegian</td><td>net</td></tr>
-                            <tr><td>8</td><td>custom</td><td>capac</td></tr>
-                            <tr><td>9</td><td>2019</td><td>max</td></tr>
-                            <tr><td>10</td><td>sail</td><td>aircraft</td></tr>
-                            <tr><td>11</td><td>price</td><td>price</td></tr>
-                            <tr><td>12</td><td>posit</td><td>yield</td></tr>
-                            <tr><td>13</td><td>growth</td><td>hedg</td></tr>
-                            <tr><td>14</td><td>experi</td><td>second</td></tr>
-                            <tr><td>15</td><td>industri</td><td>guidanc</td></tr>
-                            <tr><td>16</td><td>vacat</td><td>growth</td></tr>
-                            <tr><td>17</td><td>record</td><td>adjust</td></tr>
-                            <tr><td>18</td><td>deliv</td><td>2023</td></tr>
-                            <tr><td>19</td><td>result</td><td>improv</td></tr>
-                            <tr><td>20</td><td>billion</td><td>fourth</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h4 style="margin-top:30px;">Table 4 &mdash; Sample Dataset</h4>
-                <div style="overflow-x:auto;">
-                    <table class="sample-table">
-                        <thead>
-                            <tr><th>Date</th><th>Close</th><th>Title</th><th>CEO Sent.</th><th>CFO Sent.</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>2019-01-15</td><td>102.03</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-16</td><td>102.07</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-17</td><td>103.40</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-18</td><td>105.63</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-22</td><td>104.94</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-23</td><td>104.63</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-24</td><td>106.02</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-25</td><td>107.94</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-28</td><td>108.40</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-29</td><td>108.24</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
-                            <tr><td>2019-01-30</td><td>116.87</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
-                            <tr><td>2019-01-31</td><td>115.97</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
-                            <tr><td>2019-02-01</td><td>114.29</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
-                            <tr><td>2019-02-04</td><td>114.96</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
-                            <tr><td>2019-02-05</td><td>114.20</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h4 style="margin-top:30px;">NCLH and LUV &mdash; Sentiment by Quarter</h4>
-                <div style="display:flex;gap:20px;flex-wrap:wrap;margin:20px 0;">
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <div class="img-placeholder">Figure 8 &mdash; CEO &amp; CFO Sentiment Scores by Earnings Call &mdash; NCLH (image not available in repository)</div>
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 8</b> &mdash; CEO and CFO quarterly sentiment scores for Norwegian Cruise Line (NCLH)</p>
-                    </div>
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/score_luv.png" alt="CEO and CFO Sentiment Scores by Earnings Call LUV" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 9</b> &mdash; CEO and CFO quarterly sentiment scores for Southwest Airlines (LUV)</p>
-                    </div>
-                </div>
-
-                <h4 style="margin-top:20px;">NCLH and LUV &mdash; Sentiment &amp; Share Price Over Time</h4>
-                <div style="display:flex;gap:20px;flex-wrap:wrap;margin:20px 0;">
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/NCHL_SentimentScore_SharePrice.png" alt="Norwegian Cruise Line sentiment and share price" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 10</b> &mdash; NCLH: CEO &amp; CFO Sentiment Score over time with COVID periods</p>
-                    </div>
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/LUV_SentimentScore_SharePrice.png" alt="Southwest Airlines sentiment and share price" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 11</b> &mdash; LUV: CEO &amp; CFO Sentiment Score over time with COVID periods</p>
-                    </div>
-                </div>
-                <div style="display:flex;gap:20px;flex-wrap:wrap;margin:20px 0;">
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/NCHL_SentimentScore_SharePrice.png" alt="NCLH share price and sentiment" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 12</b> &mdash; NCLH: CEO &amp; CFO Sentiment Score &amp; Share Price over time</p>
-                    </div>
-                    <div style="flex:1;min-width:280px;text-align:center;">
-                        <img src="./images/LUV_SentimentScore_SharePrice.png" alt="LUV share price and sentiment" style="max-width:100%;height:auto;border-radius:5px;" />
-                        <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 13</b> &mdash; LUV: CEO &amp; CFO Sentiment Score &amp; Share Price over time</p>
-                    </div>
-                </div>
-                <p class="paragraph" style="text-align:justify;">
-                    In Figures 12 and 13, during the COVID-19 lockdown periods, a substantial decline in share price is observable, indicating the stress the pandemic placed on the cruise line and airline industries. The graphs also show the sentiment scores fluctuating over time. From these graphs there isn't a clear visual correlation between the sentiment scores and the share price movements, making it challenging to draw definitive conclusions about their relationship.
-                </p>
-
-                <div style="text-align:center;margin:30px 0;">
-                    <table class="regression-table">
-                        <caption><b>Table 5</b> &mdash; Regression analysis of NCLH Share Price on CEO &amp; CFO Sentiment Score</caption>
-                        <thead><tr><th style="text-align:left;">Dependent variable: NCLH Share Price</th><th>(1)</th></tr></thead>
-                        <tbody>
-                            <tr><td>CEO Sentiment Score</td><td>-0.035</td></tr>
-                            <tr><td></td><td>(0.062)</td></tr>
-                            <tr><td>CFO Sentiment Score</td><td>1.172***</td></tr>
-                            <tr><td></td><td>(0.080)</td></tr>
-                            <tr><td>Constant</td><td>20.421***</td></tr>
-                            <tr><td></td><td>(0.467)</td></tr>
-                            <tr class="separator"><td>Observations</td><td>1,345</td></tr>
-                            <tr><td>R&sup2;</td><td>0.429</td></tr>
-                            <tr><td>Adjusted R&sup2;</td><td>0.428</td></tr>
-                            <tr><td>Residual Std. Error</td><td>11.467 (df = 1342)</td></tr>
-                            <tr><td>F Statistic</td><td>504.645*** (df = 2; 1342)</td></tr>
-                        </tbody>
-                    </table>
-                    <p style="font-size:13px;font-style:italic;">Note: *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</p>
-                </div>
-
-                <div style="text-align:center;margin:30px 0;">
-                    <table class="regression-table">
-                        <caption><b>Table 6</b> &mdash; Regression analysis of LUV Share Price on CEO &amp; CFO Sentiment Score</caption>
-                        <thead><tr><th style="text-align:left;">Dependent variable: LUV Share Price</th><th>(1)</th></tr></thead>
-                        <tbody>
-                            <tr><td>CEO Sentiment Score</td><td>-0.030</td></tr>
-                            <tr><td></td><td>(0.042)</td></tr>
-                            <tr><td>CFO Sentiment Score</td><td>1.012***</td></tr>
-                            <tr><td></td><td>(0.058)</td></tr>
-                            <tr><td>Constant</td><td>35.409***</td></tr>
-                            <tr><td></td><td>(0.593)</td></tr>
-                            <tr class="separator"><td>Observations</td><td>1,355</td></tr>
-                            <tr><td>R&sup2;</td><td>0.183</td></tr>
-                            <tr><td>Adjusted R&sup2;</td><td>0.182</td></tr>
-                            <tr><td>Residual Std. Error</td><td>8.612 (df = 1352)</td></tr>
-                            <tr><td>F Statistic</td><td>151.914*** (df = 2; 1352)</td></tr>
-                        </tbody>
-                    </table>
-                    <p style="font-size:13px;font-style:italic;">Note: *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</p>
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/DAL_SentimentScore_SharePrice.png" alt="Delta Airlines CEO and CFO Sentiment Score Over Time" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 5</b> &mdash; DAL: CEO &amp; CFO Sentiment Score over time with COVID periods</p>
                 </div>
             </div>
 
-            <!-- Resources -->
-            <div class="w3-container w3-large" style="margin-top:30px;margin-bottom:130px;">
-                <h2>Resources</h2>
-                <p style="margin-left:60px;">
-                    <i class="fa fa-arrow-right w3-text-black"></i>
-                    <a href="https://github.com/mtbrr26/Natural_Language_Processing_project/raw/main/BREIER_MONBIOT_WALKER_Final_Project_Intro_NLP.pdf" target="_blank"> Full Paper (PDF)</a>
-                </p>
-                <p style="margin-left:60px;">
-                    <i class="fa fa-arrow-right w3-text-black"></i>
-                    GitHub: <a href="https://github.com/mtbrr26/Natural_Language_Processing_project" target="_blank">Natural_Language_Processing_project</a>
-                </p>
+            <h3>5.2 CEO &amp; CFO Sentiment Accuracy</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Figures 6 and 7 show the share price alongside CEO and CFO sentiment of Royal Caribbean and Delta Airlines, respectively. A marked drop in share prices during the COVID-19 period, highlighted in light blue, signifies the catastrophic economic conditions. In these charts, we also observe a notable decline in CEO sentiment, with the lowest point reached in early 2020. Additionally, both figures display a secondary decrease around May/June 2022, likely associated with the energy crisis following the Russian invasion of Ukraine.
+            </p>
+
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin:30px 0;">
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/RCL_SentimentScore_SharePrice.png" alt="RCL CEO and CFO Sentiment Score and Share Price" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 6</b> &mdash; RCL: CEO &amp; CFO Sentiment Score &amp; Share Price over time</p>
+                </div>
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/DAL_SentimentScore_SharePrice.png" alt="DAL CEO and CFO Sentiment Score and Share Price" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 7</b> &mdash; DAL: CEO &amp; CFO Sentiment Score &amp; Share Price over time</p>
+                </div>
             </div>
 
-        </div><!-- end article body -->
+            <p class="paragraph" style="text-align:justify;">
+                From Figure 6, it is apparent that the sentiment score of Royal Caribbean Cruise's CEO closely aligns with the company's share price, suggesting a potential correlation. The CEO's sentiment scores decreased during COVID-19 but began to rise again towards the end of the period. In contrast, the CFO's sentiment score did not decrease at the onset of the pandemic but instead increased as the pandemic neared its end.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Figure 7, however, shows more ambiguous patterns, making it challenging to discern clear associations between the sentiment scores of Delta Airline's CEO and CFO and the company's share price.
+            </p>
 
-    </body>
+            <h4>Regression Analysis</h4>
+            <p class="paragraph" style="text-align:justify;">To quantitatively explore the relationship between different sentiment scores and share price, the results of the linear regressions are presented below.</p>
 
-    <!-- Footnote / Contact -->
-    <div class="footnote">
-        <div class="w3-container" style="margin-left:128px;margin-right:128px;margin-bottom:30px;margin-top:30px;">
-            <div class="w3-left-align">
-                <h2>Contact</h2>
-                <p style="text-align:left;font-size:16px;">Email: <a href="mailto:breiermathieu@gmail.com">breiermathieu@gmail.com</a></p>
-                <p style="text-align:left;font-size:16px;">Download my CV <a href="../../downloads/cv.pdf" download>here</a></p>
-                <p style="text-align:left;font-size:16px;">
-                    Github: <a href="https://github.com/mtbrr26" target="_blank">github.com/mtbrr26</a><br>
-                    LinkedIn: <a href="https://www.linkedin.com/in/mathieu-breier/" target="_blank">linkedin.com/in/mathieu-breier/</a>
-                </p>
+            <div class="table-container" style="margin:30px 0;">
+                <table class="academia">
+                    <caption><b>Table 1</b> &mdash; Regression analysis of RCL Share Price on CEO &amp; CFO Sentiment Score</caption>
+                    <thead><tr><th>Dependent variable: RCL Share Price</th><th>(1)</th></tr></thead>
+                    <tbody>
+                        <tr><td>CEO Sentiment Score</td><td>-0.573***</td></tr>
+                        <tr><td></td><td>(0.085)</td></tr>
+                        <tr><td>CFO Sentiment Score</td><td>1.432***</td></tr>
+                        <tr><td></td><td>(0.168)</td></tr>
+                        <tr><td>Constant</td><td>89.746***</td></tr>
+                        <tr><td></td><td>(1.392)</td></tr>
+                        <tr class="separator"><td>Observations</td><td>1,354</td></tr>
+                        <tr><td>R&sup2;</td><td>0.051</td></tr>
+                        <tr><td>Adjusted R&sup2;</td><td>0.050</td></tr>
+                        <tr><td>Residual Std. Error</td><td>25.423 (df = 1351)</td></tr>
+                        <tr><td>F Statistic</td><td>36.368*** (df = 2; 1351)</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size:13px;font-style:italic;">Note: *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</p>
+            </div>
+
+            <p class="paragraph" style="text-align:justify;">
+                In our first regression, we examine the relationship between Royal Caribbean's share price and the sentiment scores of its CEO and CFO. The CEO's sentiment score exhibits a <strong>negative correlation</strong> with the company's share price, while the CFO's sentiment score shows a <strong>positive correlation</strong>, both significant at the 99% confidence level. This finding supports our hypothesis that the CFO's statements are more closely aligned with the company's actual future performance. The negative coefficient associated with the CEO's sentiment score suggests either an overestimation of the company's performance by the CEO or the utilization of sentiment that is unrelated to the company's future performance.
+            </p>
+
+            <div class="table-container" style="margin:30px 0;">
+                <table class="academia">
+                    <caption><b>Table 2</b> &mdash; Regression analysis of DAL Share Price on CEO &amp; CFO Sentiment Score</caption>
+                    <thead><tr><th>Dependent variable: DAL Share Price</th><th>(1)</th></tr></thead>
+                    <tbody>
+                        <tr><td>CEO Sentiment Score</td><td>0.106***</td></tr>
+                        <tr><td></td><td>(0.038)</td></tr>
+                        <tr><td>CFO Sentiment Score</td><td>1.300***</td></tr>
+                        <tr><td></td><td>(0.052)</td></tr>
+                        <tr><td>Constant</td><td>31.636***</td></tr>
+                        <tr><td></td><td>(0.529)</td></tr>
+                        <tr class="separator"><td>Observations</td><td>1,355</td></tr>
+                        <tr><td>R&sup2;</td><td>0.329</td></tr>
+                        <tr><td>Adjusted R&sup2;</td><td>0.328</td></tr>
+                        <tr><td>Residual Std. Error</td><td>7.686 (df = 1352)</td></tr>
+                        <tr><td>F Statistic</td><td>332.125*** (df = 2; 1352)</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size:13px;font-style:italic;">Note: *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</p>
+            </div>
+
+            <p class="paragraph" style="text-align:justify;">
+                The regression of Delta Air Lines reveals a positive association between the CFO's sentiment score and share price movements in the subsequent quarter. Similarly, a positive association is observed between the CEO's sentiment score and share price movements during the same period, however this correlation is weaker compared to that of the CFO's sentiment score. This again suggests that the CFO's sentiment tends to be a more accurate indicator of future performance in the following quarter.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Similar patterns are observed for Norwegian Cruise Line and Southwest Airlines (Tables 5 &amp; 6 in the Appendix). In both cases, the CEO's sentiment score is negatively correlated and not statistically significant, indicating no strong association with share price movements. In contrast, the CFO's sentiment scores show a positive correlation with subsequent quarter share price movements, significant at a 99% confidence level.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                The consistency across all four regressions suggests that CFOs generally provide a more accurate assessment of the company's future performance, as measured by share price. While confirming our hypothesis, we recognise the limitations of our approach and address potential improvements in the following section. It is important to note that our analysis should be interpreted as indicating associations and trends between sentiment scores and company performance, rather than as a tool for predicting share prices.
+            </p>
+        </div>
+
+        <!-- SECTION 6 -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Limitations">6. Limitations and Further Research</h2>
+            <p class="paragraph" style="text-align:justify;">
+                While our initial regression model establishes a direct association between sentiment scores and share prices, it lacks the depth needed to fully substantiate our hypotheses, as it doesn't consider the complexities of time-related dependencies and variables interactions over time.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                To enhance the model's capacity to capture these dynamics, incorporating <strong>time lags</strong> into sentiment scores is a recommended next step, which would enable a more nuanced analysis of how sentiment influences share prices in the following quarters. The introduction of lags could also provide more information on how long the association between the sentiment scores and the share prices can last. Future research could explore <strong>Vector Autoregressive (VAR) models</strong>, where each variable is modelled as a linear function of its own past values as well as the past values of all other variables in the system, providing a more comprehensive analysis of inter-dependencies over time.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Refining the computation of sentiment scores is another area for enhancement. Normalising scores for CEOs and CFOs would mitigate biases originating from potential variations in speech length and style, ensuring a more equitable comparison. Implementing <strong>TF-IDF weighting</strong> to calculate sentiment scores could account for the varying significance of terms, acknowledging that certain words have more weight in conveying sentiment. Sentiment scores could then be calculated by determining the difference between the aggregated TF-IDF weights of positive and negative terms within each speech, thus providing a nuanced measure of sentiment. This approach would account for the varying importance of each term, offering a more sophisticated measure of sentiment.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                These advancements in modelling techniques and sentiment score calculation would strengthen the empirical foundation of our analysis and better explain how executive sentiment correlates to share price movements.
+            </p>
+        </div>
+
+        <!-- SECTION 7 -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Conclusion">7. Conclusion</h2>
+            <p class="paragraph" style="text-align:justify;">
+                The objective of this paper was to investigate the changes in CEO and CFO sentiment during crises and identify which individual provides more accurate information in such times. Earnings call transcripts were extracted from four companies, sentiment analysis was conducted on the CEO and CFO texts, and sentiment scores were regressed against share price data. Results showed that while CEOs typically had higher sentiment scores, the gap narrowed during crises. Moreover, our analysis revealed that, in general, CFOs tended to provide a more precise reflection of future company performance compared to share prices across all four companies. The limitations of the study were acknowledged and the report outlined potential directions for further research.
+            </p>
+        </div>
+
+        <!-- BIBLIOGRAPHY -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Bibliography">Bibliography</h2>
+            <ol>
+                <li id="ref1" style="margin-bottom:10px;">Andrew Chin, Yuyu Fan (2023). Leveraging Text Mining to Extract Insights from Earnings Call Transcripts. <em>Journal of Investment Management</em>, Vol 21, No.1, pp 81&ndash;102.</li>
+                <li id="ref2" style="margin-bottom:10px;">Christopher Kantos, Dan Joldzic, Gautam Mitra, Kieu Thi Hoang (2022). Comparative Analysis of NLP Approaches for Earnings Calls. Alexandria Technology, OptiRisk Systems.</li>
+                <li id="ref3" style="margin-bottom:10px;">Priyank Gandhi, Tim Loughran &amp; Bill McDonald (2019). Using Annual Report Sentiment as a Proxy for Financial Distress in U.S. Banks. <em>Journal of Behavioral Finance</em>, 20:4, 424&ndash;436.</li>
+                <li id="ref4" style="margin-bottom:10px;">Xiaodong Li, Haoran Xie, Li Chen, Jianping Wang, Xiaotie Deng (2014). News Impact on Stock Price Return via Sentiment Analysis. <em>Knowledge-Based Systems</em>.</li>
+                <li id="ref5" style="margin-bottom:10px;">Silvia Albrizio, Allan Dizioli, Philippe Simon (2023). Mining the gap: Extracting firms' inflation expectations from earnings call. <em>IMF Working Papers 23/202</em>, Washington D.C., International Monetary Fund.</li>
+                <li id="ref6" style="margin-bottom:10px;">Cruise Industry News. (2022, August 7). CDC Cruise Ship Timeline: From No Sail to the End of COVID-19 Program. Available at: <a href="https://cruiseindustrynews.com/cruise-news/2022/08/cdc-cruise-ship-timeline-from-no-sail-to-the-end-of-covid-19-program/" target="_blank">cruiseindustrynews.com</a></li>
+            </ol>
+        </div>
+
+        <!-- APPENDIX -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Appendix">Appendix</h2>
+
+            <h4>Table 3 &mdash; Top 20 Most Important Words for CEO and CFO (TF-IDF)</h4>
+            <div class="table-container">
+                <table class="academia">
+                    <thead><tr><th>#</th><th>CEO</th><th>CFO</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>cruis</td><td>billion</td></tr>
+                        <tr><td>2</td><td>guest</td><td>fuel</td></tr>
+                        <tr><td>3</td><td>delta</td><td>approxim</td></tr>
+                        <tr><td>4</td><td>book</td><td>cash</td></tr>
+                        <tr><td>5</td><td>brand</td><td>increas</td></tr>
+                        <tr><td>6</td><td>ship</td><td>2019</td></tr>
+                        <tr><td>7</td><td>norwegian</td><td>net</td></tr>
+                        <tr><td>8</td><td>custom</td><td>capac</td></tr>
+                        <tr><td>9</td><td>2019</td><td>max</td></tr>
+                        <tr><td>10</td><td>sail</td><td>aircraft</td></tr>
+                        <tr><td>11</td><td>price</td><td>price</td></tr>
+                        <tr><td>12</td><td>posit</td><td>yield</td></tr>
+                        <tr><td>13</td><td>growth</td><td>hedg</td></tr>
+                        <tr><td>14</td><td>experi</td><td>second</td></tr>
+                        <tr><td>15</td><td>industri</td><td>guidanc</td></tr>
+                        <tr><td>16</td><td>vacat</td><td>growth</td></tr>
+                        <tr><td>17</td><td>record</td><td>adjust</td></tr>
+                        <tr><td>18</td><td>deliv</td><td>2023</td></tr>
+                        <tr><td>19</td><td>result</td><td>improv</td></tr>
+                        <tr><td>20</td><td>billion</td><td>fourth</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 style="margin-top:30px;">Table 4 &mdash; Sample Dataset</h4>
+            <div class="table-container">
+                <table class="academia">
+                    <thead>
+                        <tr><th>Date</th><th>Close</th><th>Title</th><th>CEO Sent.</th><th>CFO Sent.</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2019-01-15</td><td>102.03</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-16</td><td>102.07</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-17</td><td>103.40</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-18</td><td>105.63</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-22</td><td>104.94</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-23</td><td>104.63</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-24</td><td>106.02</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-25</td><td>107.94</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-28</td><td>108.40</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-29</td><td>108.24</td><td>RCL Q3 Earnings Call</td><td>8.0</td><td>-1.0</td></tr>
+                        <tr><td>2019-01-30</td><td>116.87</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
+                        <tr><td>2019-01-31</td><td>115.97</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
+                        <tr><td>2019-02-01</td><td>114.29</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
+                        <tr><td>2019-02-04</td><td>114.96</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
+                        <tr><td>2019-02-05</td><td>114.20</td><td>RCL Q4 Earnings Call</td><td>11.0</td><td>0.0</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 style="margin-top:30px;">NCLH and LUV &mdash; Sentiment by Quarter</h4>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin:20px 0;">
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <div class="img-placeholder">Figure 8 &mdash; CEO &amp; CFO Sentiment Scores by Earnings Call &mdash; NCLH (image not available in repository)</div>
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 8</b> &mdash; CEO and CFO quarterly sentiment scores for Norwegian Cruise Line (NCLH)</p>
+                </div>
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/score_luv.png" alt="CEO and CFO Sentiment Scores by Earnings Call LUV" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 9</b> &mdash; CEO and CFO quarterly sentiment scores for Southwest Airlines (LUV)</p>
+                </div>
+            </div>
+
+            <h4 style="margin-top:20px;">NCLH and LUV &mdash; Sentiment &amp; Share Price Over Time</h4>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin:20px 0;">
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/NCHL_SentimentScore_SharePrice.png" alt="Norwegian Cruise Line sentiment and share price" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 10</b> &mdash; NCLH: CEO &amp; CFO Sentiment Score over time with COVID periods</p>
+                </div>
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/LUV_SentimentScore_SharePrice.png" alt="Southwest Airlines sentiment and share price" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 11</b> &mdash; LUV: CEO &amp; CFO Sentiment Score over time with COVID periods</p>
+                </div>
+            </div>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin:20px 0;">
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/NCHL_SentimentScore_SharePrice.png" alt="NCLH share price and sentiment" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 12</b> &mdash; NCLH: CEO &amp; CFO Sentiment Score &amp; Share Price over time</p>
+                </div>
+                <div style="flex:1;min-width:280px;text-align:center;">
+                    <img src="./images/LUV_SentimentScore_SharePrice.png" alt="LUV share price and sentiment" style="max-width:100%;height:auto;border-radius:5px;" />
+                    <p style="font-style:italic;font-size:13px;margin-top:8px;"><b>Figure 13</b> &mdash; LUV: CEO &amp; CFO Sentiment Score &amp; Share Price over time</p>
+                </div>
+            </div>
+            <p class="paragraph" style="text-align:justify;">
+                In Figures 12 and 13, during the COVID-19 lockdown periods, a substantial decline in share price is observable, indicating the stress the pandemic placed on the cruise line and airline industries. The graphs also show the sentiment scores fluctuating over time. From these graphs there isn't a clear visual correlation between the sentiment scores and the share price movements, making it challenging to draw definitive conclusions about their relationship.
+            </p>
+
+            <div class="table-container" style="margin:30px 0;">
+                <table class="academia">
+                    <caption><b>Table 5</b> &mdash; Regression analysis of NCLH Share Price on CEO &amp; CFO Sentiment Score</caption>
+                    <thead><tr><th>Dependent variable: NCLH Share Price</th><th>(1)</th></tr></thead>
+                    <tbody>
+                        <tr><td>CEO Sentiment Score</td><td>-0.035</td></tr>
+                        <tr><td></td><td>(0.062)</td></tr>
+                        <tr><td>CFO Sentiment Score</td><td>1.172***</td></tr>
+                        <tr><td></td><td>(0.080)</td></tr>
+                        <tr><td>Constant</td><td>20.421***</td></tr>
+                        <tr><td></td><td>(0.467)</td></tr>
+                        <tr class="separator"><td>Observations</td><td>1,345</td></tr>
+                        <tr><td>R&sup2;</td><td>0.429</td></tr>
+                        <tr><td>Adjusted R&sup2;</td><td>0.428</td></tr>
+                        <tr><td>Residual Std. Error</td><td>11.467 (df = 1342)</td></tr>
+                        <tr><td>F Statistic</td><td>504.645*** (df = 2; 1342)</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size:13px;font-style:italic;">Note: *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</p>
+            </div>
+
+            <div class="table-container" style="margin:30px 0;">
+                <table class="academia">
+                    <caption><b>Table 6</b> &mdash; Regression analysis of LUV Share Price on CEO &amp; CFO Sentiment Score</caption>
+                    <thead><tr><th>Dependent variable: LUV Share Price</th><th>(1)</th></tr></thead>
+                    <tbody>
+                        <tr><td>CEO Sentiment Score</td><td>-0.030</td></tr>
+                        <tr><td></td><td>(0.042)</td></tr>
+                        <tr><td>CFO Sentiment Score</td><td>1.012***</td></tr>
+                        <tr><td></td><td>(0.058)</td></tr>
+                        <tr><td>Constant</td><td>35.409***</td></tr>
+                        <tr><td></td><td>(0.593)</td></tr>
+                        <tr class="separator"><td>Observations</td><td>1,355</td></tr>
+                        <tr><td>R&sup2;</td><td>0.183</td></tr>
+                        <tr><td>Adjusted R&sup2;</td><td>0.182</td></tr>
+                        <tr><td>Residual Std. Error</td><td>8.612 (df = 1352)</td></tr>
+                        <tr><td>F Statistic</td><td>151.914*** (df = 2; 1352)</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size:13px;font-style:italic;">Note: *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</p>
             </div>
         </div>
-        <p>&copy; Mathieu Breier</p>
+
+        <!-- Resources -->
+        <div class="w3-container w3-large" style="margin-top:30px;margin-bottom:130px;">
+            <h2>Resources</h2>
+            <p style="margin-left:60px;">
+                <i class="fa fa-arrow-right w3-text-black"></i>
+                <a href="https://github.com/mtbrr26/Natural_Language_Processing_project/raw/main/BREIER_MONBIOT_WALKER_Final_Project_Intro_NLP.pdf" target="_blank"> Full Paper (PDF)</a>
+            </p>
+            <p style="margin-left:60px;">
+                <i class="fa fa-arrow-right w3-text-black"></i>
+                GitHub: <a href="https://github.com/mtbrr26/Natural_Language_Processing_project" target="_blank">Natural_Language_Processing_project</a>
+            </p>
+        </div>
+
+    </div><!-- end article body -->
+
+</body>
+
+<!-- Footnote / Contact -->
+<div class="footnote">
+    <div class="w3-container" style="margin-left:128px;margin-right:128px;margin-bottom:30px;margin-top:30px;">
+        <div class="w3-left-align">
+            <h2>Contact</h2>
+            <p style="text-align:left;font-size:16px;">Email: <a href="mailto:breiermathieu@gmail.com">breiermathieu@gmail.com</a></p>
+            <p style="text-align:left;font-size:16px;">Download my CV <a href="../../downloads/cv.pdf" download>here</a></p>
+            <p style="text-align:left;font-size:16px;">
+                Github: <a href="https://github.com/mtbrr26" target="_blank">github.com/mtbrr26</a><br>
+                LinkedIn: <a href="https://www.linkedin.com/in/mathieu-breier/" target="_blank">linkedin.com/in/mathieu-breier/</a>
+            </p>
+        </div>
     </div>
+    <p>&copy; Mathieu Breier</p>
+</div>
 
-    </html>
+</html>
