@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6V4BZTRRN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-M6V4BZTRRN');
+        </script>
+
+        <title>NLP: Sentiment Analysis of Earnings Calls</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+        <link rel="stylesheet" href="../../assets/css/nav.css">
+        <link rel="stylesheet" href="../../assets/css/project.css">
+        <script src="../../assets/js/project.js" defer></script>
+        <script src="../../assets/js/navbar.js" defer></script>
+    </head>
+
+<body>
+    <div class="progress-bar" id="myBar"></div>
+
+    <!-- Fixed Sidebar -->
+    <div class="sidebar">
+      <nav class="nav">
+        <a href="#Abstract">Abstract</a>
+        <a href="#Web_Scraping">Web Scraping</a>
+        <a href="#Sentiment_Analysis">Sentiment Analysis</a>
+        <a href="#Results">Results</a>
+        <a href="#Conclusion">Conclusion</a>
+        <a href="#Further_Study">Further Study</a>
+      </nav>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-content">
+            <a href="../../" class="nav-link">Home</a>
+            <a href="../../#projects" class="nav-link">Portfolio</a>
+            <a href="../../aboutme/" class="nav-link">About Me</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+            <span></span><span></span>
+        </button>
+        <div class="nav-mobile">
+            <a href="../../" onclick="toggleNav()">Home</a>
+            <a href="../../#projects" onclick="toggleNav()">Portfolio</a>
+            <a href="../../aboutme/" onclick="toggleNav()">About Me</a>
+        </div>
+    </nav>
+
+    <!-- Hero Image -->
+    <div class="w3-display-container" id="home" style="display: flex; justify-content: center; align-items: center; height: 55vh; background: linear-gradient(135deg, #1a222c 0%, #2a3a4c 100%);">
+        <div class="w3-display-middle" style="white-space: nowrap; text-align: center; font-family: Georgia, serif; padding: 20px;">
+            <span class="w3-center w3-padding-large w3-xxlarge w3-wide w3-animate-opacity" style="color: #fff; display: block;">
+                NLP: Sentiment Analysis of Earnings Call Transcripts
+            </span>
+            <br>
+            <span class="w3-center w3-padding-large w3-large w3-animate-opacity" style="color: #c9d6df; font-family: avenir next, avenir, sans-serif; display: block;">
+                NATURAL LANGUAGE PROCESSING &nbsp;·&nbsp; SENTIMENT ANALYSIS &nbsp;·&nbsp; FINANCE
+            </span>
+        </div>
+    </div>
+
+    <!-- Abstract -->
+    <div class="w3-content w3-container w3-padding-64" id="Abstract" style="max-width: 800px; margin-bottom: 50px;">
+        <h2 class="w3-center" style="font-family: Georgia, serif;">Abstract</h2>
+        <p style="font-family: Georgia, serif; text-align: justify; font-size: 17px;">
+            This project explores the dynamic shifts in sentiment expressed by CEOs and CFOs during economic crises and assesses the accuracy of their communications in such times. We analyzed earnings call transcripts from four distinct companies — Royal Caribbean (RCL), Norwegian Cruise Line (NCLH), Delta Air Lines (DAL), and Southwest Airlines (LUV) — applying the Loughran-McDonald sentiment analysis to texts from both executives. The sentiment scores obtained were regressed against share price data to gauge the correlation with actual company performance, with a particular focus on the COVID-19 crisis period.
+        </p>
+    </div>
+
+    <!-- Title block -->
+    <div class="w3-container w3-border-bottom" style="margin-left: 128px; margin-right: 128px;">
+        <h1 style="font-size: 42px;">How Do CEOs and CFOs Modify Their Sentiment in Times of Economic Crisis?</h1>
+        <p style="margin-left: 5px; font-family: avenir next, avenir, sans-serif;">by <strong>Mathieu Breier, Edward Monbiot &amp; Amber Walker</strong></p>
+        <p style="margin-left: 5px; margin-bottom: 40px; font-family: avenir next, avenir, sans-serif;">March 18th, 2024</p>
+    </div>
+
+    <!-- Article body -->
+    <div style="margin-left: 228px; margin-right: 228px;">
+
+        <!-- Section 1: Web Scraping -->
+        <div class="w3-container w3-large" style="margin-top: 30px;">
+            <div class="w3-left-align">
+                <h2 id="Web_Scraping">1. Web Scraping Earnings Call Transcripts</h2>
+                <h3>Efficient and Scalable Data Scraping from Motley Fool</h3>
+                <p class="paragraph" style="text-align: justify;">
+                    This section focuses on implementing web scraping techniques to gather large datasets efficiently from fool.com. It provides a scalable framework for data collection, essential for data-driven decision-making processes. Earnings call transcripts were collected for four companies spanning the pre-COVID, COVID lockdown, and post-COVID periods (2018–2024).
+                </p>
+
+                <h4>Companies Covered</h4>
+                <ul>
+                    <li><strong>Cruise lines:</strong> Royal Caribbean (RCL) &amp; Norwegian Cruise Line (NCLH)</li>
+                    <li><strong>Airlines:</strong> Delta Air Lines (DAL) &amp; Southwest Airlines (LUV)</li>
+                </ul>
+
+                <h4>Libraries Used</h4>
+                <ul>
+                    <li>NumPy &amp; Pandas — data manipulation</li>
+                    <li>Selenium — dynamic web scraping pipeline</li>
+                    <li>BeautifulSoup — HTML parsing</li>
+                </ul>
+
+                <h4>Highlights</h4>
+                <ul>
+                    <li>Flexible and scalable data collection pipeline using Selenium</li>
+                    <li>Scraped data stored in Pandas DataFrames and exported to CSV</li>
+                    <li>Verification steps ensuring all quarterly earnings transcripts were fully captured</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Sentiment Analysis -->
+        <div class="w3-container w3-large" style="margin-top: 30px;">
+            <div class="w3-left-align">
+                <h2 id="Sentiment_Analysis">2. Sentiment Analysis of Earnings Calls</h2>
+                <p class="paragraph" style="text-align: justify;">
+                    The core analytical pipeline focused on extracting and quantifying sentiment from CEO and CFO speech sections within each earnings call transcript, using the Loughran-McDonald (LM) financial lexicon — a domain-specific dictionary designed for finance and accounting text where common words carry different sentiment than in general usage.
+                </p>
+
+                <h4>Pipeline Contents</h4>
+                <ul>
+                    <li><strong>Preprocessing:</strong> Lowercasing, stemming, removal of HTML tags, stopwords, and extra whitespace</li>
+                    <li><strong>Sentiment Scoring:</strong> Loughran-McDonald Sentiment Analyzer applied separately to CEO and CFO speech</li>
+                    <li><strong>Temporal Analysis:</strong> Sentiment scores plotted against share prices across Pre-COVID, COVID Lockdown, and Post-COVID periods</li>
+                    <li><strong>Regression Analysis:</strong> OLS regression to explore relationships between executive sentiment and market data</li>
+                </ul>
+
+                <h4>Libraries Used</h4>
+                <ul>
+                    <li>yfinance — share price retrieval</li>
+                    <li>Seaborn &amp; Matplotlib — visualisation</li>
+                    <li>Scikit-learn — regression analysis</li>
+                    <li>BeautifulSoup &amp; Selenium — data collection</li>
+                </ul>
+
+                <h4>Highlights</h4>
+                <ul>
+                    <li>Preprocessing pipeline tailored for financial transcripts</li>
+                    <li>Aggregated word cloud generation using TF-IDF weighting</li>
+                    <li>Detailed sentiment analysis with focus on the COVID-19 economic downturn</li>
+                    <li>Visualisation of CEO and CFO sentiment trends overlaid with stock prices</li>
+                    <li>Regression analysis quantifying the relationship between sentiment and share performance</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3: Results -->
+        <div class="w3-container w3-large" style="margin-top: 30px;">
+            <div class="w3-left-align">
+                <h2 id="Results">3. Results</h2>
+                <p class="paragraph" style="text-align: justify;">
+                    The charts below illustrate how CEO and CFO sentiment scores evolved over the study period alongside company share prices. The shaded region represents the COVID lockdown period (Q2 2020 – Q2 2022). A clear pattern emerges: both CEOs and CFOs registered sharp drops in sentiment during COVID, with CEOs generally displaying higher sentiment scores throughout, but CFOs providing a more accurate reflection of actual stock performance.
+                </p>
+
+                <h3>Southwest Airlines (LUV) — Sentiment by Quarter</h3>
+                <p class="paragraph" style="text-align: justify;">
+                    The bar chart below shows CEO and CFO quarterly sentiment scores for LUV across the full sample period. Both sentiment series reflect the COVID shock clearly in Q1–Q2 2020.
+                </p>
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="./images/score_luv.png" alt="CEO and CFO Sentiment Scores by Earnings Call — LUV" style="max-width: 100%; height: auto; border-radius: 5px;" />
+                    <p style="font-style: italic; font-size: 14px; margin-top: 8px;"><b>Figure 1</b> — CEO and CFO quarterly sentiment scores for Southwest Airlines (LUV)</p>
+                </div>
+
+                <h3>Royal Caribbean (RCL) — Sentiment &amp; Share Price</h3>
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="./images/RCL_SentimentScore_SharePrice.png" alt="CEO and CFO Sentiment & RCL Share Price Over Time" style="max-width: 100%; height: auto; border-radius: 5px;" />
+                    <p style="font-style: italic; font-size: 14px; margin-top: 8px;"><b>Figure 2</b> — CEO and CFO sentiment scores alongside RCL share price (2018–2024)</p>
+                </div>
+
+                <h3>Southwest Airlines (LUV) — Sentiment &amp; Share Price</h3>
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="./images/LUV_SentimentScore_SharePrice.png" alt="CEO and CFO Sentiment & LUV Share Price Over Time" style="max-width: 100%; height: auto; border-radius: 5px;" />
+                    <p style="font-style: italic; font-size: 14px; margin-top: 8px;"><b>Figure 3</b> — CEO and CFO sentiment scores alongside LUV share price (2018–2024)</p>
+                </div>
+
+                <h3>Norwegian Cruise Line (NCLH) — Sentiment &amp; Share Price</h3>
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="./images/NCHL_SentimentScore_SharePrice.png" alt="CEO and CFO Sentiment & NCLH Share Price Over Time" style="max-width: 100%; height: auto; border-radius: 5px;" />
+                    <p style="font-style: italic; font-size: 14px; margin-top: 8px;"><b>Figure 4</b> — CEO and CFO sentiment scores alongside NCLH share price (2018–2024)</p>
+                </div>
+
+                <h3>Delta Air Lines (DAL) — Sentiment &amp; Share Price</h3>
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="./images/DAL_SentimentScore_SharePrice.png" alt="CEO and CFO Sentiment & DAL Share Price Over Time" style="max-width: 100%; height: auto; border-radius: 5px;" />
+                    <p style="font-style: italic; font-size: 14px; margin-top: 8px;"><b>Figure 5</b> — CEO and CFO sentiment scores alongside DAL share price (2018–2024)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Conclusion -->
+        <div class="w3-container w3-large" style="margin-top: 30px;">
+            <div class="w3-left-align">
+                <h2 id="Conclusion">4. Conclusion</h2>
+                <p class="paragraph" style="text-align: justify;">
+                    Our study revealed that CEOs typically showed higher sentiment scores than their CFO counterparts, but this gap narrowed markedly during the COVID-19 crisis, suggesting that extraordinary economic pressure compresses the divergence in executive communication styles. Notably, CFOs consistently provided a more accurate reflection of company performance relative to share prices across all four companies, suggesting they may speak with greater financial candor during earnings calls. These findings highlight the value of disaggregating executive sentiment in NLP-based financial analysis rather than treating management communication as a monolithic signal.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 5: Further Study -->
+        <div class="w3-container w3-large" style="margin-top: 30px;">
+            <div class="w3-left-align">
+                <h2 id="Further_Study">5. Further Study</h2>
+                <p class="paragraph" style="text-align: justify;">
+                    Several avenues remain open for future research. First, incorporating time lags into sentiment scores would allow a deeper analysis of how executive communication influences future share prices rather than contemporaneous moves. Second, Vector Autoregressive (VAR) models could capture richer time-dependent interactions between CEO and CFO sentiment and market variables. Third, refining sentiment score computation by normalizing for speech length and speaking style — and applying TF-IDF weighting at the word level — would yield a more nuanced and equitable comparison across executives and companies.
+                </p>
+            </div>
+        </div>
+
+        <!-- Downloads -->
+        <div class="w3-container w3-large" style="margin-top: 30px; margin-bottom: 130px;">
+            <div class="w3-left-align">
+                <h2>Resources</h2>
+                <p style="margin-left: 60px;">
+                    <i class="fa fa-arrow-right w3-text-black"></i>
+                    <a href="https://github.com/mtbrr26/Natural_Language_Processing_project/raw/main/BREIER_MONBIOT_WALKER_Final_Project_Intro_NLP.pdf" target="_blank"> Full Paper (PDF)</a>
+                </p>
+                <p style="margin-left: 60px;">
+                    <i class="fa fa-arrow-right w3-text-black"></i>
+                    GitHub repository: <a href="https://github.com/mtbrr26/Natural_Language_Processing_project" target="_blank">Natural_Language_Processing_project</a>
+                </p>
+            </div>
+        </div>
+
+    </div><!-- end article body -->
+
+</body>
+
+<!-- Footnote / Contact -->
+<div class="footnote">
+    <div class="w3-container" style="margin-left: 128px; margin-right: 128px; margin-bottom: 30px; margin-top: 30px;">
+        <div class="w3-left-align">
+            <h2>Contact</h2>
+            <p style="text-align: left; font-size: 16px;">You can contact me through my email: <a href="mailto:breiermathieu@gmail.com">breiermathieu@gmail.com</a></p>
+            <p style="text-align: left; font-size: 16px;">
+                You can download my CV <a href="../../downloads/cv.pdf" download>here</a>
+            </p>
+            <p style="text-align: left; font-size: 16px;">
+                Follow me on:<br>
+                Github: <a href="https://github.com/mtbrr26" target="_blank">https://github.com/mtbrr26</a><br>
+                LinkedIn: <a href="https://www.linkedin.com/in/mathieu-breier/" target="_blank">https://www.linkedin.com/in/mathieu-breier/</a>
+            </p>
+        </div>
+    </div>
+    <p>&copy; Mathieu Breier</p>
+</div>
+
+</html>
