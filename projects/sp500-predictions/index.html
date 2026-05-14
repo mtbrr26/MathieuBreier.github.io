@@ -25,11 +25,11 @@
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
         <style>
-            .img-placeholder { background: #f0f0f0; border: 2px dashed #aaa; display: flex; align-items: center; justify-content: center; color: #888; font-style: italic; font-size: 14px; width: 100%; height: 300px; border-radius: 5px; margin: 18px 0; }
+            .img-placeholder { background: #f0f0f0; border: 2px dashed #aaa; display: flex; align-items: center; justify-content: center; color: #888; font-style: italic; font-size: 14px; width: 100%; height: 260px; border-radius: 5px; margin: 10px 0; }
             .academia caption { caption-side: top; text-align: center; font-style: italic; font-size: 0.9rem; color: #555; padding-bottom: 0.5rem; }
             .academia tr.separator td { border-top: 1px solid #999 !important; }
             .fig-caption { text-align: center; font-style: italic; font-size: 0.88rem; color: #666; margin-top: -10px; margin-bottom: 20px; }
-            .callout { background: #f4f8ff; border-left: 4px solid #3a6fa0; padding: 14px 18px; border-radius: 4px; margin: 20px 0; font-size: 0.97rem; }
+
             .rmse-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.97rem; }
             .rmse-table th { background: #1a222c; color: #fff; padding: 10px 16px; text-align: left; }
             .rmse-table td { padding: 9px 16px; border-bottom: 1px solid #e0e0e0; }
@@ -136,7 +136,7 @@
         <!-- ================================================== -->
         <!-- SECTION 2: DATA                                    -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Data">2. Data</h2>
 
             <h3>2.1 Dataset</h3>
@@ -182,7 +182,7 @@
         <!-- ================================================== -->
         <!-- SECTION 3: EDA                                     -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="EDA">3. Exploratory Data Analysis</h2>
 
             <h3>3.1 S&amp;P 500 Index Over Time</h3>
@@ -206,15 +206,15 @@
             <div class="img-placeholder">[Figure: Correlation Heatmap of Financial Indicators]</div>
             <p class="fig-caption">Figure 3 &mdash; Pairwise Pearson correlations between financial indicators (hierarchical clustering order).</p>
 
-            <div class="callout">
-                <strong>Key finding:</strong> The variables <code>dp</code>, <code>dy</code>, <code>E12</code>, <code>D12</code>, <code>csp</code>, and <code>b.m</code> are highly correlated with the S&amp;P 500 index, indicating strong multicollinearity that must be addressed during feature selection.
-            </div>
+            <p class="paragraph" style="text-align:justify;">
+                The variables <code>dp</code>, <code>dy</code>, <code>E12</code>, <code>D12</code>, <code>csp</code>, and <code>b.m</code> are highly correlated with the S&amp;P 500 index, indicating strong multicollinearity that must be addressed during feature selection.
+            </p>
         </div>
 
         <!-- ================================================== -->
         <!-- SECTION 4: FEATURE SELECTION I                     -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Feature_Selection_I">4. Feature Selection I</h2>
             <p class="paragraph" style="text-align:justify;">
                 This section applies three complementary methods to identify the most predictive variables from the original feature set before any lag construction. The goal is to reduce the dimensionality of the problem and remove variables that contribute little or no signal.
@@ -256,15 +256,15 @@
                 <li><strong>BAA</strong> — BAA-rated corporate bond yield</li>
                 <li><strong>lty</strong> — long-term government bond yield</li>
             </ol>
-            <div class="callout">
+            <p class="paragraph" style="text-align:justify;">
                 All three methods consistently highlight <strong>IndexDiv</strong>, <strong>D12</strong>, and <strong>E12</strong> as the most informative predictors. The inclusion of bond yield variables (BAA, lty) further suggests that interest rate conditions carry meaningful signal for equity market levels.
-            </div>
+            </p>
         </div>
 
         <!-- ================================================== -->
         <!-- SECTION 5: LAG IDENTIFICATION                      -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Lags">5. Lag Identification</h2>
             <p class="paragraph" style="text-align:justify;">
                 Financial time series exhibit autocorrelation: past values of a variable often carry information about its future. To capture this temporal structure, I determine the optimal number of lags to include for each variable using two approaches.
@@ -293,7 +293,7 @@
         <!-- ================================================== -->
         <!-- SECTION 6: FEATURE ENGINEERING                     -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Feature_Engineering">6. Feature Engineering</h2>
             <p class="paragraph" style="text-align:justify;">
                 Based on the results of Feature Selection I, the following 12 variables are selected for lag expansion: <code>SP500</code>, <code>IndexDiv</code>, <code>D12</code>, <code>E12</code>, <code>BAA</code>, <code>lty</code>, <code>AAA</code>, <code>dy</code>, <code>dp</code>, <code>ep</code>, <code>ntis</code>, <code>b.m</code>. For each variable, lags 1 through 10 are created, yielding a total of 120 lagged features plus the contemporaneous values (before removing the original un-lagged <code>SP500</code>).
@@ -312,7 +312,7 @@
         <!-- ================================================== -->
         <!-- SECTION 7: FEATURE SELECTION II                    -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Feature_Selection_II">7. Feature Selection II</h2>
             <p class="paragraph" style="text-align:justify;">
                 With 120+ lagged features in hand, a second round of feature selection is performed to identify which lags carry genuine predictive content and which are redundant. The same three methods &mdash; Lasso, Ridge, and Boruta &mdash; are applied to this expanded feature set.
@@ -324,15 +324,15 @@
                 <li><strong>SP500_lag2</strong>: the S&amp;P 500 index two months prior</li>
                 <li><strong>IndexDiv_lag1</strong>: the index-plus-dividends value one month prior</li>
             </ul>
-            <div class="callout">
+            <p class="paragraph" style="text-align:justify;">
                 The parsimony of this final feature set &mdash; just two lagged predictors &mdash; has an important side-benefit: with only two features, the loss function of the neural network can be visualized as a 3D surface, providing direct insight into the optimization landscape explored during training.
-            </div>
+            </p>
         </div>
 
         <!-- ================================================== -->
         <!-- SECTION 8: NEURAL NETWORKS                         -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Neural_Networks">8. Neural Network Models</h2>
 
             <h3>8.1 Data Preparation &amp; Standardization</h3>
@@ -428,7 +428,7 @@
         <!-- ================================================== -->
         <!-- SECTION 9: GAUSSIAN PROCESS                        -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Gaussian_Process">9. Gaussian Process Regression</h2>
             <p class="paragraph" style="text-align:justify;">
                 A <strong>Gaussian Process (GP)</strong> is a non-parametric probabilistic model that places a prior distribution over functions. For regression, the posterior predictive distribution at a new input \(x^*\) is:
@@ -456,7 +456,7 @@
         <!-- ================================================== -->
         <!-- SECTION 10: RESULTS                                -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Results">10. Results</h2>
 
             <h3>10.1 Model Performance Summary</h3>
@@ -493,7 +493,7 @@
         <!-- ================================================== -->
         <!-- SECTION 11: CONCLUSION                             -->
         <!-- ================================================== -->
-        <div class="w3-container w3-large" style="margin-top:50px;">
+        <div class="w3-container w3-large" style="margin-top:40px;">
             <h2 id="Conclusion">11. Conclusion</h2>
 
             <p class="paragraph" style="text-align:justify;">
@@ -524,6 +524,17 @@
 
             <p class="paragraph" style="text-align:justify;">
                 For future work, incorporating additional macroeconomic indicators and applying sequence models such as Long Short-Term Memory (LSTM) networks could further improve prediction accuracy. An ensemble approach combining the predictions of multiple models may also improve robustness by averaging out individual model errors.
+            </p>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- RESOURCES                                          -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:30px;margin-bottom:130px;">
+            <h2>Resources</h2>
+            <p style="margin-left:60px;">
+                <i class="fa fa-arrow-right w3-text-black"></i>
+                GitHub: <a href="https://github.com/mtbrr26/SP500_Predictions_MachineLearningForFinance" target="_blank">SP500_Predictions_MachineLearningForFinance</a>
             </p>
         </div>
 
