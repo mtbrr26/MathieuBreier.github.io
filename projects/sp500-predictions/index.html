@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M6V4BZTRRN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-M6V4BZTRRN');
+        </script>
+
+        <title>S&P 500 Predictions — Machine Learning for Finance</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+        <link rel="stylesheet" href="../../assets/css/nav.css">
+        <link rel="stylesheet" href="../../assets/css/project.css">
+        <script src="../../assets/js/project.js" defer></script>
+        <script src="../../assets/js/navbar.js" defer></script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        <style>
+            .img-placeholder { background: #f0f0f0; border: 2px dashed #aaa; display: flex; align-items: center; justify-content: center; color: #888; font-style: italic; font-size: 14px; width: 100%; height: 300px; border-radius: 5px; margin: 18px 0; }
+            .academia caption { caption-side: top; text-align: center; font-style: italic; font-size: 0.9rem; color: #555; padding-bottom: 0.5rem; }
+            .academia tr.separator td { border-top: 1px solid #999 !important; }
+            .fig-caption { text-align: center; font-style: italic; font-size: 0.88rem; color: #666; margin-top: -10px; margin-bottom: 20px; }
+            .callout { background: #f4f8ff; border-left: 4px solid #3a6fa0; padding: 14px 18px; border-radius: 4px; margin: 20px 0; font-size: 0.97rem; }
+            .rmse-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.97rem; }
+            .rmse-table th { background: #1a222c; color: #fff; padding: 10px 16px; text-align: left; }
+            .rmse-table td { padding: 9px 16px; border-bottom: 1px solid #e0e0e0; }
+            .rmse-table tr:last-child td { font-weight: bold; background: #eef4fb; }
+        </style>
+    </head>
+
+<body>
+    <div class="progress-bar" id="myBar"></div>
+
+    <!-- Fixed Sidebar -->
+    <div class="sidebar">
+        <nav class="nav">
+            <a href="#Introduction">Introduction</a>
+            <a href="#Data">Data</a>
+            <a href="#EDA">Exploratory Analysis</a>
+            <a href="#Feature_Selection_I">Feature Selection I</a>
+            <a href="#Lags">Lag Identification</a>
+            <a href="#Feature_Engineering">Feature Engineering</a>
+            <a href="#Feature_Selection_II">Feature Selection II</a>
+            <a href="#Neural_Networks">Neural Networks</a>
+            <a href="#Gaussian_Process">Gaussian Process</a>
+            <a href="#Results">Results</a>
+            <a href="#Conclusion">Conclusion</a>
+        </nav>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-content">
+            <a href="../../" class="nav-link">Home</a>
+            <a href="../../#projects" class="nav-link">Portfolio</a>
+            <a href="../../aboutme/" class="nav-link">About Me</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+            <span></span><span></span>
+        </button>
+        <div class="nav-mobile">
+            <a href="../../" onclick="toggleNav()">Home</a>
+            <a href="../../#projects" onclick="toggleNav()">Portfolio</a>
+            <a href="../../aboutme/" onclick="toggleNav()">About Me</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="w3-display-container" id="home" style="display:flex;justify-content:center;align-items:center;height:55vh;background:linear-gradient(135deg,#1a222c 0%,#2a3a4c 100%);">
+        <div class="w3-display-middle" style="white-space:nowrap;text-align:center;font-family:Georgia,serif;padding:20px;">
+            <span class="w3-center w3-padding-large w3-xxlarge w3-wide w3-animate-opacity" style="color:#fff;display:block;">
+                S&amp;P 500 Predictions
+            </span>
+            <span class="w3-center w3-padding-large w3-large w3-animate-opacity" style="color:#c9d6df;font-family:avenir next,avenir,sans-serif;display:block;">
+                MACHINE LEARNING &nbsp;&middot;&nbsp; TIME SERIES &nbsp;&middot;&nbsp; FINANCE
+            </span>
+        </div>
+    </div>
+
+    <!-- Abstract -->
+    <div class="w3-content w3-container w3-padding-64" style="max-width:800px;margin-bottom:50px;">
+        <h2 class="w3-center" style="font-family:Georgia,serif;">Abstract</h2>
+        <p style="font-family:Georgia,serif;text-align:justify;font-size:17px;">
+            This project builds an end-to-end predictive pipeline for the S&amp;P 500 index using the Goyal-Welch (2022) dataset spanning nearly a century of U.S. market data. Starting from raw macroeconomic and financial predictors, the analysis covers data preprocessing, two rounds of feature selection (Lasso, Ridge, Boruta), lag identification via VAR and ARIMA models, feature engineering, and the training and evaluation of four machine learning models: a simplified Keras neural network, a Keras neural network with multi-start optimization, a Keras neural network with hyperparameter tuning, and a Gaussian Process. The best-performing model achieves an out-of-sample RMSE of 88.70.
+        </p>
+    </div>
+
+    <!-- Title block -->
+    <div class="w3-container w3-border-bottom" style="margin-left:128px;margin-right:128px;">
+        <h1 style="font-size:42px;">Predicting the S&amp;P 500: A Machine Learning Approach</h1>
+        <p style="margin-left:5px;font-family:avenir next,avenir,sans-serif;">by <strong>Mathieu Breier</strong></p>
+        <p style="margin-left:5px;margin-bottom:40px;font-family:avenir next,avenir,sans-serif;">May 21, 2024 &nbsp;&middot;&nbsp; <a href="https://github.com/mtbrr26/SP500_Predictions_MachineLearningForFinance" target="_blank">GitHub Repository</a></p>
+    </div>
+
+    <!-- Article body -->
+    <div style="margin-left:228px;margin-right:228px;">
+
+        <!-- ================================================== -->
+        <!-- SECTION 1: INTRODUCTION                            -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:40px;">
+            <h2 id="Introduction">1. Introduction</h2>
+
+            <p class="paragraph" style="text-align:justify;">
+                Can decades of macroeconomic data tell us something meaningful about where the stock market is heading? That question sits at the heart of this project.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Predicting the S&amp;P 500 stock market index has long been one of the most studied &mdash; and most humbling &mdash; problems in empirical finance. Markets are noisy, driven by sentiment, geopolitical shocks, and forces that no model can fully anticipate. And yet, a rich body of academic research suggests that certain financial and macroeconomic variables do carry predictive signal, at least over longer horizons. Understanding <em>which</em> variables matter, <em>how</em> to extract that signal, and <em>which</em> methods are best suited to do so is both a practical and intellectually fascinating challenge.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                This project was born out of a desire to learn by doing. Rather than reviewing methods in the abstract, the goal was to build a full, end-to-end predictive pipeline &mdash; from raw data to model evaluation &mdash; using real financial data and a diverse set of machine learning techniques. It is also intended to serve as a teaching resource: each step is documented and explained so that anyone curious about applied machine learning in finance can follow along, understand the reasoning behind each decision, and adapt the methods to their own questions.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                The analysis is built around the <strong>Goyal-Welch (2022) monthly dataset</strong>, a widely used benchmark in the return predictability literature that aggregates a broad set of macroeconomic and financial predictors spanning nearly a century of U.S. market data (November 1926 to December 2021). From this dataset, a range of financial indicators are constructed &mdash; including log returns, the dividend-price ratio, earnings yield, dividend yield, the default yield spread, and the log equity premium &mdash; which serve as the building blocks of the predictive models.
+            </p>
+            <p class="paragraph" style="text-align:justify;">The analysis follows a structured, step-by-step pipeline designed to be both rigorous and transparent:</p>
+            <ol>
+                <li style="margin-bottom:6px;"><strong>Data Cleaning &amp; Preprocessing</strong> &mdash; raw data is cleaned, transformed, and enriched with derived financial indicators.</li>
+                <li style="margin-bottom:6px;"><strong>Exploratory Data Analysis</strong> &mdash; time series plots, return distributions, and a correlation heatmap are used to uncover structure and relationships in the data.</li>
+                <li style="margin-bottom:6px;"><strong>Feature Selection (Round 1)</strong> &mdash; Lasso, Ridge, and Boruta (Random Forest-based) methods are applied to identify the most relevant predictors from the original variable set.</li>
+                <li style="margin-bottom:6px;"><strong>Lag Identification</strong> &mdash; VAR model selection criteria and individual ARIMA models are used to determine the optimal number of lags for each variable.</li>
+                <li style="margin-bottom:6px;"><strong>Feature Engineering &amp; Selection (Round 2)</strong> &mdash; lagged versions of the selected features are created, and a second round of feature selection is performed to retain only the most informative lags.</li>
+                <li style="margin-bottom:6px;"><strong>Predictive Modeling</strong> &mdash; multiple machine learning models are trained and evaluated on the final feature set to forecast the S&amp;P 500 index.</li>
+            </ol>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 2: DATA                                    -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Data">2. Data</h2>
+
+            <h3>2.1 Dataset</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The raw data comes from the <strong>Goyal-Welch (2022) monthly dataset</strong>, a standard benchmark in the empirical return predictability literature. The dataset covers <strong>November 1926 to December 2021</strong> (1,141 monthly observations) and contains a broad set of financial and macroeconomic series, including the S&amp;P 500 index level, dividends, earnings, bond yields, and various other indicators.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                After loading the data, the <code>Index</code> column is converted to numeric (removing thousands separators), dates are parsed into a proper monthly date format, and the dataset is filtered to the November 1926&ndash;December 2021 window. A first row used solely for return calculation is removed, leaving a clean working dataset of 1,140 observations.
+            </p>
+
+            <h3>2.2 Constructed Variables</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Several financial indicators are derived from the raw series. Let \(P_t\) denote the index level, \(D_{12,t}\) trailing 12-month dividends, \(E_{12,t}\) trailing 12-month earnings, and \(r^f_t\) the risk-free rate. The constructed variables are:
+            </p>
+
+            <table class="academia" style="width:100%;border-collapse:collapse;font-size:0.95rem;margin-bottom:20px;">
+                <thead><tr style="background:#1a222c;color:#fff;">
+                    <th style="padding:8px 12px;">Variable</th>
+                    <th style="padding:8px 12px;">Definition</th>
+                    <th style="padding:8px 12px;">Formula</th>
+                </tr></thead>
+                <tbody>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>logret</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Log return</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\log P_t - \log P_{t-1}\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>IndexDiv</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Index + Dividends</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(P_t + D_{12,t}\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>logretdiv</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Log return incl. dividends</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\log(P_t + D_{12,t}) - \log(P_{t-1} + D_{12,t-1})\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>logRfree</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Log risk-free rate</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\log(1 + r^f_t)\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>GSPCep</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Log equity premium</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\text{logretdiv}_t - \text{logRfree}_t\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>dp</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Dividend-price ratio</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\log D_{12,t} - \log P_t\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>de</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Dividend-payout ratio</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\log D_{12,t} - \log E_{12,t}\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>ep</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Earnings-price ratio</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\log E_{12,t} - \log P_t\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>dy</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Dividend yield</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\log D_{12,t} - \log P_{t-1}\)</td></tr>
+                    <tr><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;"><code>dfy</code></td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">Default yield spread</td><td style="padding:7px 12px;border-bottom:1px solid #e0e0e0;">\(\text{BAA}_t - \text{AAA}_t\)</td></tr>
+                    <tr><td style="padding:7px 12px;"><code>svar, b.m, ntis, infl, tbl</code></td><td style="padding:7px 12px;">Stock variance, book-to-market, net equity expansion, inflation, T-bill rate</td><td style="padding:7px 12px;">Taken directly from the dataset</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2.3 Missing Values</h3>
+            <p class="paragraph" style="text-align:justify;">
+                After construction, only the variable <code>csp</code> (cross-sectional premium) contains missing values. These are imputed with the variable's sample mean, a standard approach for series where the number of missing observations is small relative to the total sample.
+            </p>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 3: EDA                                     -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="EDA">3. Exploratory Data Analysis</h2>
+
+            <h3>3.1 S&amp;P 500 Index Over Time</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Visualizing the S&amp;P 500 index over time allows us to understand the overall trend and behavior of the market. The plot identifies long-term exponential growth, prolonged periods of stability, and sudden disruptions corresponding to major economic events &mdash; the Great Depression, the dot-com crash, the 2008 financial crisis, and the COVID-19 shock of 2020.
+            </p>
+            <div class="img-placeholder">[Figure: S&amp;P 500 Index Over Time (1927&ndash;2021)]</div>
+            <p class="fig-caption">Figure 1 &mdash; Monthly S&amp;P 500 index level, November 1927 to December 2021.</p>
+
+            <h3>3.2 Distribution of Log Returns</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The histogram of log returns reveals the distribution of market fluctuations. While roughly bell-shaped, the distribution exhibits the characteristic <strong>fat tails</strong> of financial returns: large positive and negative observations occur more frequently than a normal distribution would predict. This is consistent with the presence of extreme events such as market crashes and rallies.
+            </p>
+            <div class="img-placeholder">[Figure: Histogram of Log Returns]</div>
+            <p class="fig-caption">Figure 2 &mdash; Histogram of monthly log returns of the S&amp;P 500 index.</p>
+
+            <h3>3.3 Correlation Heatmap</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The correlation heatmap tells us how the financial indicators relate to each other and to the S&amp;P 500 index. Understanding these correlations helps in feature selection and engineering: it highlights which features are strongly associated with the target variable and which are redundant. It also helps identify multicollinearity &mdash; a situation where highly correlated predictors can destabilize regression estimates and reduce interpretability.
+            </p>
+            <div class="img-placeholder">[Figure: Correlation Heatmap of Financial Indicators]</div>
+            <p class="fig-caption">Figure 3 &mdash; Pairwise Pearson correlations between financial indicators (hierarchical clustering order).</p>
+
+            <div class="callout">
+                <strong>Key finding:</strong> The variables <code>dp</code>, <code>dy</code>, <code>E12</code>, <code>D12</code>, <code>csp</code>, and <code>b.m</code> are highly correlated with the S&amp;P 500 index, indicating strong multicollinearity that must be addressed during feature selection.
+            </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 4: FEATURE SELECTION I                     -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Feature_Selection_I">4. Feature Selection I</h2>
+            <p class="paragraph" style="text-align:justify;">
+                This section applies three complementary methods to identify the most predictive variables from the original feature set before any lag construction. The goal is to reduce the dimensionality of the problem and remove variables that contribute little or no signal.
+            </p>
+
+            <h3>4.1 Lasso Regression</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Lasso (Least Absolute Shrinkage and Selection Operator) adds an \(\ell_1\) penalty to the ordinary least-squares objective, which can shrink some coefficients to <em>exactly zero</em>, effectively removing the corresponding variables from the model. It is therefore well-suited as a feature selection tool.
+            </p>
+            \[
+              \hat{\beta}^{\text{Lasso}} = \arg\min_{\beta} \left\{ \|y - X\beta\|_2^2 + \lambda \|\beta\|_1 \right\}
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                The regularization parameter \(\lambda\) is tuned by cross-validation. All features are standardized prior to fitting (mean zero, unit variance) to ensure fair penalization. The Lasso identifies <strong>IndexDiv</strong> (the sum of the S&amp;P 500 index and dividends) as the dominant predictor. This is intuitive: IndexDiv already incorporates the index level, making it a near-perfect linear proxy for the target.
+            </p>
+
+            <h3>4.2 Ridge Regression</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Ridge Regression penalizes the squared magnitude of the coefficients (\(\ell_2\) penalty). Unlike Lasso, it does not shrink any coefficient to exactly zero, but it reduces the influence of less important features, particularly under multicollinearity.
+            </p>
+            \[
+              \hat{\beta}^{\text{Ridge}} = \arg\min_{\beta} \left\{ \|y - X\beta\|_2^2 + \lambda \|\beta\|_2^2 \right\}
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                Ridge regression confirms <strong>IndexDiv</strong> as the most significant predictor. <strong>E12</strong> (earnings) and <strong>D12</strong> (dividends) also carry large positive coefficients (72.65 and 58.76 respectively), consistent with the idea that profitability and dividend payments are key drivers of the index. The <strong>book-to-market ratio</strong> (b.m) adds further explanatory power, suggesting that valuation multiples matter beyond pure earnings and dividend levels.
+            </p>
+
+            <h3>4.3 Boruta (Random Forest-based)</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The Boruta algorithm provides a complementary, non-parametric perspective on feature importance. It works by creating <em>shadow features</em> &mdash; randomly permuted copies of each original feature &mdash; and iteratively comparing the importance of original features against these uninformative shadows using a Random Forest. A feature is retained only if it consistently outperforms the best shadow feature. This process makes Boruta particularly robust to interactions and non-linearities that linear methods may miss.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Boruta identifies <strong>five confirmed features</strong> in descending order of mean importance:
+            </p>
+            <ol>
+                <li><strong>IndexDiv</strong> — mean importance 16.03 (highest; consistent with Lasso and Ridge)</li>
+                <li><strong>D12</strong> — trailing 12-month dividends</li>
+                <li><strong>E12</strong> — trailing 12-month earnings</li>
+                <li><strong>BAA</strong> — BAA-rated corporate bond yield</li>
+                <li><strong>lty</strong> — long-term government bond yield</li>
+            </ol>
+            <div class="callout">
+                All three methods consistently highlight <strong>IndexDiv</strong>, <strong>D12</strong>, and <strong>E12</strong> as the most informative predictors. The inclusion of bond yield variables (BAA, lty) further suggests that interest rate conditions carry meaningful signal for equity market levels.
+            </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 5: LAG IDENTIFICATION                      -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Lags">5. Lag Identification</h2>
+            <p class="paragraph" style="text-align:justify;">
+                Financial time series exhibit autocorrelation: past values of a variable often carry information about its future. To capture this temporal structure, I determine the optimal number of lags to include for each variable using two approaches.
+            </p>
+
+            <h3>5.1 Method 1: VAR Model Selection (HQ Criterion)</h3>
+            <p class="paragraph" style="text-align:justify;">
+                A Vector Autoregressive (VAR) model treats all variables simultaneously and estimates the lag structure that best fits the joint system. The <strong>Hannan-Quinn (HQ) information criterion</strong> is used to select the optimal lag length \(p\):
+            </p>
+            \[
+              \text{HQ}(p) = \ln|\hat{\Sigma}_p| + \frac{2\ln(\ln T)}{T} \cdot k^2 p
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                where \(\hat{\Sigma}_p\) is the residual covariance matrix, \(T\) is the sample size, and \(k\) is the number of variables. The HQ criterion penalizes model complexity more aggressively than AIC but less than BIC. Searching up to a maximum of 15 lags, the HQ criterion selects the global optimal lag order for the joint system of variables.
+            </p>
+
+            <h3>5.2 Method 2: ARIMA per Variable</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Since the VAR approach finds a single lag length for all variables jointly, it may not be optimal for each series individually. As a complement, <code>auto.arima()</code> is applied to each variable separately, automatically selecting the best ARIMA(\(p, d, q\)) model by minimizing an information criterion (AIC/BIC). The AR order \(p\) from each fitted model gives the variable-specific optimal lag.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Based on both methods, I proceed to construct up to <strong>10 lags</strong> for the selected variables, providing ample temporal depth for the subsequent feature selection step to determine which lags are truly informative.
+            </p>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 6: FEATURE ENGINEERING                     -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Feature_Engineering">6. Feature Engineering</h2>
+            <p class="paragraph" style="text-align:justify;">
+                Based on the results of Feature Selection I, the following 12 variables are selected for lag expansion: <code>SP500</code>, <code>IndexDiv</code>, <code>D12</code>, <code>E12</code>, <code>BAA</code>, <code>lty</code>, <code>AAA</code>, <code>dy</code>, <code>dp</code>, <code>ep</code>, <code>ntis</code>, <code>b.m</code>. For each variable, lags 1 through 10 are created, yielding a total of 120 lagged features plus the contemporaneous values (before removing the original un-lagged <code>SP500</code>).
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Formally, for variable \(x_t\), the lag-\(k\) feature is defined as:
+            </p>
+            \[
+              x_{t-k}, \quad k = 1, 2, \ldots, 10
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                Rows containing any missing values (arising at the beginning of the sample from the lag construction) are removed, and the original <code>SP500</code> series is retained only as the target variable \(y_t\). The final feature matrix is then merged with the target to form the working dataset for the second round of feature selection.
+            </p>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 7: FEATURE SELECTION II                    -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Feature_Selection_II">7. Feature Selection II</h2>
+            <p class="paragraph" style="text-align:justify;">
+                With 120+ lagged features in hand, a second round of feature selection is performed to identify which lags carry genuine predictive content and which are redundant. The same three methods &mdash; Lasso, Ridge, and Boruta &mdash; are applied to this expanded feature set.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                All three methods converge on the same conclusion: the vast majority of lags carry minimal additional information once the two most informative lagged features are included. The final feature set is reduced to just <strong>two variables</strong>:
+            </p>
+            <ul>
+                <li><strong>SP500_lag2</strong>: the S&amp;P 500 index two months prior</li>
+                <li><strong>IndexDiv_lag1</strong>: the index-plus-dividends value one month prior</li>
+            </ul>
+            <div class="callout">
+                The parsimony of this final feature set &mdash; just two lagged predictors &mdash; has an important side-benefit: with only two features, the loss function of the neural network can be visualized as a 3D surface, providing direct insight into the optimization landscape explored during training.
+            </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 8: NEURAL NETWORKS                         -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Neural_Networks">8. Neural Network Models</h2>
+
+            <h3>8.1 Data Preparation &amp; Standardization</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Before training, all features <em>and</em> the target variable are standardized to have mean zero and unit variance:
+            </p>
+            \[
+              \tilde{x} = \frac{x - \bar{x}}{s_x}
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                Standardization is critical for neural networks: without it, features with larger magnitudes dominate the gradient descent updates, causing erratic optimization. After training, predictions are de-standardized back to the original scale before computing evaluation metrics.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                The dataset is split <strong>80/20</strong> by time (not randomly) to respect the temporal ordering of the data: the training set covers approximately 1927&ndash;2003, and the test set covers 2003&ndash;2021.
+            </p>
+
+            <h3>8.2 Architecture</h3>
+            <p class="paragraph" style="text-align:justify;">
+                All three neural network variants share the same base architecture: a fully connected feedforward network with two hidden layers using the <strong>ReLU</strong> activation function, and a single linear output unit for regression.
+            </p>
+            \[
+              \text{ReLU}(z) = \max(0,\, z)
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                The network is trained to minimize the <strong>mean squared error (MSE)</strong> loss:
+            </p>
+            \[
+              \mathcal{L} = \frac{1}{n} \sum_{i=1}^{n} \left(\hat{y}_i - y_i\right)^2
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                Performance is reported as the <strong>root mean squared error (RMSE)</strong> on the test set, computed on de-standardized predictions:
+            </p>
+            \[
+              \text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} \left(\hat{y}_i - y_i\right)^2}
+            \]
+
+            <h3>8.3 Model I &mdash; Simplified Neural Network</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The first model uses a straightforward architecture: two hidden layers of 256 and 128 units respectively, trained with the Adam optimizer (learning rate 0.0005) and early stopping (patience 30 epochs, monitoring validation loss). This serves as the baseline against which more complex variants are compared.
+            </p>
+            <div class="img-placeholder">[Figure: Training &amp; Validation Loss — Simple Neural Network]</div>
+            <p class="fig-caption">Figure 4 &mdash; Training history for the simplified Keras neural network.</p>
+
+            <h3>8.4 Model II &mdash; Multi-Start Optimization</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Neural networks are non-convex optimizers: gradient descent may converge to different <em>local minima</em> depending on the initial weights. A <strong>multi-start</strong> strategy trains the model 10 times from independently random initializations and selects the run that achieves the lowest validation loss. This reduces sensitivity to a poor initialization and provides a more reliable estimate of what the architecture can achieve.
+            </p>
+            <div class="img-placeholder">[Figure: Training Histories for 10 Multi-Start Runs]</div>
+            <p class="fig-caption">Figure 5 &mdash; Training and validation loss curves for each of the 10 random initializations. The best run (lowest validation loss) is retained as the final model.</p>
+
+            <h3>8.5 Model III &mdash; Hyperparameter Tuning with Regularization</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The third variant adds two forms of regularization to the base architecture and conducts a <strong>grid search</strong> over key hyperparameters.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                <strong>Dropout</strong> randomly sets a fraction \(\delta\) of hidden unit activations to zero at each training step, preventing co-adaptation of neurons and reducing overfitting:
+            </p>
+            \[
+              h_i^{\text{drop}} = h_i \cdot \text{Bernoulli}(1 - \delta)
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                <strong>L2 kernel regularization</strong> penalizes large weight values, analogous to Ridge regression on the network weights:
+            </p>
+            \[
+              \mathcal{L}_{\text{reg}} = \mathcal{L} + \alpha \sum_{l} \|W_l\|_2^2
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                The grid search explores the following hyperparameter space:
+            </p>
+            <ul>
+                <li><strong>Units per layer:</strong> [32&ndash;16], [64&ndash;32], [128&ndash;64], [256&ndash;128], [512&ndash;256]</li>
+                <li><strong>Dropout rate:</strong> 0.1, 0.3, 0.5</li>
+                <li><strong>Learning rate:</strong> 0.0001, 0.0002, 0.0003, 0.0005</li>
+                <li><strong>Batch size:</strong> 8, 16, 32</li>
+            </ul>
+            <p class="paragraph" style="text-align:justify;">
+                The optimal configuration found is: <strong>[512, 256] units</strong>, dropout 0.3, learning rate 0.0005, batch size 8. The final model is retrained from scratch with these parameters and early stopping.
+            </p>
+            <div class="img-placeholder">[Figure: Training &amp; Validation Loss — Tuned Neural Network]</div>
+            <p class="fig-caption">Figure 6 &mdash; Training history for the neural network with hyperparameter tuning.</p>
+
+            <h3>8.6 Visualizing the Loss Landscape</h3>
+            <p class="paragraph" style="text-align:justify;">
+                Because the final model uses only two input features (<code>SP500_lag2</code> and <code>IndexDiv_lag1</code>), the loss surface can be visualized as a 3D function of these two inputs. A grid of values is evaluated through the trained network, computing the MSE against the nearest training target, yielding the surface below.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Neural networks train through <strong>gradient descent</strong>: starting from random weights, the algorithm computes the gradient of the loss with respect to all parameters (via backpropagation) and updates the weights in the direction of steepest descent. The 3D loss surface illustrates the optimization landscape the network navigates to find its minimum.
+            </p>
+            <div class="img-placeholder">[Figure: 3D Loss Surface (SP500_lag2 × IndexDiv_lag1)]</div>
+            <p class="fig-caption">Figure 7 &mdash; Interactive 3D loss surface. The x-axis shows SP500 lag 2, the y-axis IndexDiv lag 1, and the z-axis the corresponding RMSE. The valley region corresponds to the optimal weight configuration found by gradient descent.</p>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 9: GAUSSIAN PROCESS                        -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Gaussian_Process">9. Gaussian Process Regression</h2>
+            <p class="paragraph" style="text-align:justify;">
+                A <strong>Gaussian Process (GP)</strong> is a non-parametric probabilistic model that places a prior distribution over functions. For regression, the posterior predictive distribution at a new input \(x^*\) is:
+            </p>
+            \[
+              f(x^*) \mid X, y \sim \mathcal{N}\!\left(\mu^*(x^*),\; \sigma^{*2}(x^*)\right)
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                where the mean and variance are determined by the <strong>kernel function</strong> \(k(x, x')\), which encodes assumptions about the smoothness and structure of the underlying function.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                Since the S&amp;P 500 index is <strong>non-stationary</strong> &mdash; its statistical properties change over time, and its level grows persistently &mdash; a standard stationary kernel (such as the RBF/Gaussian kernel) is inappropriate. I instead define a custom <strong>non-stationary kernel</strong> that combines a stationary decay term with a linear inner product:
+            </p>
+            \[
+              k(x, y) = 2\exp\!\left(\frac{-\|x - y\|_1}{2 \times 1.5^2}\right) + 1.5\, x^\top y
+            \]
+            <p class="paragraph" style="text-align:justify;">
+                The first term captures local similarity between observations (similar to an exponential kernel), while the second term — the linear kernel — allows the model to extrapolate the long-term trend in index levels. The noise variance is set to \(\sigma^2_n = 0.003\).
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                The GP is fitted on the standardized training set and predictions are de-standardized before RMSE computation, consistent with the neural network evaluation protocol.
+            </p>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 10: RESULTS                                -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Results">10. Results</h2>
+
+            <h3>10.1 Model Performance Summary</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The table below reports the out-of-sample RMSE for each model evaluated on the 2003&ndash;2021 test set. Lower RMSE indicates better predictive accuracy.
+            </p>
+
+            <table class="rmse-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>RMSE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Simple Neural Network (Keras)</td><td>—</td></tr>
+                    <tr><td>Neural Network with Multi-Start Optimization (Keras)</td><td>—</td></tr>
+                    <tr><td>Neural Network with Hyperparameter Tuning (Keras)</td><td><strong>88.70</strong></td></tr>
+                    <tr><td>Gaussian Process Regression</td><td>—</td></tr>
+                </tbody>
+            </table>
+            <p class="fig-caption">Table 1 &mdash; Out-of-sample RMSE for each model on the 2003&ndash;2021 test period. The tuned Keras neural network achieves the best performance.</p>
+
+            <h3>10.2 Predicted vs. Actual S&amp;P 500</h3>
+            <p class="paragraph" style="text-align:justify;">
+                The chart below overlays the actual S&amp;P 500 index with the predictions from all models over the full test period (2003&ndash;2021), and a zoomed view on 2000&ndash;2021 to better distinguish the trajectories around the 2008 financial crisis and the COVID-19 shock.
+            </p>
+            <div class="img-placeholder">[Figure: Actual vs. Predicted S&amp;P 500 — Full Test Period (2003&ndash;2021)]</div>
+            <p class="fig-caption">Figure 8 &mdash; Actual S&amp;P 500 index (dark blue) versus predictions from the simplified neural network (purple), multi-start neural network (light blue), and Gaussian Process (orange), 2003&ndash;2021.</p>
+            <div class="img-placeholder">[Figure: ZOOM — Actual vs. Predicted S&amp;P 500 (2000&ndash;2021)]</div>
+            <p class="fig-caption">Figure 9 &mdash; Zoomed view on 2000&ndash;2021. Predictions are de-standardized to the original index scale.</p>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 11: CONCLUSION                             -->
+        <!-- ================================================== -->
+        <div class="w3-container w3-large" style="margin-top:50px;">
+            <h2 id="Conclusion">11. Conclusion</h2>
+
+            <p class="paragraph" style="text-align:justify;">
+                This project set out to predict the S&amp;P 500 index using a variety of machine learning models. Multiple approaches were explored, including neural networks with different architectures and optimization techniques, as well as Gaussian Process Regression. The results provide valuable insights into the strengths and limitations of each method and highlight the importance of model complexity, parameter optimization, and feature engineering in time series forecasting.
+            </p>
+
+            <h3>Models Performance Overview</h3>
+            <p class="paragraph" style="text-align:justify;">
+                <strong>Simple Neural Network.</strong> This model used a basic architecture with two hidden layers of moderate complexity, trained with early stopping. The RMSE was relatively high, reflecting the limitations of a plain architecture in capturing the complexity of S&amp;P 500 dynamics, which are influenced by a wide range of economic factors.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                <strong>Neural Network with Multi-Start Optimization.</strong> The multi-start approach trained the model multiple times from different random initializations, avoiding poor local minima. This produced a modest improvement in RMSE, confirming that better initialization conditions improve model generalizability.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                <strong>Neural Network with Hyperparameter Tuning.</strong> This model used a deeper architecture with dropout regularization and L2 kernel regularization, with hyperparameters optimized through grid search. It achieved the lowest RMSE among all models, demonstrating that a carefully tuned, more sophisticated architecture better captures the patterns in the data.
+            </p>
+            <p class="paragraph" style="text-align:justify;">
+                <strong>Gaussian Process Regression.</strong> Applied with a custom non-stationary kernel to capture the non-linearities and trend of the stock market, the GP model had a slightly higher RMSE compared to the best neural network. Nevertheless, it offers a valuable advantage: unlike neural networks, Gaussian Processes provide <em>uncertainty estimates</em> on predictions, which are crucial in financial contexts where quantifying risk is as important as the point forecast itself.
+            </p>
+
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li style="margin-bottom:8px;"><strong>Feature engineering matters.</strong> Proper feature selection and lag construction played a pivotal role in model performance. Despite starting with over 120 candidate features, the final model relied on just two: <code>SP500_lag2</code> and <code>IndexDiv_lag1</code>. Methods like Lasso, Ridge, and Boruta were effective in identifying this minimal informative set.</li>
+                <li style="margin-bottom:8px;"><strong>Optimization strategy matters.</strong> Multi-start optimization demonstrated the value of avoiding poor local minima. Hyperparameter tuning showed that architecture choices &mdash; number of units, dropout rate, learning rate, batch size &mdash; have a significant impact on generalization.</li>
+                <li style="margin-bottom:8px;"><strong>Regularization matters.</strong> Dropout and L2 regularization reduced overfitting, allowing more complex models to generalize better on the 20-year test window.</li>
+                <li style="margin-bottom:8px;"><strong>Model choice is context-dependent.</strong> While deep neural networks achieved the best point forecast accuracy, Gaussian Processes offer interpretable uncertainty bounds that can be more valuable than marginal RMSE improvements in a risk-aware financial application.</li>
+            </ul>
+
+            <p class="paragraph" style="text-align:justify;">
+                For future work, incorporating additional macroeconomic indicators and applying sequence models such as Long Short-Term Memory (LSTM) networks could further improve prediction accuracy. An ensemble approach combining the predictions of multiple models may also improve robustness by averaging out individual model errors.
+            </p>
+        </div>
+
+    </div><!-- end article body -->
+
+</body>
+
+<!-- Footnote / Contact -->
+<div class="footnote">
+    <div class="w3-container" style="margin-left:128px;margin-right:128px;margin-bottom:30px;margin-top:30px;">
+        <div class="w3-left-align">
+            <h2>Contact</h2>
+            <p style="text-align:left;font-size:16px;">Email: <a href="mailto:breiermathieu@gmail.com">breiermathieu@gmail.com</a></p>
+            <p style="text-align:left;font-size:16px;">Download my CV <a href="../../downloads/cv.pdf" download>here</a></p>
+            <p style="text-align:left;font-size:16px;">
+                Github: <a href="https://github.com/mtbrr26" target="_blank">github.com/mtbrr26</a><br>
+                LinkedIn: <a href="https://www.linkedin.com/in/mathieu-breier/" target="_blank">linkedin.com/in/mathieu-breier/</a>
+            </p>
+        </div>
+    </div>
+    <p>&copy; Mathieu Breier</p>
+</div>
+
+</html>
