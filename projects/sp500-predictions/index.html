@@ -120,7 +120,7 @@
                 This project was born out of a desire to learn by doing. Rather than reviewing methods in the abstract, the goal was to build a full, end-to-end predictive pipeline &mdash; from raw data to model evaluation &mdash; using real financial data and a diverse set of machine learning techniques. It is also intended to serve as a teaching resource: each step is documented and explained so that anyone curious about applied machine learning in finance can follow along, understand the reasoning behind each decision, and adapt the methods to their own questions.
             </p>
             <p class="paragraph" style="text-align:justify;">
-                The analysis is built around the <strong>Goyal-Welch (2022) monthly dataset</strong>, a widely used benchmark in the return predictability literature that aggregates a broad set of macroeconomic and financial predictors spanning nearly a century of U.S. market data (November 1926 to December 2021). From this dataset, a range of financial indicators are constructed &mdash; including log returns, the dividend-price ratio, earnings yield, dividend yield, the default yield spread, and the log equity premium &mdash; which serve as the building blocks of the predictive models.
+                The analysis is built around the Goyal-Welch (2022) monthly dataset, a widely used benchmark in the return predictability literature that aggregates a broad set of macroeconomic and financial predictors spanning nearly a century of U.S. market data (November 1926 to December 2021). From this dataset, a range of financial indicators are constructed &mdash; including log returns, the dividend-price ratio, earnings yield, dividend yield, the default yield spread, and the log equity premium &mdash; which serve as the building blocks of the predictive models.
             </p>
             <p class="paragraph" style="text-align:justify;">The analysis follows a structured, step-by-step pipeline designed to be both rigorous and transparent:</p>
             <ol>
@@ -141,7 +141,7 @@
 
             <h3>2.1 Dataset</h3>
             <p class="paragraph" style="text-align:justify;">
-                The raw data comes from the <strong>Goyal-Welch (2022) monthly dataset</strong>, a standard benchmark in the empirical return predictability literature. The dataset covers <strong>November 1926 to December 2021</strong> (1,141 monthly observations) and contains a broad set of financial and macroeconomic series, including the S&amp;P 500 index level, dividends, earnings, bond yields, and various other indicators.
+                The raw data comes from the Goyal-Welch (2022) monthly dataset, a standard benchmark in the empirical return predictability literature. The dataset covers November 1926 to December 2021 (1,141 monthly observations) and contains a broad set of financial and macroeconomic series, including the S&amp;P 500 index level, dividends, earnings, bond yields, and various other indicators.
             </p>
             <p class="paragraph" style="text-align:justify;">
                 After loading the data, the <code>Index</code> column is converted to numeric (removing thousands separators), dates are parsed into a proper monthly date format, and the dataset is filtered to the November 1926&ndash;December 2021 window. A first row used solely for return calculation is removed, leaving a clean working dataset of 1,140 observations.
@@ -228,7 +228,7 @@
               \hat{\beta}^{\text{Lasso}} = \arg\min_{\beta} \left\{ \|y - X\beta\|_2^2 + \lambda \|\beta\|_1 \right\}
             \]
             <p class="paragraph" style="text-align:justify;">
-                The regularization parameter \(\lambda\) is tuned by cross-validation. All features are standardized prior to fitting (mean zero, unit variance) to ensure fair penalization. The Lasso identifies <strong>IndexDiv</strong> (the sum of the S&amp;P 500 index and dividends) as the dominant predictor. This is intuitive: IndexDiv already incorporates the index level, making it a near-perfect linear proxy for the target.
+                The regularization parameter \(\lambda\) is tuned by cross-validation. All features are standardized prior to fitting (mean zero, unit variance) to ensure fair penalization. The Lasso identifies <code>IndexDiv</code> (the sum of the S&amp;P 500 index and dividends) as the dominant predictor. This is intuitive: IndexDiv already incorporates the index level, making it a near-perfect linear proxy for the target.
             </p>
 
             <h3>4.2 Ridge Regression</h3>
@@ -239,7 +239,7 @@
               \hat{\beta}^{\text{Ridge}} = \arg\min_{\beta} \left\{ \|y - X\beta\|_2^2 + \lambda \|\beta\|_2^2 \right\}
             \]
             <p class="paragraph" style="text-align:justify;">
-                Ridge regression confirms <strong>IndexDiv</strong> as the most significant predictor. <strong>E12</strong> (earnings) and <strong>D12</strong> (dividends) also carry large positive coefficients (72.65 and 58.76 respectively), consistent with the idea that profitability and dividend payments are key drivers of the index. The <strong>book-to-market ratio</strong> (b.m) adds further explanatory power, suggesting that valuation multiples matter beyond pure earnings and dividend levels.
+                Ridge regression confirms <code>IndexDiv</code> as the most significant predictor. <code>E12</code> (earnings) and <code>D12</code> (dividends) also carry large positive coefficients (72.65 and 58.76 respectively), consistent with the idea that profitability and dividend payments are key drivers of the index. The book-to-market ratio (b.m) adds further explanatory power, suggesting that valuation multiples matter beyond pure earnings and dividend levels.
             </p>
 
             <h3>4.3 Boruta (Random Forest-based)</h3>
@@ -247,17 +247,17 @@
                 The Boruta algorithm provides a complementary, non-parametric perspective on feature importance. It works by creating <em>shadow features</em> &mdash; randomly permuted copies of each original feature &mdash; and iteratively comparing the importance of original features against these uninformative shadows using a Random Forest. A feature is retained only if it consistently outperforms the best shadow feature. This process makes Boruta particularly robust to interactions and non-linearities that linear methods may miss.
             </p>
             <p class="paragraph" style="text-align:justify;">
-                Boruta identifies <strong>five confirmed features</strong> in descending order of mean importance:
+                Boruta identifies five confirmed features in descending order of mean importance:
             </p>
             <ol>
-                <li><strong>IndexDiv</strong> — mean importance 16.03 (highest; consistent with Lasso and Ridge)</li>
-                <li><strong>D12</strong> — trailing 12-month dividends</li>
-                <li><strong>E12</strong> — trailing 12-month earnings</li>
-                <li><strong>BAA</strong> — BAA-rated corporate bond yield</li>
-                <li><strong>lty</strong> — long-term government bond yield</li>
+                <li><code>IndexDiv</code> — mean importance 16.03 (highest; consistent with Lasso and Ridge)</li>
+                <li><code>D12</code> — trailing 12-month dividends</li>
+                <li><code>E12</code> — trailing 12-month earnings</li>
+                <li><code>BAA</code> — BAA-rated corporate bond yield</li>
+                <li><code>lty</code> — long-term government bond yield</li>
             </ol>
             <p class="paragraph" style="text-align:justify;">
-                All three methods consistently highlight <strong>IndexDiv</strong>, <strong>D12</strong>, and <strong>E12</strong> as the most informative predictors. The inclusion of bond yield variables (BAA, lty) further suggests that interest rate conditions carry meaningful signal for equity market levels.
+                All three methods consistently highlight <code>IndexDiv</code>, <code>D12</code>, and <code>E12</code> as the most informative predictors. The inclusion of bond yield variables (BAA, lty) further suggests that interest rate conditions carry meaningful signal for equity market levels.
             </p>
         </div>
 
@@ -286,7 +286,7 @@
                 Since the VAR approach finds a single lag length for all variables jointly, it may not be optimal for each series individually. As a complement, <code>auto.arima()</code> is applied to each variable separately, automatically selecting the best ARIMA(\(p, d, q\)) model by minimizing an information criterion (AIC/BIC). The AR order \(p\) from each fitted model gives the variable-specific optimal lag.
             </p>
             <p class="paragraph" style="text-align:justify;">
-                Based on both methods, I proceed to construct up to <strong>10 lags</strong> for the selected variables, providing ample temporal depth for the subsequent feature selection step to determine which lags are truly informative.
+                Based on both methods, I proceed to construct up to 10 lags for the selected variables, providing ample temporal depth for the subsequent feature selection step to determine which lags are truly informative.
             </p>
         </div>
 
@@ -318,11 +318,11 @@
                 With 120+ lagged features in hand, a second round of feature selection is performed to identify which lags carry genuine predictive content and which are redundant. The same three methods &mdash; Lasso, Ridge, and Boruta &mdash; are applied to this expanded feature set.
             </p>
             <p class="paragraph" style="text-align:justify;">
-                All three methods converge on the same conclusion: the vast majority of lags carry minimal additional information once the two most informative lagged features are included. The final feature set is reduced to just <strong>two variables</strong>:
+                All three methods converge on the same conclusion: the vast majority of lags carry minimal additional information once the two most informative lagged features are included. The final feature set is reduced to just two variables:
             </p>
             <ul>
-                <li><strong>SP500_lag2</strong>: the S&amp;P 500 index two months prior</li>
-                <li><strong>IndexDiv_lag1</strong>: the index-plus-dividends value one month prior</li>
+                <li><code>SP500_lag2</code>: the S&amp;P 500 index two months prior</li>
+                <li><code>IndexDiv_lag1</code>: the index-plus-dividends value one month prior</li>
             </ul>
             <p class="paragraph" style="text-align:justify;">
                 The parsimony of this final feature set &mdash; just two lagged predictors &mdash; has an important side-benefit: with only two features, the loss function of the neural network can be visualized as a 3D surface, providing direct insight into the optimization landscape explored during training.
@@ -346,7 +346,7 @@
                 Standardization is critical for neural networks: without it, features with larger magnitudes dominate the gradient descent updates, causing erratic optimization. After training, predictions are de-standardized back to the original scale before computing evaluation metrics.
             </p>
             <p class="paragraph" style="text-align:justify;">
-                The dataset is split <strong>80/20</strong> by time (not randomly) to respect the temporal ordering of the data: the training set covers approximately 1927&ndash;2003, and the test set covers 2003&ndash;2021.
+                The dataset is split 80/20 by time (not randomly) to respect the temporal ordering of the data: the training set covers approximately 1927&ndash;2003, and the test set covers 2003&ndash;2021.
             </p>
 
             <h3>8.2 Architecture</h3>
@@ -409,7 +409,7 @@
                 <li><strong>Batch size:</strong> 8, 16, 32</li>
             </ul>
             <p class="paragraph" style="text-align:justify;">
-                The optimal configuration found is: <strong>[512, 256] units</strong>, dropout 0.3, learning rate 0.0005, batch size 8. The final model is retrained from scratch with these parameters and early stopping.
+                The optimal configuration found is: [512, 256] units, dropout 0.3, learning rate 0.0005, batch size 8. The final model is retrained from scratch with these parameters and early stopping.
             </p>
             <div class="img-placeholder">[Figure: Training &amp; Validation Loss — Tuned Neural Network]</div>
             <p class="fig-caption">Figure 6 &mdash; Training history for the neural network with hyperparameter tuning.</p>
