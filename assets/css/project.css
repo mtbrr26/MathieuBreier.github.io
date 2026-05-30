@@ -19,7 +19,7 @@ body, html {
 
 /* ── Parallax hero images ── */
 
-.w3-display-container#home {
+body {
   padding-top: 48px;
 }
 
