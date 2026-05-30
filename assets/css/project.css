@@ -20,7 +20,7 @@ body, html {
 /* ── Parallax hero images ── */
 
 .w3-display-container#home {
-  padding-top: 48px;
+  margin-top: 48px;
 }
 
 .bgimg-1, .bgimg-2, .bgimg-3 {
